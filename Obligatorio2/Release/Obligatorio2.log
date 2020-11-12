@@ -1,0 +1,14 @@
+﻿main.obj : error LNK2001: símbolo externo _SDL_Log sin resolver
+main.obj : error LNK2001: símbolo externo _SDL_GL_SwapWindow sin resolver
+main.obj : error LNK2001: símbolo externo _SDL_GL_DeleteContext sin resolver
+main.obj : error LNK2001: símbolo externo _SDL_Init sin resolver
+main.obj : error LNK2001: símbolo externo _SDL_DestroyWindow sin resolver
+main.obj : error LNK2001: símbolo externo _SDL_GetError sin resolver
+main.obj : error LNK2001: símbolo externo _SDL_Quit sin resolver
+main.obj : error LNK2001: símbolo externo _SDL_GL_GetProcAddress sin resolver
+main.obj : error LNK2001: símbolo externo _SDL_GL_CreateContext sin resolver
+main.obj : error LNK2001: símbolo externo _SDL_PollEvent sin resolver
+main.obj : error LNK2001: símbolo externo _SDL_GL_SetSwapInterval sin resolver
+main.obj : error LNK2001: símbolo externo _SDL_CreateWindow sin resolver
+MSVCRT.lib(exe_main.obj) : error LNK2001: símbolo externo _main sin resolver
+C:\Users\Usuario\source\repos\Obligatorio2\Release\Obligatorio2.exe : fatal error LNK1120: 13 externos sin resolver
