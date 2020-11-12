@@ -10,6 +10,8 @@
 
 #include <iostream>
 #include <fstream>
+#include "Obligatorio2/model.h"
+#include "Obligatorio2/shader.h"
 
 using namespace std;
 
@@ -18,7 +20,7 @@ GLuint shaderprogram; // handle for shader program
 GLuint vao, vbo[2]; // handles for our VAO and two VBOs
 float r = 0;
 
-  
+Model* m;
 // loadFile - loads text file into char* fname
 // allocates memory - so need to delete after use
 const char* loadFile(const char* fname)
@@ -148,39 +150,14 @@ GLuint initShaders(const char* vertFile, const char* fragFile)
 
 void init(void)
 {
-	const GLfloat pyramid[18] = {     // a simple pyramid
-		0.0, 0.5, 0.0, // top
-		-1.0,  -0.5, 1.0, // front bottom left
-		1.0, -0.5, 1.0, // front bottom right
-		1.0,  -0.5, -1.0, // back bottom right
-		-1.0, -0.5, -1.0, // back bottom left
-		-1.0, -0.5, 1.0 }; // front bottom left
-	const GLfloat colors[18] = {
-		0.0,  0.0,  0.0, // black
-		1.0,  0.0,  0.0, // red
-		0.0,  1.0,  0.0, // green
-		0.0,  0.0,  1.0, // blue
-		1.0,  1.0,  0.0,
-		1.0,  0.0,  0.0 }; // yellow
-
-
-	shaderprogram = initShaders("../simple.vert", "../simple.frag"); // Create and start shader program
-	glGenVertexArrays(1, &vao); // allocate & assign a Vertex Array Object (VAO)
-	glBindVertexArray(vao); // bind VAO as current object
-	glGenBuffers(2, vbo); // allocate two Vertex Buffer Objects (VBO)
-
-	glBindBuffer(GL_ARRAY_BUFFER, vbo[0]); // bind first VBO as active buffer object
-	glBufferData(GL_ARRAY_BUFFER, 18 * sizeof(GLfloat), pyramid, GL_STATIC_DRAW);
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
-	glEnableVertexAttribArray(0);     // Enable attribute index 0 (position)
-
-	glBindBuffer(GL_ARRAY_BUFFER, vbo[1]); // bind second VBO as active buffer object
-	glBufferData(GL_ARRAY_BUFFER, 18 * sizeof(GLfloat), colors, GL_STATIC_DRAW);
-	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 0, 0);
-	glEnableVertexAttribArray(1);    // Enable attribute index 1 (color)
+	m = new Model("modelos/backpack.obj");
+	
+	shaderprogram = initShaders("simple.vert", "simple.frag"); // Create and start shader program
+	
 
 	glEnable(GL_DEPTH_TEST); // enable depth testing
 	//glEnable(GL_CULL_FACE); // enable back face culling - try this and see what happens!
+	
 }
 
 
@@ -197,7 +174,6 @@ void draw(SDL_Window* window)
 	glm::mat4 view(1.0);
 	view = glm::translate(view, glm::vec3(0.0f, 0.0f, -4.0f));
 	view = glm::rotate(view, r, glm::vec3(0.0f, 1.0f, 0.0f));
-
 	// Create model matrix for model transformations
 	glm::mat4 model(1.0);
 
@@ -211,7 +187,9 @@ void draw(SDL_Window* window)
 	int modelIndex = glGetUniformLocation(shaderprogram, "model");
 	glUniformMatrix4fv(modelIndex, 1, GL_FALSE, glm::value_ptr(model));
 
-	glDrawArrays(GL_TRIANGLE_FAN, 0, 6); // draw the pyramid
+	//glDrawArrays(GL_TRIANGLE_FAN, 0, 6); // draw the pyramid
+	Shader s=Shader("simple.vert","simple.frag");
+	m->Draw(s);
 
 	SDL_GL_SwapWindow(window); // swap buffers
 }

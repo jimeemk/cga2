@@ -85,8 +85,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>..\libraries\Freeimage;..\libraries\SDL2-2.0.12\include;$(IncludePath)</IncludePath>
-    <LibraryPath>..\libraries\SDL2-2.0.12\lib\x64;..\libraries\Freeimage;$(LibraryPath)</LibraryPath>
+    <IncludePath>..\libraries\Freeimage;..\libraries\SDL2-2.0.12\include;..\libraries\assimp\include;$(IncludePath)</IncludePath>
+    <LibraryPath>..\libraries\SDL2-2.0.12\lib\x64;..\libraries\Freeimage;..\libraries\assimp\code\Debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -147,12 +147,17 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>FreeImage.lib;opengl32.lib;glu32.lib;SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>FreeImage.lib;opengl32.lib;glu32.lib;SDL2.lib;SDL2main.lib;assimp-vc140-mt.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\glad.c" />
     <ClCompile Include="..\main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="mesh.h" />
+    <ClInclude Include="model.h" />
+    <ClInclude Include="shader.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
