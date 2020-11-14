@@ -12,6 +12,7 @@
 #include <fstream>
 #include "Obligatorio2/model.h"
 #include "Obligatorio2/shader.h"
+#include "Obligatorio2/Camera.h"
 
 using namespace std;
 
@@ -19,6 +20,16 @@ using namespace std;
 GLuint shaderprogram; // handle for shader program
 GLuint vao, vbo[2]; // handles for our VAO and two VBOs
 float r = 0;
+
+unsigned int last_time, current_time;
+
+//pos, target, up
+Camera* camera;
+float sensitivity;
+float speed;
+
+//mouse variables
+int current_x, current_y, last_x, last_y;
 
 Model* m;
 // loadFile - loads text file into char* fname
@@ -151,13 +162,24 @@ GLuint initShaders(const char* vertFile, const char* fragFile)
 void init(void)
 {
 	m = new Model("modelos/backpack.obj");
-	
 	shaderprogram = initShaders("simple.vert", "simple.frag"); // Create and start shader program
-	
-
 	glEnable(GL_DEPTH_TEST); // enable depth testing
 	//glEnable(GL_CULL_FACE); // enable back face culling - try this and see what happens!
-	
+
+	//init camera
+	camera = new Camera(vec3(0.f, 0.f, -10.f), vec3(0.f));
+
+	//init time
+	last_time = 0;
+	current_time = SDL_GetTicks();
+
+	//init speed
+	speed = 35.f;
+
+	//init mouse variables
+	last_x = last_y = 0;
+	SDL_GetMouseState(&current_x, &current_y);
+	sensitivity = 0.1f;
 }
 
 
@@ -169,11 +191,11 @@ void draw(SDL_Window* window)
 	// Create perspective projection matrix
 	glm::mat4 projection = glm::perspective(45.0f, 4.0f / 3.0f, 1.0f, 100.f);
 
+	glm::mat4 view = camera->getViewMatrix();
 	// Create view matrix for the camera
-	r += 0.001; //for camera rotation
-	glm::mat4 view(1.0);
-	view = glm::translate(view, glm::vec3(0.0f, 0.0f, -4.0f));
-	view = glm::rotate(view, r, glm::vec3(0.0f, 1.0f, 0.0f));
+	//r += 0.001; //for camera rotation
+	//view = glm::translate(view, glm::vec3(0.0f, 0.0f, -4.0f));
+	//view = glm::rotate(view, r, glm::vec3(0.0f, 1.0f, 0.0f));
 	// Create model matrix for model transformations
 	glm::mat4 model(1.0);
 
@@ -235,13 +257,80 @@ int main(int argc, char *argv[]) {
 	bool running = true; // set running to true
 	SDL_Event sdlEvent;  // variable to detect SDL events
 
+	int width, height;
+	SDL_GetWindowSize(window, &width, &height);
+	
+	SDL_ShowCursor(SDL_DISABLE);
+
 	while (running)		// the event loop
 	{
+		SDL_WarpMouseInWindow(window, width * 0.5, height * 0.5);
+		//Calculo del tiempo que pasa entre frame y frame
+		last_time = current_time;
+		current_time = SDL_GetTicks();
+		float delta_time = (current_time - last_time) / 1000.f; //en segundos
+
 		while (SDL_PollEvent(&sdlEvent))
 		{
-			if (sdlEvent.type == SDL_QUIT)
+			switch (sdlEvent.type) 
+			{
+			case SDL_QUIT: 
 				running = false;
+				break;
+
+			//se presiona tecla
+			case SDL_KEYDOWN:
+				switch (sdlEvent.key.keysym.sym) 
+				{
+				case SDLK_ESCAPE:
+					running = false;
+					break;
+				case SDLK_w:
+					camera->updatePosition(delta_time * speed, movement_direction::front);
+					break;
+				case SDLK_a:
+					camera->updatePosition(delta_time * speed, movement_direction::left);
+					break;
+				case SDLK_s:
+					camera->updatePosition(delta_time * speed, movement_direction::back);
+					break;
+				case SDLK_d:
+					camera->updatePosition(delta_time * speed, movement_direction::right);
+					break;
+				case SDLK_SPACE:
+					camera->updatePosition(delta_time * speed, movement_direction::up);
+					break;
+				case SDLK_LCTRL:
+					camera->updatePosition(delta_time * speed, movement_direction::down);
+					break;
+				}
+				break;
+
+			//se suelta una tecla
+			case SDL_KEYUP:
+				switch (sdlEvent.key.keysym.sym) 
+				{
+				case SDLK_c:
+					camera->changeMode();
+					break;
+				case SDLK_ESCAPE:
+					running = false;
+					break;
+				}
+				break;
+				
+			case SDL_MOUSEMOTION:
+				last_x = current_x;
+				last_y = current_y;
+				SDL_GetMouseState(&current_x, &current_y);
+				float h_cant = delta_time * sensitivity * (current_x - width * 0.5);
+				float v_cant = delta_time * sensitivity * (height * 0.5 - current_y);
+				camera->moveCamera(h_cant, v_cant);
+				break;
+			}
+			//chequeo de teclas
 		}
+
 		//update();
 		draw(window); // call the draw function
 	}

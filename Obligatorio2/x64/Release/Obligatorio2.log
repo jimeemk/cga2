@@ -1,14 +1,7 @@
-﻿  glad.c
-  main.cpp
-E:\Documentos\obligatorio2CGA\cga2\Obligatorio2\shader.h(56,40): warning C4101: 'e': variable local sin referencia
-E:\Documentos\obligatorio2CGA\cga2\Obligatorio2\mesh.h(84,1): warning C4267: 'argumento': conversión de 'size_t' a 'GLsizei'; posible pérdida de datos
-E:\Documentos\obligatorio2CGA\cga2\Obligatorio2\model.h(217,16): warning C4101: 'height': variable local sin referencia
-E:\Documentos\obligatorio2CGA\cga2\Obligatorio2\model.h(217,24): warning C4101: 'nrComponents': variable local sin referencia
-E:\Documentos\obligatorio2CGA\cga2\Obligatorio2\model.h(217,9): warning C4101: 'width': variable local sin referencia
-E:\Documentos\obligatorio2CGA\cga2\main.cpp(173,12): warning C4305: '+=': truncamiento de 'double' a 'float'
+﻿  Camera.cpp
   Generando código
-  579 of 593 functions (97.6%) were compiled, the rest were copied from previous compilation.
+  2 of 613 functions ( 0.3%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    2 functions had inline decision re-evaluated but remain unchanged
+    1 functions had inline decision re-evaluated but remain unchanged
   Generación de código finalizada
-  Obligatorio2.vcxproj -> E:\Documentos\obligatorio2CGA\cga2\x64\Release\Obligatorio2.exe
+  Obligatorio2.vcxproj -> C:\Users\jairo\OneDrive\Escritorio\fing\CGA\Obligatorio2\cga2\x64\Release\Obligatorio2.exe
