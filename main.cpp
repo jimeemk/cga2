@@ -174,12 +174,12 @@ void init(void)
 	current_time = SDL_GetTicks();
 
 	//init speed
-	speed = 35.f;
+	speed = 30.f;
 
 	//init mouse variables
 	last_x = last_y = 0;
 	SDL_GetMouseState(&current_x, &current_y);
-	sensitivity = 0.1f;
+	sensitivity = 0.08f;
 }
 
 
@@ -243,14 +243,9 @@ int main(int argc, char *argv[]) {
 																	800, 800, SDL_WINDOW_OPENGL);
 
 	gl_context = SDL_GL_CreateContext(window);
-	//disable limit of 60fps
 	SDL_GL_SetSwapInterval(0);
-	// Check OpenGL properties
 	printf("OpenGL loaded\n");
 	gladLoadGLLoader(SDL_GL_GetProcAddress);
-	printf("Vendor:   %s\n", glGetString(GL_VENDOR));
-	printf("Renderer: %s\n", glGetString(GL_RENDERER));
-	printf("Version:  %s\n", glGetString(GL_VERSION));
 
 	init();
 
@@ -259,12 +254,13 @@ int main(int argc, char *argv[]) {
 
 	int width, height;
 	SDL_GetWindowSize(window, &width, &height);
-	
 	SDL_ShowCursor(SDL_DISABLE);
+
+	//para multiples teclas presionadas
+	bool keys[6] = {false};
 
 	while (running)		// the event loop
 	{
-		SDL_WarpMouseInWindow(window, width * 0.5, height * 0.5);
 		//Calculo del tiempo que pasa entre frame y frame
 		last_time = current_time;
 		current_time = SDL_GetTicks();
@@ -286,49 +282,75 @@ int main(int argc, char *argv[]) {
 					running = false;
 					break;
 				case SDLK_w:
-					camera->updatePosition(delta_time * speed, movement_direction::front);
+					keys[FRONT] = true;
 					break;
 				case SDLK_a:
-					camera->updatePosition(delta_time * speed, movement_direction::left);
+					keys[LEFT] = true;
 					break;
 				case SDLK_s:
-					camera->updatePosition(delta_time * speed, movement_direction::back);
+					keys[BACK] = true;
 					break;
 				case SDLK_d:
-					camera->updatePosition(delta_time * speed, movement_direction::right);
+					keys[RIGHT] = true;
 					break;
 				case SDLK_SPACE:
-					camera->updatePosition(delta_time * speed, movement_direction::up);
+					keys[UP] = true;
 					break;
 				case SDLK_LCTRL:
-					camera->updatePosition(delta_time * speed, movement_direction::down);
+					keys[DOWN] = true;
 					break;
 				}
 				break;
 
 			//se suelta una tecla
 			case SDL_KEYUP:
-				switch (sdlEvent.key.keysym.sym) 
+				switch (sdlEvent.key.keysym.sym)
 				{
-				case SDLK_c:
-					camera->changeMode();
-					break;
 				case SDLK_ESCAPE:
 					running = false;
+					break;
+				case SDLK_w:
+					keys[FRONT] = false;
+					break;
+				case SDLK_a:
+					keys[LEFT] = false;
+					break;
+				case SDLK_s:
+					keys[BACK] = false;				
+					break;
+				case SDLK_d:
+					keys[RIGHT] = false;
+					break;
+				case SDLK_SPACE:
+					keys[UP] = false;
+					break;
+				case SDLK_LCTRL:
+					keys[DOWN] = false;
+					break;
+				case SDLK_c:
+					camera->changeMode();
 					break;
 				}
 				break;
 				
 			case SDL_MOUSEMOTION:
+				SDL_WarpMouseInWindow(window, width * 0.5, height * 0.5);
 				last_x = current_x;
 				last_y = current_y;
 				SDL_GetMouseState(&current_x, &current_y);
-				float h_cant = delta_time * sensitivity * (current_x - width * 0.5);
-				float v_cant = delta_time * sensitivity * (height * 0.5 - current_y);
+				float h_cant = delta_time * sensitivity * (width * 0.5 - current_x);
+				float v_cant = delta_time * sensitivity * (current_y - height * 0.5);
 				camera->moveCamera(h_cant, v_cant);
 				break;
 			}
 			//chequeo de teclas
+			
+			if (keys[FRONT]) camera->updatePosition(delta_time * speed, movement_direction::FRONT);
+			if (keys[LEFT]) camera->updatePosition(delta_time * speed, movement_direction::LEFT);
+			if (keys[BACK]) camera->updatePosition(delta_time * speed, movement_direction::BACK);
+			if (keys[RIGHT]) camera->updatePosition(delta_time * speed, movement_direction::RIGHT);
+			if (keys[UP]) camera->updatePosition(delta_time * speed, movement_direction::UP);
+			if (keys[DOWN]) camera->updatePosition(delta_time * speed, movement_direction::DOWN);
 		}
 
 		//update();

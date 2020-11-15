@@ -12,8 +12,8 @@
 
 using namespace glm;
 
-enum camera_mode {fly, walk};
-enum movement_direction {front, right, left, back, up, down};
+enum camera_mode {FLY, WALK};
+enum movement_direction {FRONT, RIGHT, LEFT, BACK, UP, DOWN};
 
 class Camera
 {
@@ -33,7 +33,5 @@ private:
 	vec3 position;
 	vec3 target;
 	camera_mode mode;
-	float h_angle;
-	float v_angle;
 	mat4 view_matrix;
 };

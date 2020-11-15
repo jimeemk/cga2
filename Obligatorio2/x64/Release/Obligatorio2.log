@@ -1,7 +1,22 @@
-﻿  Camera.cpp
+﻿  main.cpp
+C:\Users\jairo\OneDrive\Escritorio\fing\CGA\Obligatorio2\cga2\Obligatorio2\shader.h(56,40): warning C4101: 'e': variable local sin referencia
+C:\Users\jairo\OneDrive\Escritorio\fing\CGA\Obligatorio2\cga2\Obligatorio2\mesh.h(84,1): warning C4267: 'argumento': conversión de 'size_t' a 'GLsizei'; posible pérdida de datos
+C:\Users\jairo\OneDrive\Escritorio\fing\CGA\Obligatorio2\cga2\Obligatorio2\model.h(217,16): warning C4101: 'height': variable local sin referencia
+C:\Users\jairo\OneDrive\Escritorio\fing\CGA\Obligatorio2\cga2\Obligatorio2\model.h(217,24): warning C4101: 'nrComponents': variable local sin referencia
+C:\Users\jairo\OneDrive\Escritorio\fing\CGA\Obligatorio2\cga2\Obligatorio2\model.h(217,9): warning C4101: 'width': variable local sin referencia
+C:\Users\jairo\OneDrive\Escritorio\fing\CGA\Obligatorio2\cga2\main.cpp(337,55): warning C4244: 'argumento': conversión de 'double' a 'int'; posible pérdida de datos
+C:\Users\jairo\OneDrive\Escritorio\fing\CGA\Obligatorio2\cga2\main.cpp(337,41): warning C4244: 'argumento': conversión de 'double' a 'int'; posible pérdida de datos
+C:\Users\jairo\OneDrive\Escritorio\fing\CGA\Obligatorio2\cga2\main.cpp(341,18): warning C4244: 'inicializando': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\jairo\OneDrive\Escritorio\fing\CGA\Obligatorio2\cga2\main.cpp(342,18): warning C4244: 'inicializando': conversión de 'double' a 'float'; posible pérdida de datos
+  Camera.cpp
+C:\Users\jairo\OneDrive\Escritorio\fing\CGA\Obligatorio2\cga2\Obligatorio2\Camera.cpp(47,43): warning C4305: '=': truncamiento de 'double' a 'T'
+          with
+          [
+              T=float
+          ]
   Generando código
-  2 of 613 functions ( 0.3%) were compiled, the rest were copied from previous compilation.
+  4 of 613 functions ( 0.7%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    1 functions had inline decision re-evaluated but remain unchanged
+    16 functions had inline decision re-evaluated but remain unchanged
   Generación de código finalizada
   Obligatorio2.vcxproj -> C:\Users\jairo\OneDrive\Escritorio\fing\CGA\Obligatorio2\cga2\x64\Release\Obligatorio2.exe
