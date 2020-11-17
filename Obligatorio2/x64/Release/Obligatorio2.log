@@ -1,22 +1,25 @@
 ﻿  main.cpp
-C:\Users\jairo\OneDrive\Escritorio\fing\CGA\Obligatorio2\cga2\Obligatorio2\shader.h(56,40): warning C4101: 'e': variable local sin referencia
-C:\Users\jairo\OneDrive\Escritorio\fing\CGA\Obligatorio2\cga2\Obligatorio2\mesh.h(84,1): warning C4267: 'argumento': conversión de 'size_t' a 'GLsizei'; posible pérdida de datos
-C:\Users\jairo\OneDrive\Escritorio\fing\CGA\Obligatorio2\cga2\Obligatorio2\model.h(217,16): warning C4101: 'height': variable local sin referencia
-C:\Users\jairo\OneDrive\Escritorio\fing\CGA\Obligatorio2\cga2\Obligatorio2\model.h(217,24): warning C4101: 'nrComponents': variable local sin referencia
-C:\Users\jairo\OneDrive\Escritorio\fing\CGA\Obligatorio2\cga2\Obligatorio2\model.h(217,9): warning C4101: 'width': variable local sin referencia
-C:\Users\jairo\OneDrive\Escritorio\fing\CGA\Obligatorio2\cga2\main.cpp(337,55): warning C4244: 'argumento': conversión de 'double' a 'int'; posible pérdida de datos
-C:\Users\jairo\OneDrive\Escritorio\fing\CGA\Obligatorio2\cga2\main.cpp(337,41): warning C4244: 'argumento': conversión de 'double' a 'int'; posible pérdida de datos
-C:\Users\jairo\OneDrive\Escritorio\fing\CGA\Obligatorio2\cga2\main.cpp(341,18): warning C4244: 'inicializando': conversión de 'double' a 'float'; posible pérdida de datos
-C:\Users\jairo\OneDrive\Escritorio\fing\CGA\Obligatorio2\cga2\main.cpp(342,18): warning C4244: 'inicializando': conversión de 'double' a 'float'; posible pérdida de datos
-  Camera.cpp
-C:\Users\jairo\OneDrive\Escritorio\fing\CGA\Obligatorio2\cga2\Obligatorio2\Camera.cpp(47,43): warning C4305: '=': truncamiento de 'double' a 'T'
-          with
-          [
-              T=float
-          ]
+E:\Documentos\obligatorio2CGA\cga2\cga2\Obligatorio2\Shader.h(56,40): warning C4101: 'e': variable local sin referencia
+E:\Documentos\obligatorio2CGA\cga2\cga2\Obligatorio2\Mesh.h(83,1): warning C4267: 'argumento': conversión de 'size_t' a 'GLsizei'; posible pérdida de datos
+E:\Documentos\obligatorio2CGA\cga2\cga2\Obligatorio2\Model.h(54,20): warning C4101: 'height': variable local sin referencia
+E:\Documentos\obligatorio2CGA\cga2\cga2\Obligatorio2\Model.h(54,28): warning C4101: 'nrComponents': variable local sin referencia
+E:\Documentos\obligatorio2CGA\cga2\cga2\Obligatorio2\Model.h(54,13): warning C4101: 'width': variable local sin referencia
+E:\Documentos\obligatorio2CGA\cga2\cga2\main.cpp(237,55): warning C4244: 'argumento': conversión de 'double' a 'int'; posible pérdida de datos
+E:\Documentos\obligatorio2CGA\cga2\cga2\main.cpp(237,41): warning C4244: 'argumento': conversión de 'double' a 'int'; posible pérdida de datos
+E:\Documentos\obligatorio2CGA\cga2\cga2\main.cpp(241,18): warning C4244: 'inicializando': conversión de 'double' a 'float'; posible pérdida de datos
+E:\Documentos\obligatorio2CGA\cga2\cga2\main.cpp(242,18): warning C4244: 'inicializando': conversión de 'double' a 'float'; posible pérdida de datos
+  Entity.cpp
+  Object.cpp
+E:\Documentos\obligatorio2CGA\cga2\cga2\Obligatorio2\Shader.h(56,40): warning C4101: 'e': variable local sin referencia
+E:\Documentos\obligatorio2CGA\cga2\cga2\Obligatorio2\Mesh.h(83,1): warning C4267: 'argumento': conversión de 'size_t' a 'GLsizei'; posible pérdida de datos
+E:\Documentos\obligatorio2CGA\cga2\cga2\Obligatorio2\Model.h(54,20): warning C4101: 'height': variable local sin referencia
+E:\Documentos\obligatorio2CGA\cga2\cga2\Obligatorio2\Model.h(54,28): warning C4101: 'nrComponents': variable local sin referencia
+E:\Documentos\obligatorio2CGA\cga2\cga2\Obligatorio2\Model.h(54,13): warning C4101: 'width': variable local sin referencia
+  Settings.cpp
+  TriangleMesh.cpp
   Generando código
-  4 of 613 functions ( 0.7%) were compiled, the rest were copied from previous compilation.
+  6 of 707 functions ( 0.8%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    16 functions had inline decision re-evaluated but remain unchanged
+    2 functions had inline decision re-evaluated but remain unchanged
   Generación de código finalizada
-  Obligatorio2.vcxproj -> C:\Users\jairo\OneDrive\Escritorio\fing\CGA\Obligatorio2\cga2\x64\Release\Obligatorio2.exe
+  Obligatorio2.vcxproj -> E:\Documentos\obligatorio2CGA\cga2\cga2\x64\Release\Obligatorio2.exe

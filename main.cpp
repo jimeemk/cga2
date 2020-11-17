@@ -10,14 +10,15 @@
 
 #include <iostream>
 #include <fstream>
-#include "Obligatorio2/model.h"
-#include "Obligatorio2/shader.h"
+#include "Obligatorio2/Model.h"
+#include "Obligatorio2/Shader.h"
 #include "Obligatorio2/Camera.h"
+#include "Obligatorio2/Object.h"
+#include "Obligatorio2/Settings.h"
 
 using namespace std;
 
 // global variables - normally would avoid globals, using in this demo
-GLuint shaderprogram; // handle for shader program
 GLuint vao, vbo[2]; // handles for our VAO and two VBOs
 float r = 0;
 
@@ -31,35 +32,8 @@ float speed;
 //mouse variables
 int current_x, current_y, last_x, last_y;
 
-Model* m;
 // loadFile - loads text file into char* fname
 // allocates memory - so need to delete after use
-const char* loadFile(const char* fname)
-{
-	int size;
-	char* memblock = NULL;
-
-	// file read based on example in cplusplus.com tutorial
-	// ios::ate opens file at the end
-	ifstream file(fname, ios::in | ios::binary | ios::ate);
-	if (file.is_open())
-	{
-		size = (int)file.tellg(); // get location of file pointer i.e. file size
-		memblock = new char[size + 1]; // create buffer with space for null char
-		file.seekg(0, ios::beg);
-		file.read(memblock, size);
-		file.close();
-		memblock[size] = 0;
-		cout << "file " << fname << " loaded" << endl;
-	}
-	else
-	{
-		cout << "Unable to open file " << fname << endl;
-		// should ideally set a flag or use exception handling
-		// so that calling function can decide what to do now
-	}
-	return memblock;
-}
 
 
 // Something went wrong - print SDL error message and quit
@@ -72,97 +46,16 @@ void exitFatalError(char* message)
 }
 
 
-
-// printShaderError
-// Display (hopefully) useful error messages if shader fails to compile or link
-void printShaderError(GLint shader)
-{
-	int maxLength = 0;
-	int logLength = 0;
-	GLchar* logMessage;
-
-	// Find out how long the error message is
-	if (glIsShader(shader))
-		glGetProgramiv(shader, GL_INFO_LOG_LENGTH, &maxLength);
-	else
-		glGetShaderiv(shader, GL_INFO_LOG_LENGTH, &maxLength);
-
-	if (maxLength > 0) // If message has length > 0
-	{
-		logMessage = new GLchar[maxLength];
-		if (glIsShader(shader))
-			glGetProgramInfoLog(shader, maxLength, &logLength, logMessage);
-		else
-			glGetShaderInfoLog(shader, maxLength, &logLength, logMessage);
-		cout << "Shader Info Log:" << endl << logMessage << endl;
-		delete[] logMessage;
-	}
-}
-
-
-GLuint initShaders(const char* vertFile, const char* fragFile)
-{
-	GLuint p, f, v;	// Handles for shader program & vertex and fragment shaders
-
-	v = glCreateShader(GL_VERTEX_SHADER); // Create vertex shader handle
-	f = glCreateShader(GL_FRAGMENT_SHADER);	// " fragment shader handle
-
-	const char* vertSource = loadFile(vertFile); // load vertex shader source
-	const char* fragSource = loadFile(fragFile);  // load frag shader source
-
-	// Send the shader source to the GPU
-	// Strings here are null terminated - a non-zero final parameter can be
-	// used to indicate the length of the shader source instead
-	glShaderSource(v, 1, &vertSource, 0);
-	glShaderSource(f, 1, &fragSource, 0);
-
-	GLint compiled, linked; // return values for checking for compile & link errors
-
-	// compile the vertex shader and test for errors
-	glCompileShader(v);
-	glGetShaderiv(v, GL_COMPILE_STATUS, &compiled);
-	if (!compiled)
-	{
-		cout << "Vertex shader not compiled." << endl;
-		printShaderError(v);
-	}
-
-	// compile the fragment shader and test for errors
-	glCompileShader(f);
-	glGetShaderiv(f, GL_COMPILE_STATUS, &compiled);
-	if (!compiled)
-	{
-		cout << "Fragment shader not compiled." << endl;
-		printShaderError(f);
-	}
-
-	p = glCreateProgram(); 	// create the handle for the shader program
-	glAttachShader(p, v); // attach vertex shader to program
-	glAttachShader(p, f); // attach fragment shader to program
-
-	glBindAttribLocation(p, 0, "in_Position"); // bind position attribute to location 0
-	glBindAttribLocation(p, 1, "in_Color"); // bind color attribute to location 1
-
-	glLinkProgram(p); // link the shader program and test for errors
-	glGetProgramiv(p, GL_LINK_STATUS, &linked);
-	if (!linked)
-	{
-		cout << "Program not linked." << endl;
-		printShaderError(p);
-	}
-
-	glUseProgram(p);  // Make the shader program the current active program
-
-	delete[] vertSource; // Don't forget to free allocated memory
-	delete[] fragSource; // We allocated this in the loadFile function...
-
-	return p; // Return the shader program handle
-}
-
 void init(void)
 {
-	m = new Model("modelos/backpack.obj");
-	shaderprogram = initShaders("simple.vert", "simple.frag"); // Create and start shader program
+	Settings* set = Settings::getInstance();
+	//Los objetos son asi: path, orientation, up, pos, dir, escala, numShader,Shader
+	Object* o1 = new Object("modelos/12221_Cat_v1_l3.obj",glm::vec3(0, -1, 0), glm::vec3(0, 0, 1),glm::vec3(3,0,0), glm::vec3(1,1,1),2, set->addShader(Settings::initShaders("simple.vert", "simple.frag")), Shader("simple.vert", "simple.frag"));
+	Object* o2 = new Object("modelos/backpack.obj", glm::vec3(0,0,-1), glm::vec3(0, 1, 0), glm::vec3(0.0), glm::vec3(0, 0, 1), 2, set->addShader(Settings::initShaders("arcoiris.vert", "arcoiris.frag")), Shader("arcoiris.vert", "arcoiris.frag"));
+	set->addEntity(o1);
+	set->addEntity(o2);
+
+	 // Create and start shader program
 	glEnable(GL_DEPTH_TEST); // enable depth testing
 	//glEnable(GL_CULL_FACE); // enable back face culling - try this and see what happens!
 
@@ -187,7 +80,8 @@ void draw(SDL_Window* window)
 {
 	glClearColor(1.0, 1.0, 1.0, 1.0); // set background colour
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear window
-
+	
+	
 	// Create perspective projection matrix
 	glm::mat4 projection = glm::perspective(45.0f, 4.0f / 3.0f, 1.0f, 100.f);
 
@@ -197,22 +91,27 @@ void draw(SDL_Window* window)
 	//view = glm::translate(view, glm::vec3(0.0f, 0.0f, -4.0f));
 	//view = glm::rotate(view, r, glm::vec3(0.0f, 1.0f, 0.0f));
 	// Create model matrix for model transformations
-	glm::mat4 model(1.0);
-
+	Settings* set = Settings::getInstance();
+	for (int i = 0; i < set->getEntities().size(); i++)
+	{
+		glm::mat4 model = set->getEntities().at(i)->getModelMatrix();
+		GLuint sp = set->getEntities().at(i)->getShaderProgram();
+		glUseProgram(sp);
+		int projectionIndex = glGetUniformLocation(sp, "projection");
+		glUniformMatrix4fv(projectionIndex, 1, GL_FALSE, glm::value_ptr(projection));
+		// pass model as uniform into shader
+		int viewIndex = glGetUniformLocation(sp, "view");
+		glUniformMatrix4fv(viewIndex, 1, GL_FALSE, glm::value_ptr(view));
+		// pass model as uniform into shader
+		int modelIndex = glGetUniformLocation(sp, "model");
+		glUniformMatrix4fv(modelIndex, 1, GL_FALSE, glm::value_ptr(model));
+		
+		set->getEntities().at(i)->draw();
+	}
+	
+	
+	//model= glm::rotate(model, r, glm::vec3(0.0f, 1.0f, 0.0f));
 	// pass model as uniform into shader
-	int projectionIndex = glGetUniformLocation(shaderprogram, "projection");
-	glUniformMatrix4fv(projectionIndex, 1, GL_FALSE, glm::value_ptr(projection));
-	// pass model as uniform into shader
-	int viewIndex = glGetUniformLocation(shaderprogram, "view");
-	glUniformMatrix4fv(viewIndex, 1, GL_FALSE, glm::value_ptr(view));
-	// pass model as uniform into shader
-	int modelIndex = glGetUniformLocation(shaderprogram, "model");
-	glUniformMatrix4fv(modelIndex, 1, GL_FALSE, glm::value_ptr(model));
-
-	//glDrawArrays(GL_TRIANGLE_FAN, 0, 6); // draw the pyramid
-	Shader s=Shader("simple.vert","simple.frag");
-	m->Draw(s);
-
 	SDL_GL_SwapWindow(window); // swap buffers
 }
 
@@ -223,7 +122,8 @@ void cleanup(void)
 	glDisableVertexAttribArray(0);
 	glDisableVertexAttribArray(1);
 	// could also detach shaders
-	glDeleteProgram(shaderprogram);
+	for(int i=0; i<Settings::getInstance()->getShaders().size();i++)
+		glDeleteProgram(Settings::getInstance()->getShaders().at(i));
 	glDeleteBuffers(2, vbo);
 	glDeleteVertexArrays(1, &vao);
 }
