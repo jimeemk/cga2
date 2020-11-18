@@ -156,6 +156,8 @@
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Object.cpp" />
+    <ClCompile Include="Octree.cpp" />
+    <ClCompile Include="OctreeNode.cpp" />
     <ClCompile Include="Settings.cpp" />
     <ClCompile Include="Plane.cpp" />
   </ItemGroup>
@@ -166,6 +168,8 @@
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="Object.h" />
+    <ClInclude Include="Octree.h" />
+    <ClInclude Include="OctreeNode.h" />
     <ClInclude Include="Settings.h" />
     <ClInclude Include="Plane.h" />
     <ClInclude Include="Shader.h" />

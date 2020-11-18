@@ -17,6 +17,7 @@
 #include "Obligatorio2/Settings.h"
 #include "Obligatorio2/Light.h"
 #include "Obligatorio2/Shader.h"
+#include "Obligatorio2/Object.h"
 
 using namespace std;
 
@@ -69,7 +70,7 @@ void init(void)
 	//glEnable(GL_CULL_FACE); // enable back face culling - try this and see what happens!
 
 	//init camera
-	camera = new Camera(vec3(0.f, 0.f, -10.f), vec3(0.f));
+	camera = new Camera(vec3(0.f, 0.f, -10.f), vec3(0.f), 45.f, 1.f, 1.f, 100.f);
 
 	//init time
 	last_time = 0;
@@ -92,7 +93,7 @@ void draw(SDL_Window* window)
 	
 	
 	// Create perspective projection matrix
-	glm::mat4 projection = glm::perspective(45.0f, 4.0f / 3.0f, 1.0f, 100.f);
+	glm::mat4 projection = camera->getProjectionMatrix();
 
 	glm::mat4 view = camera->getViewMatrix();
 	// Create view matrix for the camera
