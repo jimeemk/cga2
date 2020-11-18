@@ -15,12 +15,15 @@
 #include "Obligatorio2/Object.h"
 #include "Obligatorio2/Plane.h"
 #include "Obligatorio2/Settings.h"
+#include "Obligatorio2/Light.h"
+#include "Obligatorio2/Shader.h"
 
 using namespace std;
 
 // global variables - normally would avoid globals, using in this demo
 GLuint vao, vbo[2]; // handles for our VAO and two VBOs
 float r = 0;
+
 
 unsigned int last_time, current_time;
 
@@ -31,6 +34,7 @@ float speed;
 
 //mouse variables
 int current_x, current_y, last_x, last_y;
+
 
 // loadFile - loads text file into char* fname
 // allocates memory - so need to delete after use
@@ -83,7 +87,7 @@ void init(void)
 
 void draw(SDL_Window* window)
 {
-	glClearColor(1.0, 1.0, 1.0, 1.0); // set background colour
+	glClearColor(0.3, 0.3, 0.3, 1.0); // set background colour
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear window
 	
 	
@@ -111,15 +115,33 @@ void draw(SDL_Window* window)
 		int modelIndex = glGetUniformLocation(sp, "model");
 		glUniformMatrix4fv(modelIndex, 1, GL_FALSE, glm::value_ptr(model));
 		
+		Shader lightingShader("simple.vert", "simple.frag");
+		Shader lightCubeShader("light_cube.vert", "light_cube.frag");
+
+		Light light1 = Light(vec3(0, 0, 5));
+
+		lightingShader.use();
+		lightingShader.setVec3("lightColor", light1.color);
+		lightingShader.setVec3("lightPos", light1.position);
+		lightingShader.setVec3("viewPos", camera->getPosition());
+		lightingShader.setMat4("projection", projection);
+		lightingShader.setMat4("view", view);
+		lightingShader.setMat4("model", model);
+
 		set->getEntities().at(i)->draw();
+
+		lightCubeShader.use();
+		lightCubeShader.setMat4("projection", projection);
+		lightCubeShader.setMat4("view", view);
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, light1.position);
+		model = glm::scale(model, glm::vec3(0.2f));
+		lightCubeShader.setMat4("model", model);
+		light1.drawLight();
 	}
 	
-	
-	//model= glm::rotate(model, r, glm::vec3(0.0f, 1.0f, 0.0f));
-	// pass model as uniform into shader
 	SDL_GL_SwapWindow(window); // swap buffers
 }
-
 
 void cleanup(void)
 {
@@ -163,7 +185,7 @@ int main(int argc, char *argv[]) {
 
 	//para multiples teclas presionadas
 	bool keys[6] = {false};
-
+	
 	while (running)		// the event loop
 	{
 		//Calculo del tiempo que pasa entre frame y frame
@@ -260,6 +282,7 @@ int main(int argc, char *argv[]) {
 
 		//update();
 		draw(window); // call the draw function
+
 	}
 
 	cleanup();

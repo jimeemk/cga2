@@ -59,5 +59,25 @@
     <ClInclude Include="Plane.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
+    <ClInclude Include="Shader.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Light.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="simple.frag">
+      <Filter>Archivos de recursos</Filter>
+    </None>
+    <None Include="simple.vert">
+      <Filter>Archivos de recursos</Filter>
+    </None>
+    <None Include="light_cube.frag">
+      <Filter>Archivos de recursos</Filter>
+    </None>
+    <None Include="light_cube.vert">
+      <Filter>Archivos de recursos</Filter>
+    </None>
   </ItemGroup>
 </Project>
