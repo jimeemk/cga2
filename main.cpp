@@ -17,14 +17,12 @@
 #include "Obligatorio2/Settings.h"
 #include "Obligatorio2/Light.h"
 #include "Obligatorio2/Shader.h"
-#include "Obligatorio2/Object.h"
 
 using namespace std;
 
 // global variables - normally would avoid globals, using in this demo
 GLuint vao, vbo[2]; // handles for our VAO and two VBOs
 float r = 0;
-
 
 unsigned int last_time, current_time;
 
@@ -35,7 +33,6 @@ float speed;
 
 //mouse variables
 int current_x, current_y, last_x, last_y;
-
 
 // loadFile - loads text file into char* fname
 // allocates memory - so need to delete after use
@@ -57,13 +54,28 @@ void init(void)
 	//Los objetos son asi: path, orientation, esc, pos, up, dir,numShader
 	GLuint textu=set->addShader(Settings::initShaders("simple.vert", "simple.frag"));
 	GLuint arco=set->addShader(Settings::initShaders("arcoiris.vert", "arcoiris.frag"));
-	Object* o1 = new Object("modelos/12221_Cat_v1_l3.obj",glm::vec3(0, -1, 0), 2, glm::vec3(3, 0, 0),glm::vec3(0, 0, 1), glm::vec3(1,1,1), textu);
-	Object* o2 = new Object("modelos/backpack.obj", glm::vec3(0,0,-1),2, glm::vec3(0,0,0), glm::vec3(0, 1, 0), glm::vec3(0, 0, 1), arco);
-	Plane* p1 = new Plane("modelos/grass.jpg", glm::vec3(20, 1, 20), glm::vec3(10, -1, -10), glm::vec3(0, 0, 1), glm::vec3(0, 1, 0), textu);
+	Object* o1 = new Object("modelos/12221_Cat_v1_l3.obj",glm::vec3(0, -1, 0), 0.8, glm::vec3(8, -0.6, -8.6),glm::vec3(0, 0, 1), glm::vec3(-1,0,-1), textu);
+	Object* o2 = new Object("modelos/Japanese_Temple.obj", glm::vec3(0,0,-1),10, glm::vec3(0,4.2,0), glm::vec3(0, 1, 0), glm::vec3(0, 0, 1), textu);
+	//Manzana 1: plaza
+	Plane* p1 = new Plane("modelos/asfalto.jpg", 100, 100, glm::vec3(20, 1, 20), glm::vec3(10, -1, -10), glm::vec3(0, 0, 1), glm::vec3(0, 1, 0), textu);//Calle
+	Plane* p2 = new Plane("modelos/cordon.jpg", 20, 20, glm::vec3(19, 1, 19), glm::vec3(9.5, -0.9, -9.5), glm::vec3(0, 0, 1), glm::vec3(0, 1, 0), textu);//Cordon
+	Plane* p3 = new Plane("modelos/cordon.jpg", 20, 1, glm::vec3(1, 0.09, 19), glm::vec3(9.5, -0.99, 9.5), glm::vec3(0, 1, 0), glm::vec3(1, 0, 0), textu);//Cordon
+	Plane* p4 = new Plane("modelos/cordon.jpg", 20, 1, glm::vec3(19, 0.09, 1), glm::vec3(9.5, -0.99, -9.5), glm::vec3(0, 1, 0), glm::vec3(0, 0, -1), textu);//Cordon
+	Plane* p5 = new Plane("modelos/cordon.jpg", 20, 1, glm::vec3(1, 0.09, 19), glm::vec3(-9.5, -0.99, -9.5), glm::vec3(0, 1, 0), glm::vec3(-1, 0, 0), textu);//Cordon
+	Plane* p6 = new Plane("modelos/cordon.jpg", 20, 1, glm::vec3(19, 0.09, 1), glm::vec3(-9.5, -0.99, 9.5), glm::vec3(0, 1, 0), glm::vec3(0, 0, 1), textu);//Cordon
+	Plane* p7 = new Plane("modelos/vereda.jpg", 40, 40, glm::vec3(18.9, 1, 18.9), glm::vec3(9.45, -0.89, -9.45), glm::vec3(0, 0, 1), glm::vec3(0, 1, 0), textu);//Vereda
+	Plane* p8 = new Plane("modelos/grass.jpg", 10, 10, glm::vec3(15, 1, 15), glm::vec3(7.5, -0.88, -7.5), glm::vec3(0, 0, 1), glm::vec3(0, 1, 0), textu);//Terreno
 
 	set->addEntity(o1);
 	set->addEntity(o2);
 	set->addEntity(p1);
+	set->addEntity(p2);
+	set->addEntity(p3);
+	set->addEntity(p4);
+	set->addEntity(p5);
+	set->addEntity(p6);
+	set->addEntity(p7);
+	set->addEntity(p8);
 
 	 // Create and start shader program
 	glEnable(GL_DEPTH_TEST); // enable depth testing
@@ -77,12 +89,11 @@ void init(void)
 	current_time = SDL_GetTicks();
 
 	//init speed
-	speed = 30.f;
+	speed = 3.f;
 
 	//init mouse variables
-	last_x = last_y = 0;
 	SDL_GetMouseState(&current_x, &current_y);
-	sensitivity = 0.08f;
+	sensitivity = 0.005f;
 }
 
 
@@ -119,7 +130,7 @@ void draw(SDL_Window* window)
 		Shader lightingShader("simple.vert", "simple.frag");
 		Shader lightCubeShader("light_cube.vert", "light_cube.frag");
 
-		Light light1 = Light(vec3(0, 0, 5));
+		Light light1 = Light(vec3(0, 0, 10));
 
 		lightingShader.use();
 		lightingShader.setVec3("lightColor", light1.color);
@@ -141,8 +152,12 @@ void draw(SDL_Window* window)
 		light1.drawLight();
 	}
 	
+	
+	//model= glm::rotate(model, r, glm::vec3(0.0f, 1.0f, 0.0f));
+	// pass model as uniform into shader
 	SDL_GL_SwapWindow(window); // swap buffers
 }
+
 
 void cleanup(void)
 {
@@ -186,7 +201,7 @@ int main(int argc, char *argv[]) {
 
 	//para multiples teclas presionadas
 	bool keys[6] = {false};
-	
+
 	while (running)		// the event loop
 	{
 		//Calculo del tiempo que pasa entre frame y frame
@@ -283,7 +298,6 @@ int main(int argc, char *argv[]) {
 
 		//update();
 		draw(window); // call the draw function
-
 	}
 
 	cleanup();

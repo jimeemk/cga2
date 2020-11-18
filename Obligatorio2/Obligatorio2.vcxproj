@@ -156,29 +156,17 @@
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Object.cpp" />
-    <ClCompile Include="Octree.cpp" />
-    <ClCompile Include="OctreeNode.cpp" />
     <ClCompile Include="Settings.cpp" />
     <ClCompile Include="Plane.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Entity.h" />
-    <ClInclude Include="Light.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="Object.h" />
-    <ClInclude Include="Octree.h" />
-    <ClInclude Include="OctreeNode.h" />
     <ClInclude Include="Settings.h" />
     <ClInclude Include="Plane.h" />
-    <ClInclude Include="Shader.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="light_cube.frag" />
-    <None Include="light_cube.vert" />
-    <None Include="simple.frag" />
-    <None Include="simple.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

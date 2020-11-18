@@ -1,2 +1,2 @@
 ﻿  glad.c
-c:\users\jairo\onedrive\escritorio\fing\cga\obligatorio2\cga2\glad.c(26): fatal error C1083: No se puede abrir el archivo incluir: 'glad/glad.h': No such file or directory
+E:\Documentos\obligatorio2CGA\obligatorio2\cga2\glad.c(26,10): fatal error C1083: No se puede abrir el archivo incluir: 'glad/glad.h': No such file or directory

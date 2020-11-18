@@ -49,7 +49,6 @@ void Camera::updatePosition(float delta, movement_direction d)
 	vec3 r = normalize(cross(n, vec3(0.f, 1.f, 0.f)));
 	vec3 u = normalize(cross(r, n));
 
-	//calculo de vectores de direccion
 	vec3 move_direction = n;
 	vec3 right_direction = r;
 	vec3 up_direction = vec3(0.f, 1.f, 0.f);
@@ -62,7 +61,6 @@ void Camera::updatePosition(float delta, movement_direction d)
 		up_direction = vec3(0.f);
 	}
 
-	//Actualizar position y target
 	switch (d)
 	{
 	case FRONT:
@@ -92,8 +90,6 @@ void Camera::updatePosition(float delta, movement_direction d)
 	default:
 		break;
 	}
-
-	//actualizar view_matrix
 	view_matrix = lookAt(position, target, u);
 
 	//actualizar frustum

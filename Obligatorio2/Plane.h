@@ -7,7 +7,7 @@ using namespace std;
 
 class Plane : public Entity {
 public:
-	Plane(string tex,glm::vec3 sca, glm::vec3 vertex, glm::vec3 up, glm::vec3 normal, GLuint sh);
+	Plane(string tex,int textRepX, int textRepY, glm::vec3 sca, glm::vec3 vertex, glm::vec3 up, glm::vec3 normal, GLuint sh);
 	~Plane();
 	glm::vec3 getPosition();
 	glm::vec3 getDirection();
@@ -18,6 +18,8 @@ private:
 	glm::vec3 scale;
 	string texture;
 	Mesh* mesh;
+	int textureRepetitionX;
+	int textureRepetitionY;
 	void initPlane();
 	unsigned int TextureFromFile(const char* path);
 };

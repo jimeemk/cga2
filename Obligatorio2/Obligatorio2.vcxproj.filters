@@ -36,12 +36,6 @@
     <ClCompile Include="Plane.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="Octree.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="OctreeNode.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h">
@@ -65,31 +59,5 @@
     <ClInclude Include="Plane.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="Shader.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="Light.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="Octree.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="OctreeNode.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="simple.frag">
-      <Filter>Archivos de recursos</Filter>
-    </None>
-    <None Include="simple.vert">
-      <Filter>Archivos de recursos</Filter>
-    </None>
-    <None Include="light_cube.frag">
-      <Filter>Archivos de recursos</Filter>
-    </None>
-    <None Include="light_cube.vert">
-      <Filter>Archivos de recursos</Filter>
-    </None>
   </ItemGroup>
 </Project>
