@@ -7,11 +7,10 @@ using namespace std;
 
 class Object: public Entity {
 public:
-	Object(string p, glm::vec3 ori, glm::vec3 up, glm::vec3 pos, glm::vec3 dir, float esc, GLuint sh, Shader s);
+	Object(string p, glm::vec3 ori, float esc, glm::vec3 pos, glm::vec3 up, glm::vec3 dir, GLuint sh);
 	~Object();
 	glm::vec3 getPosition();
 	glm::vec3 getDirection();
-	void getBounds(glm::vec3& minimum, glm::vec3& maximum);
 	GLuint getShaderProgram();
 	glm::mat4 getModelMatrix();
 	void draw();
@@ -19,8 +18,7 @@ private:
 	string path;
 	Model* model;
 	glm::vec3 orientation;
-	glm::vec3 up;
-	Shader shader;
+	float scale;
 	void initObject();
 	float getMaxScale(float x, float y, float z);
 	void rotation();

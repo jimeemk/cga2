@@ -33,15 +33,12 @@
     <ClCompile Include="Settings.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="TriangleMesh.cpp">
+    <ClCompile Include="Plane.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="Shader.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="Mesh.h">
@@ -56,10 +53,10 @@
     <ClInclude Include="Entity.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="TriangleMesh.h">
+    <ClInclude Include="Settings.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="Settings.h">
+    <ClInclude Include="Plane.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>

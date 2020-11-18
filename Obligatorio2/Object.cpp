@@ -1,12 +1,11 @@
 #include "Object.h"
 
-Object::Object(string p, glm::vec3 ori, glm::vec3 u, glm::vec3 pos, glm::vec3 dir, float esc, GLuint sh, Shader s) : Entity(pos,dir,esc,sh)
+Object::Object(string p, glm::vec3 ori, float esc, glm::vec3 pos, glm::vec3 u, glm::vec3 dir, GLuint sh) : Entity(pos,u,dir,sh)
 {
     path = p;
-    up = u;
     orientation = ori;
+    scale = esc;
     model = new Model(p);
-    shader = s;
     initObject();
 }
 
@@ -29,42 +28,6 @@ glm::mat4 Object::getModelMatrix()
     return modelMatrix;
 }
 
-void Object::getBounds(glm::vec3& minimum, glm::vec3& maximum)
-{
-    bool firstTime = true;
-    for (int i = 0; i < 8; i++)
-    {
-        glm::vec3 point = pointsInitialAABB[i];
-        glm::vec4 aux = glm::vec4(point.x, point.y, point.z, 1.0);
-        aux = modelMatrix * aux;
-        point = glm::vec3(aux.x / aux.w, aux.y / aux.w, aux.z / aux.w);
-
-        if (firstTime)
-        {
-            firstTime = false;
-            minimum = point;
-            maximum = point;
-        }
-        else
-        {
-            if (point.x < minimum.x)
-                minimum.x = point.x;
-            if (point.y < minimum.y)
-                minimum.y = point.y;
-            if (point.z < minimum.z)
-                minimum.z = point.z;
-            if (point.x > maximum.x)
-                maximum.x = point.x;
-            if (point.y > maximum.y)
-                maximum.y = point.y;
-            if (point.z > maximum.z)
-                maximum.z = point.z;
-        }
-    }
-    cout << "minAfterRot: " << minimum.x << " ... " << minimum.y << " ... " << minimum.z << "\n";
-    cout << "maxAfterRot: " << maximum.x << " ... " << maximum.y << " ... " << maximum.z << "\n";
-}
-
 GLuint Object::getShaderProgram()
 {
     return shaderProgram;
@@ -72,7 +35,7 @@ GLuint Object::getShaderProgram()
 
 void Object::draw()
 {
-    model->Draw(shader);
+    model->Draw(shaderProgram);
 }
 
 void Object::initObject()
@@ -128,6 +91,7 @@ void Object::initObject()
     float maxFac = getMaxScale(max.x-min.x,max.y-min.y, max.z-min.z);
     modelMatrix = glm::scale(modelMatrix,glm::vec3(scale/maxFac, scale / maxFac, scale / maxFac));
     modelMatrix = glm::translate(modelMatrix, glm::vec3(-centro.x, -centro.y, -centro.z));//Por si el objeto no viene en el origen
+    calcBounds();
     glm::vec3 maxAux;
     glm::vec3 minAux;
     getBounds(minAux,maxAux);//Esto no va aca, es para probar
@@ -153,7 +117,7 @@ void Object::rotation()
 {
     glm::vec3 initialDir = orientation;
     float tita1, tita2 = 0;
-    glm::vec3 dir1,dir2;
+    glm::vec3 dir1,dir2=glm::vec3(1,0,0);
 
     if (glm::cross(initialDir, direction)!=glm::vec3(0.0))//Verifico si de entrada son iguales
     {
@@ -200,5 +164,6 @@ void Object::rotation()
     }
     modelMatrix = glm::rotate(modelMatrix, tita2, dir2);
     modelMatrix = glm::rotate(modelMatrix, tita1, dir1);//Recordar que esta rotacion se hace primero
+
 }
     

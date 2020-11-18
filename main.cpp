@@ -11,9 +11,9 @@
 #include <iostream>
 #include <fstream>
 #include "Obligatorio2/Model.h"
-#include "Obligatorio2/Shader.h"
 #include "Obligatorio2/Camera.h"
 #include "Obligatorio2/Object.h"
+#include "Obligatorio2/Plane.h"
 #include "Obligatorio2/Settings.h"
 
 using namespace std;
@@ -49,11 +49,16 @@ void exitFatalError(char* message)
 void init(void)
 {
 	Settings* set = Settings::getInstance();
-	//Los objetos son asi: path, orientation, up, pos, dir, escala, numShader,Shader
-	Object* o1 = new Object("modelos/12221_Cat_v1_l3.obj",glm::vec3(0, -1, 0), glm::vec3(0, 0, 1),glm::vec3(3,0,0), glm::vec3(1,1,1),2, set->addShader(Settings::initShaders("simple.vert", "simple.frag")), Shader("simple.vert", "simple.frag"));
-	Object* o2 = new Object("modelos/backpack.obj", glm::vec3(0,0,-1), glm::vec3(0, 1, 0), glm::vec3(0.0), glm::vec3(0, 0, 1), 2, set->addShader(Settings::initShaders("arcoiris.vert", "arcoiris.frag")), Shader("arcoiris.vert", "arcoiris.frag"));
+	//Los objetos son asi: path, orientation, esc, pos, up, dir,numShader
+	GLuint textu=set->addShader(Settings::initShaders("simple.vert", "simple.frag"));
+	GLuint arco=set->addShader(Settings::initShaders("arcoiris.vert", "arcoiris.frag"));
+	Object* o1 = new Object("modelos/12221_Cat_v1_l3.obj",glm::vec3(0, -1, 0), 2, glm::vec3(3, 0, 0),glm::vec3(0, 0, 1), glm::vec3(1,1,1), textu);
+	Object* o2 = new Object("modelos/backpack.obj", glm::vec3(0,0,-1),2, glm::vec3(0,0,0), glm::vec3(0, 1, 0), glm::vec3(0, 0, 1), arco);
+	Plane* p1 = new Plane("modelos/grass.jpg", glm::vec3(20, 1, 20), glm::vec3(10, -1, -10), glm::vec3(0, 0, 1), glm::vec3(0, 1, 0), textu);
+
 	set->addEntity(o1);
 	set->addEntity(o2);
+	set->addEntity(p1);
 
 	 // Create and start shader program
 	glEnable(GL_DEPTH_TEST); // enable depth testing

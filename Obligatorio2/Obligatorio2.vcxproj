@@ -157,7 +157,7 @@
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="Settings.cpp" />
-    <ClCompile Include="TriangleMesh.cpp" />
+    <ClCompile Include="Plane.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
@@ -166,8 +166,7 @@
     <ClInclude Include="Model.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="Settings.h" />
-    <ClInclude Include="Shader.h" />
-    <ClInclude Include="TriangleMesh.h" />
+    <ClInclude Include="Plane.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
