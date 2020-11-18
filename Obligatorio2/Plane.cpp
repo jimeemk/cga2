@@ -1,7 +1,7 @@
 #include "Plane.h"
 
 
-Plane::Plane(string tex, glm::vec3 sca, glm::vec3 pos, glm::vec3 u, glm::vec3 dir, GLuint sh):Entity(pos,u,dir,sh)
+Plane::Plane(string tex, glm::vec3 sca, glm::vec3 pos, glm::vec3 u, glm::vec3 dir, Shader sh) : Entity(pos,u,dir,sh) 
 {
 	scale = sca;
 	texture = tex;
@@ -22,7 +22,7 @@ glm::vec3 Plane::getDirection()
 	return direction;
 }
 
-GLuint Plane::getShaderProgram()
+Shader Plane::getShaderProgram()
 {
 	return shaderProgram;
 }
@@ -34,7 +34,7 @@ glm::mat4 Plane::getModelMatrix()
 
 void Plane::draw()
 {
-	mesh->Draw(shaderProgram);
+	mesh->Draw(shaderProgram.ID);
 }
 
 void Plane::initPlane()

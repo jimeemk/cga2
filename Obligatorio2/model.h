@@ -10,6 +10,7 @@
 #include <assimp/postprocess.h>
 
 #include "Mesh.h"
+#include "Shader.h"
 
 #include <string>
 #include <fstream>
@@ -35,10 +36,10 @@ public:
     }
 
     // draws the model, and thus all its meshes
-    void Draw(GLuint shader)
+    void Draw(Shader shader)
     {
         for (unsigned int i = 0; i < meshes.size(); i++)
-            meshes[i].Draw(shader);
+            meshes[i].Draw(shader.ID);
     }
     unsigned int TextureFromFile(const char* path, const string& directory, bool gamma = false) {
         string filename = string(path);

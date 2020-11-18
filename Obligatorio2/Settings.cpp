@@ -24,12 +24,12 @@ std::vector<Entity*> Settings::getEntities()
     return entities;
 }
 
-std::vector<GLuint> Settings::getShaders()
+std::vector<Shader> Settings::getShaders()
 {
     return shaders;
 }
 
-GLuint Settings::addShader(GLuint s)
+Shader Settings::addShader(Shader s)
 {
     shaders.push_back(s);
     return s;

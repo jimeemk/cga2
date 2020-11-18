@@ -54,8 +54,8 @@ void init(void)
 {
 	Settings* set = Settings::getInstance();
 	//Los objetos son asi: path, orientation, esc, pos, up, dir,numShader
-	GLuint textu=set->addShader(Settings::initShaders("simple.vert", "simple.frag"));
-	GLuint arco=set->addShader(Settings::initShaders("arcoiris.vert", "arcoiris.frag"));
+	Shader textu=set->addShader(Shader("simple.vert", "simple.frag"));
+	Shader arco=set->addShader(Shader("arcoiris.vert", "arcoiris.frag"));
 	Object* o1 = new Object("modelos/12221_Cat_v1_l3.obj",glm::vec3(0, -1, 0), 2, glm::vec3(3, 0, 0),glm::vec3(0, 0, 1), glm::vec3(1,1,1), textu);
 	Object* o2 = new Object("modelos/backpack.obj", glm::vec3(0,0,-1),2, glm::vec3(0,0,0), glm::vec3(0, 1, 0), glm::vec3(0, 0, 1), arco);
 	Plane* p1 = new Plane("modelos/grass.jpg", glm::vec3(20, 1, 20), glm::vec3(10, -1, -10), glm::vec3(0, 0, 1), glm::vec3(0, 1, 0), textu);
@@ -101,44 +101,42 @@ void draw(SDL_Window* window)
 	//view = glm::rotate(view, r, glm::vec3(0.0f, 1.0f, 0.0f));
 	// Create model matrix for model transformations
 	Settings* set = Settings::getInstance();
-	for (int i = 0; i < set->getEntities().size(); i++)
-	{
+	
+	Light light1 = Light(vec3(0, 0, 5));
+	
+	for (int i = 0; i < set->getEntities().size(); i++) {
 		glm::mat4 model = set->getEntities().at(i)->getModelMatrix();
-		GLuint sp = set->getEntities().at(i)->getShaderProgram();
-		glUseProgram(sp);
-		int projectionIndex = glGetUniformLocation(sp, "projection");
+		Shader sp = set->getEntities().at(i)->getShaderProgram();
+		sp.use();
+		int projectionIndex = glGetUniformLocation(sp.ID, "projection");
 		glUniformMatrix4fv(projectionIndex, 1, GL_FALSE, glm::value_ptr(projection));
 		// pass model as uniform into shader
-		int viewIndex = glGetUniformLocation(sp, "view");
+		int viewIndex = glGetUniformLocation(sp.ID, "view");
 		glUniformMatrix4fv(viewIndex, 1, GL_FALSE, glm::value_ptr(view));
 		// pass model as uniform into shader
-		int modelIndex = glGetUniformLocation(sp, "model");
+		int modelIndex = glGetUniformLocation(sp.ID, "model");
 		glUniformMatrix4fv(modelIndex, 1, GL_FALSE, glm::value_ptr(model));
-		
-		Shader lightingShader("simple.vert", "simple.frag");
-		Shader lightCubeShader("light_cube.vert", "light_cube.frag");
 
-		Light light1 = Light(vec3(0, 0, 5));
-
-		lightingShader.use();
-		lightingShader.setVec3("lightColor", light1.color);
-		lightingShader.setVec3("lightPos", light1.position);
-		lightingShader.setVec3("viewPos", camera->getPosition());
-		lightingShader.setMat4("projection", projection);
-		lightingShader.setMat4("view", view);
-		lightingShader.setMat4("model", model);
+		//Shader lightingShader("simple.vert", "simple.frag");
+		sp.setVec3("lightColor", light1.color);
+		sp.setVec3("lightPos", light1.position);
+		sp.setVec3("viewPos", camera->getPosition());
+		sp.setMat4("projection", projection);
+		sp.setMat4("view", view);
+		sp.setMat4("model", model);
 
 		set->getEntities().at(i)->draw();
-
+	}
+		Shader lightCubeShader("light_cube.vert", "light_cube.frag");
 		lightCubeShader.use();
 		lightCubeShader.setMat4("projection", projection);
 		lightCubeShader.setMat4("view", view);
-		model = glm::mat4(1.0f);
+		glm::mat4 model = glm::mat4(1.0f);
 		model = glm::translate(model, light1.position);
 		model = glm::scale(model, glm::vec3(0.2f));
 		lightCubeShader.setMat4("model", model);
 		light1.drawLight();
-	}
+	//}
 	
 	SDL_GL_SwapWindow(window); // swap buffers
 }
@@ -150,7 +148,7 @@ void cleanup(void)
 	glDisableVertexAttribArray(1);
 	// could also detach shaders
 	for(int i=0; i<Settings::getInstance()->getShaders().size();i++)
-		glDeleteProgram(Settings::getInstance()->getShaders().at(i));
+		glDeleteProgram(Settings::getInstance()->getShaders().at(i).ID);
 	glDeleteBuffers(2, vbo);
 	glDeleteVertexArrays(1, &vao);
 }

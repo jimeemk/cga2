@@ -1,10 +1,11 @@
 #include "Entity.h"
 
+
 Entity::Entity()
 {
 }
 
-Entity::Entity(glm::vec3 pos, glm::vec3 u, glm::vec3 dir, GLuint sp)
+Entity::Entity(glm::vec3 pos, glm::vec3 u, glm::vec3 dir, Shader sp)
 {
 	position = pos;
 	direction = dir;

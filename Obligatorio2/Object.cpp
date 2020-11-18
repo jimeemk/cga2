@@ -1,6 +1,6 @@
 #include "Object.h"
 
-Object::Object(string p, glm::vec3 ori, float esc, glm::vec3 pos, glm::vec3 u, glm::vec3 dir, GLuint sh) : Entity(pos,u,dir,sh)
+Object::Object(string p, glm::vec3 ori, float esc, glm::vec3 pos, glm::vec3 u, glm::vec3 dir, Shader sh) : Entity(pos,u,dir,sh)
 {
     path = p;
     orientation = ori;
@@ -28,7 +28,7 @@ glm::mat4 Object::getModelMatrix()
     return modelMatrix;
 }
 
-GLuint Object::getShaderProgram()
+Shader Object::getShaderProgram()
 {
     return shaderProgram;
 }

@@ -7,11 +7,11 @@ using namespace std;
 
 class Object: public Entity {
 public:
-	Object(string p, glm::vec3 ori, float esc, glm::vec3 pos, glm::vec3 up, glm::vec3 dir, GLuint sh);
+	Object(string p, glm::vec3 ori, float esc, glm::vec3 pos, glm::vec3 up, glm::vec3 dir, Shader sh);
 	~Object();
 	glm::vec3 getPosition();
 	glm::vec3 getDirection();
-	GLuint getShaderProgram();
+	Shader getShaderProgram();
 	glm::mat4 getModelMatrix();
 	void draw();
 private:

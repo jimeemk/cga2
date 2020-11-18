@@ -14,6 +14,10 @@ public:
     unsigned int ID;
     // constructor generates the shader on the fly
     // ------------------------------------------------------------------------
+    Shader() {
+        ID = glCreateProgram();
+    };
+
     Shader(const char* vertexPath, const char* fragmentPath, const char* geometryPath = nullptr) {
         // 1. retrieve the vertex/fragment source code from filePath
         std::string vertexCode;
