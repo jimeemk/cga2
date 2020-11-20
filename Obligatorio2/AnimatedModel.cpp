@@ -10,6 +10,7 @@
 AnimatedModel::AnimatedModel()
 {
 	scene = nullptr;
+	firstTime = true;
 }
 
 
@@ -154,7 +155,7 @@ Mesh AnimatedModel::processMesh(aiMesh* mesh, const aiScene* scene)
 	bones_id_weights_for_each_vertex.resize(mesh->mNumVertices);
 
 	//vertices
-	bool firstTime = true;
+	
 	for (uint i = 0; i < mesh->mNumVertices; i++)
 	{
 		Vertex vertex;

@@ -36,6 +36,7 @@ public:
 	aiQuaternion nlerp(aiQuaternion a, aiQuaternion b, float blend); // super super n lerp =)
 
 private:
+	bool firstTime;
 	Assimp::Importer import;
 	const aiScene* scene;
 	vector<Mesh> meshes; // one mesh in one object

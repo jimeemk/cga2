@@ -29,10 +29,12 @@ public:
     bool gammaCorrection;
     glm::vec3 min;
     glm::vec3 max;
+    bool firstTime;
 
     // constructor, expects a filepath to a 3D model.
     Model(string const& path, bool gamma = false) : gammaCorrection(gamma)
     {
+        firstTime = true;
         loadModel(path);
     }
 
@@ -126,7 +128,7 @@ private:
         vector<Texture> textures;
 
         // walk through each of the mesh's vertices
-        bool firstTime = true;
+        
         for (unsigned int i = 0; i < mesh->mNumVertices; i++)
         {
             Vertex vertex;
