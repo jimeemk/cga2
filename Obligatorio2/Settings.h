@@ -3,6 +3,7 @@
 #include <iostream>
 #include <fstream>
 #include "Entity.h"
+#include "FreeImage.h"
 
 using namespace std;
 
@@ -22,4 +23,5 @@ public:
 	static GLuint initShaders(const char* vertFile, const char* fragFile);
 	static void printShaderError(GLint shader);
 	static const char* loadFile(const char* fname);
+	static unsigned int TextureFromFile(const char* path);
 };

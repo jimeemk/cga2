@@ -153,13 +153,18 @@
   <ItemGroup>
     <ClCompile Include="..\glad.c" />
     <ClCompile Include="..\main.cpp" />
+    <ClCompile Include="AnimatedModel.cpp" />
+    <ClCompile Include="AnimatedObject.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Entity.cpp" />
+    <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="Settings.cpp" />
     <ClCompile Include="Plane.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AnimatedModel.h" />
+    <ClInclude Include="AnimatedObject.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Mesh.h" />

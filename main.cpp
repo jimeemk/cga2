@@ -11,6 +11,8 @@
 #include <iostream>
 #include <fstream>
 #include "Obligatorio2/Model.h"
+#include "Obligatorio2/AnimatedObject.h"
+#include "Obligatorio2/AnimatedModel.h"
 #include "Obligatorio2/Camera.h"
 #include "Obligatorio2/Object.h"
 #include "Obligatorio2/Plane.h"
@@ -23,7 +25,6 @@ using namespace std;
 // global variables - normally would avoid globals, using in this demo
 GLuint vao, vbo[2]; // handles for our VAO and two VBOs
 float r = 0;
-
 unsigned int last_time, current_time;
 
 //pos, target, up
@@ -54,8 +55,13 @@ void init(void)
 	//Los objetos son asi: path, orientation, esc, pos, up, dir,numShader
 	GLuint textu=set->addShader(Settings::initShaders("simple.vert", "simple.frag"));
 	GLuint arco=set->addShader(Settings::initShaders("arcoiris.vert", "arcoiris.frag"));
-	Object* o1 = new Object("modelos/12221_Cat_v1_l3.obj",glm::vec3(0, -1, 0), 0.8, glm::vec3(8, -0.6, -8.6),glm::vec3(0, 0, 1), glm::vec3(-1,0,-1), textu);
-	Object* o2 = new Object("modelos/Japanese_Temple.obj", glm::vec3(0,0,-1),10, glm::vec3(0,4.2,0), glm::vec3(0, 1, 0), glm::vec3(0, 0, 1), textu);
+	GLuint anim = Settings::initShaders("animated_model.vert", "animated_model.frag");
+
+	
+
+	Object* o1 = new Object("modelos/12221_Cat_v1_l3.obj",glm::vec3(0, -1, 0), 1, glm::vec3(8, -0.6, -8.6),glm::vec3(0, 0, 1), glm::vec3(-1,0,-1), textu);
+	//Object* o2 = new Object("modelos/Japanese_Temple.obj", glm::vec3(0,0,-1),10, glm::vec3(0,4.2,0), glm::vec3(0, 1, 0), glm::vec3(0, 0, 1), textu);
+	AnimatedObject* ao1 = new AnimatedObject("models/negro/Rumba Dancing.dae", glm::vec3(0, 0, -1), 2, glm::vec3(0, 0.8, 0), glm::vec3(0, 1, 0), glm::vec3(0, 0, 1), anim);
 	//Manzana 1: plaza
 	Plane* p1 = new Plane("modelos/asfalto.jpg", 100, 100, glm::vec3(20, 1, 20), glm::vec3(10, -1, -10), glm::vec3(0, 0, 1), glm::vec3(0, 1, 0), textu);//Calle
 	Plane* p2 = new Plane("modelos/cordon.jpg", 20, 20, glm::vec3(19, 1, 19), glm::vec3(9.5, -0.9, -9.5), glm::vec3(0, 0, 1), glm::vec3(0, 1, 0), textu);//Cordon
@@ -67,7 +73,7 @@ void init(void)
 	Plane* p8 = new Plane("modelos/grass.jpg", 10, 10, glm::vec3(15, 1, 15), glm::vec3(7.5, -0.88, -7.5), glm::vec3(0, 0, 1), glm::vec3(0, 1, 0), textu);//Terreno
 
 	set->addEntity(o1);
-	set->addEntity(o2);
+	set->addEntity(ao1);
 	set->addEntity(p1);
 	set->addEntity(p2);
 	set->addEntity(p3);
@@ -82,7 +88,7 @@ void init(void)
 	//glEnable(GL_CULL_FACE); // enable back face culling - try this and see what happens!
 
 	//init camera
-	camera = new Camera(vec3(0.f, 0.f, -10.f), vec3(0.f), 45.f, 1.f, 1.f, 100.f);
+	camera = new Camera(vec3(0.0f, 2.0f, -14.0f), vec3(0.f), 45.f, 1.f, 1.f, 100.f);
 
 	//init time
 	last_time = 0;
@@ -100,8 +106,7 @@ void init(void)
 void draw(SDL_Window* window)
 {
 	glClearColor(0.3, 0.3, 0.3, 1.0); // set background colour
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear window
-	
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 	
 	// Create perspective projection matrix
 	glm::mat4 projection = camera->getProjectionMatrix();
@@ -152,9 +157,6 @@ void draw(SDL_Window* window)
 		light1.drawLight();
 	}
 	
-	
-	//model= glm::rotate(model, r, glm::vec3(0.0f, 1.0f, 0.0f));
-	// pass model as uniform into shader
 	SDL_GL_SwapWindow(window); // swap buffers
 }
 
@@ -178,6 +180,12 @@ int main(int argc, char *argv[]) {
 		SDL_Log("Failed to initialize SDL: %s", SDL_GetError());
 		return 1;
 	}
+	// SET ATTRIBUTE ONLY after initialize
+	SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
+	SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS, 1); // on antialiasing sdl
+	SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, 4); //subsamples for each pixel
+
+	SDL_GL_SetAttribute(SDL_GL_ACCELERATED_VISUAL, 1); // set to 1 to require hardware acceleration
 
 	SDL_Window *window = NULL;
 	SDL_GLContext gl_context;
@@ -296,7 +304,6 @@ int main(int argc, char *argv[]) {
 			if (keys[DOWN]) camera->updatePosition(delta_time * speed, movement_direction::DOWN);
 		}
 
-		//update();
 		draw(window); // call the draw function
 	}
 

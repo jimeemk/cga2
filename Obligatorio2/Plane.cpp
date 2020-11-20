@@ -46,10 +46,10 @@ void Plane::initPlane()
 	glm::vec3 v3=position+normalize(glm::rotate(normalize(up),-glm::half_pi<float>(),normalize(direction)));
 	glm::vec3 v4=v2+(v3-v1);
 	vector<Vertex>vertices;
-	vertices.push_back({v1,direction,glm::vec2(0,0),v1,v1}); //izq abajo
-	vertices.push_back({ v2,direction,glm::vec2(0,textureRepetitionY),v2,v2 }); //izq arriba
-	vertices.push_back({ v3,direction,glm::vec2(textureRepetitionX,0),v3,v3 });// der abajo
-	vertices.push_back({ v4,direction,glm::vec2(textureRepetitionX,textureRepetitionY),v4,v4 });// der arriba
+	vertices.push_back({v1,direction,glm::vec2(0,0)}); //izq abajo
+	vertices.push_back({ v2,direction,glm::vec2(0,textureRepetitionY)}); //izq arriba
+	vertices.push_back({ v3,direction,glm::vec2(textureRepetitionX,0)});// der abajo
+	vertices.push_back({ v4,direction,glm::vec2(textureRepetitionX,textureRepetitionY)});// der arriba
 	vector<unsigned int>indices;
 	indices.push_back(0);
 	indices.push_back(2);
