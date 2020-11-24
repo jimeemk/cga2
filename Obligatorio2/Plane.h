@@ -7,11 +7,11 @@ using namespace std;
 
 class Plane : public Entity {
 public:
-	Plane(string tex,int textRepX, int textRepY, glm::vec3 sca, glm::vec3 vertex, glm::vec3 up, glm::vec3 normal, GLuint sh);
+	Plane(string tex,int textRepX, int textRepY, glm::vec3 sca, glm::vec3 vertex, glm::vec3 up, glm::vec3 normal, Shader* sh);
 	~Plane();
 	glm::vec3 getPosition();
 	glm::vec3 getDirection();
-	GLuint getShaderProgram();
+	Shader* getShaderProgram();
 	glm::mat4 getModelMatrix();
 	void draw();
 private:
@@ -21,5 +21,4 @@ private:
 	int textureRepetitionX;
 	int textureRepetitionY;
 	void initPlane();
-	unsigned int TextureFromFile(const char* path);
 };

@@ -7,6 +7,7 @@
 #include <math.h>
 
 #include <iostream>
+#include "Entity.h"
 
 #define _USE_MATH_DEFINES
 
@@ -17,15 +18,14 @@ enum movement_direction {FRONT, RIGHT, LEFT, BACK, UP, DOWN};
 
 struct plane {
 	vec3 normal;
-	vec3 point;
+	float d;
 };
-
 
 class Camera
 {
 public:
 	Camera();
-	Camera(vec3, vec3, float, float, float, float); //no recibe modo de la camara, default = walk
+	Camera(vec3, float, float, float, float, float, float); //no recibe modo de la camara, default = walk
 	vec3 getPosition();
 	mat4 getViewMatrix();
 	mat4 getProjectionMatrix();
@@ -36,11 +36,13 @@ public:
 	void updateFrustum();
 	//h_cant, v_cant
 	void moveCamera(float, float);
+	bool intersectionSphereFrustum(vec3, float);
 	~Camera();
 
 private:
 	vec3 position;
-	vec3 target;
+	float horizontalAngle;
+	float verticalAngle;
 	camera_mode mode;
 	mat4 view_matrix;
 	mat4 projection_matrix;

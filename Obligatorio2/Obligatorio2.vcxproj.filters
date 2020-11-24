@@ -13,6 +13,9 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
     </Filter>
+    <Filter Include="Shaders">
+      <UniqueIdentifier>{444acf02-8a9e-4fdd-b2b4-4650882b8974}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\main.cpp">
@@ -34,6 +37,15 @@
       <Filter>Archivos de origen</Filter>
     </ClCompile>
     <ClCompile Include="Plane.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="Octree.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="OctreeNode.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="Water.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
   </ItemGroup>
@@ -59,5 +71,46 @@
     <ClInclude Include="Plane.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
+    <ClInclude Include="Light.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Octree.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="OctreeNode.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Water.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="arcoiris.frag">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="arcoiris.vert">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="light_cube.frag">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="light_cube.vert">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="simple.frag">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="simple.vert">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="water.frag">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="water.vert">
+      <Filter>Shaders</Filter>
+    </None>
   </ItemGroup>
 </Project>

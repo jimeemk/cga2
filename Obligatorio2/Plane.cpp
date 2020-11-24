@@ -1,7 +1,7 @@
 #include "Plane.h"
 
 
-Plane::Plane(string tex, int texx, int texy, glm::vec3 sca, glm::vec3 pos, glm::vec3 u, glm::vec3 dir, GLuint sh):Entity(pos,u,dir,sh)
+Plane::Plane(string tex, int texx, int texy, glm::vec3 sca, glm::vec3 pos, glm::vec3 u, glm::vec3 dir, Shader* sh):Entity(pos,u,dir,sh)
 {
 	textureRepetitionX = texx;
 	textureRepetitionY = texy;
@@ -24,7 +24,7 @@ glm::vec3 Plane::getDirection()
 	return direction;
 }
 
-GLuint Plane::getShaderProgram()
+Shader* Plane::getShaderProgram()
 {
 	return shaderProgram;
 }
@@ -36,7 +36,10 @@ glm::mat4 Plane::getModelMatrix()
 
 void Plane::draw()
 {
-	mesh->Draw(shaderProgram);
+	shaderProgram->setVec3("lightColor", Settings::getInstance()->getLights()[0]->color);
+	shaderProgram->setVec3("lightPos", Settings::getInstance()->getLights()[0]->position);
+	shaderProgram->setVec3("viewPos", Settings::getInstance()->getNowCamera()->getPosition());
+	mesh->Draw(shaderProgram->ID);
 }
 
 void Plane::initPlane()
@@ -116,41 +119,5 @@ void Plane::initPlane()
 	glm::vec3 minAux;
 	getBounds(minAux, maxAux);//Esto no va aca, es para probar
 
-}
-
-unsigned int Plane::TextureFromFile(const char* path) {
-	string filename = string(path);
-	FIBITMAP* bitmap = FreeImage_Load(
-		FreeImage_GetFileType(filename.c_str(), 0),
-		filename.c_str());
-
-	unsigned int textureID;
-	glGenTextures(1, &textureID);
-
-	int width, height, nrComponents;
-	FIBITMAP* pImage = FreeImage_ConvertTo32Bits(bitmap);
-	int nWidth = FreeImage_GetWidth(pImage);
-	int nHeight = FreeImage_GetHeight(pImage);
-
-	if (pImage)
-	{
-		glBindTexture(GL_TEXTURE_2D, textureID);
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, nWidth, nHeight,
-			0, GL_BGRA, GL_UNSIGNED_BYTE, (void*)FreeImage_GetBits(pImage));
-		glGenerateMipmap(GL_TEXTURE_2D);
-
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-		FreeImage_Unload(pImage);
-	}
-	else
-	{
-		std::cout << "Texture failed to load at path: " << path << std::endl;
-		FreeImage_Unload(pImage);
-	}
-
-	return textureID;
 }
 

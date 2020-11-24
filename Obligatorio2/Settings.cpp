@@ -9,12 +9,14 @@ Settings::~Settings()
 {
 }
 Settings* Settings::instance = nullptr;
+int Settings::init_time = SDL_GetTicks();
 
 Settings* Settings::getInstance()
 {
     if (instance == nullptr)
     {
         instance = new Settings();
+		init_time = SDL_GetTicks();
     }
     return instance;
 }
@@ -24,12 +26,12 @@ std::vector<Entity*> Settings::getEntities()
     return entities;
 }
 
-std::vector<GLuint> Settings::getShaders()
+std::vector<Shader*> Settings::getShaders()
 {
     return shaders;
 }
 
-GLuint Settings::addShader(GLuint s)
+Shader* Settings::addShader(Shader* s)
 {
     shaders.push_back(s);
     return s;
@@ -38,6 +40,25 @@ GLuint Settings::addShader(GLuint s)
 void Settings::addEntity(Entity* e)
 {
     entities.push_back(e);
+
+	//actualizar bound
+	vec3 min_ent, max_ent;
+	e->getBounds(min_ent, max_ent);
+
+	if (entities.size() == 1)
+	{
+		min_bound = min_ent;
+		max_bound = max_ent;
+	}
+	else
+	{
+		if (min_ent.x < min_bound.x) min_bound.x = min_ent.x;
+		if (min_ent.y < min_bound.y) min_bound.y = min_ent.y;
+		if (min_ent.z < min_bound.z) min_bound.z = min_ent.z;
+		if (max_ent.x > max_bound.x) max_bound.x = max_ent.x;
+		if (max_ent.y > max_bound.y) max_bound.y = max_ent.y;
+		if (max_ent.z > max_bound.z) max_bound.z = max_ent.z;
+	}
 }
 
 // printShaderError
@@ -151,4 +172,35 @@ const char* Settings::loadFile(const char* fname)
 		// so that calling function can decide what to do now
 	}
 	return memblock;
+}
+
+void Settings::getBounds(vec3& min, vec3& max)
+{
+	min = min_bound;
+	max = max_bound;
+}
+
+void Settings::changeNowCamera(Camera* c)
+{
+	now_camera = c;
+}
+
+Camera* Settings::getNowCamera()
+{
+	return now_camera;
+}
+
+std::vector<Light*> Settings::getLights()
+{
+	return lights;
+}
+
+void Settings::addLight(Light* l)
+{
+	lights.push_back(l);
+}
+
+int Settings::getInitTime()
+{
+	return init_time;
 }

@@ -4,7 +4,7 @@
 #include <vector>
 #include <map>
 
-#include "Entity.h"
+#include "Settings.h"
 
 using namespace glm;
 
@@ -12,16 +12,17 @@ class OctreeNode
 {
 private:
 	vec3 point;
-	int size;
+	float size;
 	OctreeNode* childs[2][2][2];
-	std::vector<Entity*> entities;
+	std::vector<int> entities_ids;
 public:
 	OctreeNode();
-	OctreeNode(vec3, int);
-	bool addObject(Entity*, vec3);
+	OctreeNode(vec3, float);
+	bool addEntity(int, int);
 	vec3 getPoint();
-	int getSize();
+	float getSize();
 	OctreeNode* getChild(int, int, int);
+	void draw();
 	~OctreeNode();
 };
 

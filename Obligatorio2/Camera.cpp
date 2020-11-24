@@ -1,18 +1,40 @@
 #include "Camera.h"
 
+vec3 spherical_to_cartesian(float h, float v)
+{
+	return normalize(vec3(cos(v) * sin(h), sin(v), cos(v) * cos(h)));
+}
+
+float clampHorizontal(float h)
+{
+	while (h < 0) h += 2 * pi<float>();
+	while (h > 2 * pi<float>()) h -= 2 * pi<float>();
+	return h;
+}
+
+float clampVertical(float v)
+{
+	if (v < -half_pi<float>()) v = -half_pi<float>() + 0.001;
+	if (v > half_pi<float>()) v = half_pi<float>() - 0.001;
+	return v;
+}
+
 Camera::Camera()
 {
 }
 
-Camera::Camera(vec3 p, vec3 t, float fy, float a, float n, float f)
+Camera::Camera(vec3 p, float h, float v, float fy, float a, float n, float f)
 {
 	position = p;
-	target = t;
 	mode = WALK;
 	fovy = fy;
 	aspect = a;
 	tnear = n;
 	tfar = f;
+	horizontalAngle = clampHorizontal(h);
+	verticalAngle = clampVertical(v);
+
+	vec3 target = position + spherical_to_cartesian(horizontalAngle, verticalAngle);
 
 	//matrices de la camara
 	view_matrix = lookAt(position, target, vec3(0.f, 1.f, 0.f));
@@ -45,6 +67,7 @@ vec3 Camera::getPosition()
 void Camera::updatePosition(float delta, movement_direction d)
 {
 	//camera coords
+	vec3 target = position + spherical_to_cartesian(horizontalAngle, verticalAngle);
 	vec3 n = normalize(target - position);
 	vec3 r = normalize(cross(n, vec3(0.f, 1.f, 0.f)));
 	vec3 u = normalize(cross(r, n));
@@ -52,14 +75,6 @@ void Camera::updatePosition(float delta, movement_direction d)
 	vec3 move_direction = n;
 	vec3 right_direction = r;
 	vec3 up_direction = vec3(0.f, 1.f, 0.f);
-
-	if (mode == WALK)
-	{
-		if (n.y == 1.f || n.y == -1.f) n.x = 0.1;
-		move_direction = normalize(vec3(n.x, 0.f, n.z));
-		right_direction = normalize(cross(move_direction, vec3(0.f, 1.f, 0.f)));
-		up_direction = vec3(0.f);
-	}
 
 	switch (d)
 	{
@@ -99,20 +114,10 @@ void Camera::updatePosition(float delta, movement_direction d)
 void Camera::moveCamera(float h_cant, float v_cant)
 {
 	//camera coords
-	vec3 dir = normalize(target - position);
-	vec3 right = normalize(cross(vec3(0.f, 1.f, 0.f), dir));
-	vec3 up = normalize(cross(dir, right));
-
-	//matriz de rotacion
-	mat4 rot_mat = rotate(mat4(1.f), h_cant, up);
-	right = rot_mat * vec4(right, 0.f);
-	rot_mat = rotate(rot_mat, v_cant, right);
-	dir = rot_mat * vec4(dir, 0.f);
-	up = rot_mat * vec4(up, 0.f);
-
-	//actualizar target y view_matrix
-	target = position + dir;
-	view_matrix = lookAt(position, target, up);
+	horizontalAngle = clampHorizontal(horizontalAngle + h_cant);
+	verticalAngle = clampVertical(verticalAngle + v_cant);
+	vec3 target = position + spherical_to_cartesian(horizontalAngle, verticalAngle);
+	view_matrix = lookAt(position, target, vec3(0.f, 1.f, 0.f));
 
 	//actualizar frustum
 	updateFrustum();
@@ -135,6 +140,7 @@ void Camera::getFrustum(plane ret[6])
 
 void Camera::updateFrustum()
 {
+	vec3 target = spherical_to_cartesian(horizontalAngle, verticalAngle);
 	vec3 front = normalize(target - position);
 	vec3 right = normalize(cross(front, vec3(0.f, 1.f, 0.f)));
 	vec3 up = normalize(cross(right, front));
@@ -153,10 +159,20 @@ void Camera::updateFrustum()
 	for (int i = 0; i < 6; i++)
 	{
 		frustum[i].normal = normalize(normals[i]);
-		frustum[i].point = points[i];
+		frustum[i].d = -dot(frustum[i].normal, points[i]);
 	}
 }
 
 Camera::~Camera()
 {
+}
+
+bool Camera::intersectionSphereFrustum(vec3 center, float radio)
+{
+	for (int i = 0; i < 6; i++)
+	{
+		if (dot(center, frustum[i].normal) + frustum[i].d + radio < 0) return false;
+	}
+
+	return true;
 }

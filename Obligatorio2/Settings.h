@@ -2,24 +2,45 @@
 #include <vector>
 #include <iostream>
 #include <fstream>
-#include "Entity.h"
+#include "Light.h"
+#include "Camera.h"
+#include <glad/glad.h>
+#include "Shader.h"
+#include "SDL.h"
+#include "SDL_opengl.h"
 
 using namespace std;
+using namespace glm;
+
+class Entity;
+class Camera;
 
 class Settings {
 private:
 	Settings();
 	static Settings* instance;
-	std::vector<Entity*> entities; //Por ahora es vector porque despues viene the magic
-	std::vector<GLuint> shaders;
+	std::vector<Shader*> shaders;
+	Camera* now_camera;
+	std::vector<Entity*> entities;
+	std::vector<Light*> lights;
+	static int init_time;
+	//bounds 
+	vec3 min_bound;
+	vec3 max_bound;
 public:
 	~Settings();
 	static Settings* getInstance();
 	std::vector<Entity*> getEntities();
-	std::vector<GLuint> getShaders();
-	GLuint addShader(GLuint s);
+	std::vector<Shader*> getShaders();
+	Shader* addShader(Shader* s);
 	void addEntity(Entity* e);
+	void changeNowCamera(Camera* c);
 	static GLuint initShaders(const char* vertFile, const char* fragFile);
 	static void printShaderError(GLint shader);
 	static const char* loadFile(const char* fname);
+	void getBounds(vec3&, vec3&);
+	Camera* getNowCamera();
+	std::vector<Light*> getLights();
+	void addLight(Light*);
+	int getInitTime();
 };
