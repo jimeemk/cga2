@@ -27,10 +27,14 @@ public:
     vector<Mesh>    meshes;
     string directory;
     bool gammaCorrection;
+    glm::vec3 min;
+    glm::vec3 max;
+    bool firstTime;
 
     // constructor, expects a filepath to a 3D model.
     Model(string const& path, bool gamma = false) : gammaCorrection(gamma)
     {
+        firstTime = true;
         loadModel(path);
     }
 
@@ -124,6 +128,7 @@ private:
         vector<Texture> textures;
 
         // walk through each of the mesh's vertices
+        
         for (unsigned int i = 0; i < mesh->mNumVertices; i++)
         {
             Vertex vertex;
@@ -133,6 +138,30 @@ private:
             vector.y = mesh->mVertices[i].y;
             vector.z = mesh->mVertices[i].z;
             vertex.Position = vector;
+
+            if (firstTime)
+            {
+                firstTime = false;
+                min = vector;
+                max = vector;
+            }
+            else
+            {
+                if (vector.x < min.x)
+                    min.x = vector.x;
+                if (vector.y < min.y)
+                    min.y = vector.y;
+                if (vector.z < min.z)
+                    min.z = vector.z;
+                if (vector.x > max.x)
+                    max.x = vector.x;
+                if (vector.y > max.y)
+                    max.y = vector.y;
+                if (vector.z > max.z)
+                    max.z = vector.z;
+            }
+
+
             // normals
             if (mesh->HasNormals())
             {
@@ -150,16 +179,6 @@ private:
                 vec.x = mesh->mTextureCoords[0][i].x;
                 vec.y = mesh->mTextureCoords[0][i].y;
                 vertex.TexCoords = vec;
-                // tangent
-                vector.x = mesh->mTangents[i].x;
-                vector.y = mesh->mTangents[i].y;
-                vector.z = mesh->mTangents[i].z;
-                vertex.Tangent = vector;
-                // bitangent
-                vector.x = mesh->mBitangents[i].x;
-                vector.y = mesh->mBitangents[i].y;
-                vector.z = mesh->mBitangents[i].z;
-                vertex.Bitangent = vector;
             }
             else
                 vertex.TexCoords = glm::vec2(0.0f, 0.0f);

@@ -11,6 +11,9 @@
 #include <iostream>
 #include <fstream>
 #include "Obligatorio2/Model.h"
+#include "Obligatorio2/AnimatedObject.h"
+#include "Obligatorio2/AnimatedModel.h"
+#include "Obligatorio2/Camera.h"
 #include "Obligatorio2/Object.h"
 #include "Obligatorio2/Plane.h"
 #include "Obligatorio2/Settings.h"
@@ -22,7 +25,6 @@ using namespace std;
 // global variables - normally would avoid globals, using in this demo
 GLuint vao, vbo[2]; // handles for our VAO and two VBOs
 float r = 0;
-
 unsigned int last_time, current_time;
 
 //pos, target, up
@@ -52,6 +54,8 @@ void init(void)
 	Settings* set = Settings::getInstance();
 	Shader* lightShader = new Shader("simple.vert", "simple.frag");
 	Shader* waterShader = new Shader("water.vert", "water.frag");
+	Shader* anim = new Shader("animated_model.vert", "animated_model.frag");
+	AnimatedObject* ao1 = new AnimatedObject("models/negro/Rumba Dancing.dae", glm::vec3(0, 0, -1), 2, glm::vec3(0, 0.8, 0), glm::vec3(0, 1, 0), glm::vec3(0, 0, 1), anim);
 	Object* o1 = new Object("modelos/12221_Cat_v1_l3.obj",glm::vec3(0, -1, 0), 0.8, glm::vec3(8, -0.6, -8.6),glm::vec3(0, 0, 1), glm::vec3(-1,0,-1), lightShader);
 	Object* o2 = new Object("modelos/Japanese_Temple.obj", glm::vec3(0,0,-1),10, glm::vec3(0,4.2,0), glm::vec3(0, 1, 0), glm::vec3(0, 0, 1), lightShader);
 	//Manzana 1: plaza
@@ -75,6 +79,7 @@ void init(void)
 	//set->addEntity(p6);
 	//set->addEntity(p7);
 	//set->addEntity(p8);
+	set->addEntity(ao1);
 
 	set->addEntity(water);
 
@@ -107,8 +112,7 @@ void init(void)
 void draw(SDL_Window* window)
 {
 	glClearColor(0.3, 0.3, 0.3, 1.0); // set background colour
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear window
-	
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 	
 	// Create perspective projection matrix
 	Settings* set = Settings::getInstance();
@@ -173,6 +177,12 @@ int main(int argc, char *argv[]) {
 		SDL_Log("Failed to initialize SDL: %s", SDL_GetError());
 		return 1;
 	}
+	// SET ATTRIBUTE ONLY after initialize
+	SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
+	SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS, 1); // on antialiasing sdl
+	SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, 4); //subsamples for each pixel
+
+	SDL_GL_SetAttribute(SDL_GL_ACCELERATED_VISUAL, 1); // set to 1 to require hardware acceleration
 
 	SDL_Window *window = NULL;
 	SDL_GLContext gl_context;
@@ -299,7 +309,6 @@ int main(int argc, char *argv[]) {
 			if (keys[DOWN]) Settings::getInstance()->getNowCamera()->updatePosition(delta_time * speed, movement_direction::DOWN);
 		}
 
-		//update();
 		draw(window); // call the draw function
 	}
 

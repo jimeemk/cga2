@@ -8,6 +8,8 @@
 #include "Shader.h"
 #include "SDL.h"
 #include "SDL_opengl.h"
+#include "Entity.h"
+#include "FreeImage.h"
 
 using namespace std;
 using namespace glm;
@@ -43,4 +45,5 @@ public:
 	std::vector<Light*> getLights();
 	void addLight(Light*);
 	int getInitTime();
+	static unsigned int TextureFromFile(const char* path);
 };

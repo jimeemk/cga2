@@ -44,35 +44,8 @@ void Object::draw()
 void Object::initObject()
 {
     glm::vec3 centro = glm::vec3(0.0);
-    bool firstTime = true;
-    for (int i = 0; i < model->meshes.size(); i++)
-    {
-        for (int j = 0; j < model->meshes.at(i).vertices.size(); j++)
-        {
-            glm::vec3 point = model->meshes.at(i).vertices.at(j).Position;
-            if (firstTime)
-            {
-                firstTime = false;
-                min = point;
-                max = point;
-            }
-            else
-            {
-                if (point.x < min.x)
-                    min.x = point.x;
-                if (point.y < min.y)
-                    min.y = point.y;
-                if (point.z < min.z)
-                    min.z = point.z;
-                if (point.x > max.x)
-                    max.x = point.x;
-                if (point.y > max.y)
-                    max.y = point.y;
-                if (point.z > max.z)
-                    max.z = point.z;
-            }
-        }
-    }
+    min = model->min;
+    max = model->max;
     centro.x = (min.x + max.x) / 2;
     centro.y = (min.y + max.y) / 2;
     centro.z = (min.z + max.z) / 2;

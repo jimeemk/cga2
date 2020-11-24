@@ -45,7 +45,7 @@ void Water::setupWater()
 		for (int j = 0; j < density; j++)
 		{
 			vec3 point = position + (i * delta_h * direction) + (j * delta_v * v);
-			vertices.push_back({point, u, vec2(i / float(density - 1), j / float(density - 1)), point, point});
+			vertices.push_back({point, u, vec2(i / float(density - 1), j / float(density - 1))});
 
 			//indices
 			if (j != density - 1 && i != density - 1)

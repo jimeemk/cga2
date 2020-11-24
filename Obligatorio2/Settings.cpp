@@ -204,3 +204,39 @@ int Settings::getInitTime()
 {
 	return init_time;
 }
+
+unsigned int Settings::TextureFromFile(const char* path) {
+	string filename = string(path);
+	FIBITMAP* bitmap = FreeImage_Load(
+		FreeImage_GetFileType(filename.c_str(), 0),
+		filename.c_str());
+
+	unsigned int textureID;
+	glGenTextures(1, &textureID);
+
+	int width, height, nrComponents;
+	FIBITMAP* pImage = FreeImage_ConvertTo32Bits(bitmap);
+	int nWidth = FreeImage_GetWidth(pImage);
+	int nHeight = FreeImage_GetHeight(pImage);
+
+	if (pImage)
+	{
+		glBindTexture(GL_TEXTURE_2D, textureID);
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, nWidth, nHeight,
+			0, GL_BGRA, GL_UNSIGNED_BYTE, (void*)FreeImage_GetBits(pImage));
+		glGenerateMipmap(GL_TEXTURE_2D);
+
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+		FreeImage_Unload(pImage);
+	}
+	else
+	{
+		std::cout << "Texture failed to load at path: " << path << std::endl;
+		FreeImage_Unload(pImage);
+	}
+
+	return textureID;
+}
