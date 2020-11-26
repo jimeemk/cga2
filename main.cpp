@@ -19,6 +19,7 @@
 #include "Obligatorio2/Settings.h"
 #include "Obligatorio2/Shader.h"
 #include "Obligatorio2/Water.h"
+#include "Obligatorio2/Terrain.h"
 
 using namespace std;
 
@@ -54,10 +55,11 @@ void init(void)
 	Settings* set = Settings::getInstance();
 	Shader* lightShader = new Shader("simple.vert", "simple.frag");
 	Shader* waterShader = new Shader("water.vert", "water.frag");
-	Shader* anim = new Shader("animated_model.vert", "animated_model.frag");
-	AnimatedObject* ao1 = new AnimatedObject("models/negro/Rumba Dancing.dae", glm::vec3(0, 0, -1), 2, glm::vec3(0, 0.8, 0), glm::vec3(0, 1, 0), glm::vec3(0, 0, 1), anim);
-	Object* o1 = new Object("modelos/12221_Cat_v1_l3.obj",glm::vec3(0, -1, 0), 0.8, glm::vec3(8, -0.6, -8.6),glm::vec3(0, 0, 1), glm::vec3(-1,0,-1), lightShader);
-	Object* o2 = new Object("modelos/Japanese_Temple.obj", glm::vec3(0,0,-1),10, glm::vec3(0,4.2,0), glm::vec3(0, 1, 0), glm::vec3(0, 0, 1), lightShader);
+	//Shader* anim = new Shader("animated_model.vert", "animated_model.frag");
+	Shader* hmShader = new Shader("heightMap.vert", "heightMap.frag");
+	//AnimatedObject* ao1 = new AnimatedObject("models/negro/Rumba Dancing.dae", glm::vec3(0, 0, -1), 2, glm::vec3(0, 0.8, 0), glm::vec3(0, 1, 0), glm::vec3(0, 0, 1), anim);
+	//Object* o1 = new Object("modelos/12221_Cat_v1_l3.obj",glm::vec3(0, -1, 0), 0.8, glm::vec3(8, -0.6, -8.6),glm::vec3(0, 0, 1), glm::vec3(-1,0,-1), lightShader);
+	//Object* o2 = new Object("modelos/Japanese_Temple.obj", glm::vec3(0,0,-1),10, glm::vec3(0,4.2,0), glm::vec3(0, 1, 0), glm::vec3(0, 0, 1), lightShader);
 	//Manzana 1: plaza
 	Plane* p1 = new Plane("modelos/asfalto.jpg", 100, 100, glm::vec3(20, 1, 20), glm::vec3(10, -1, -10), glm::vec3(0, 0, 1), glm::vec3(0, 1, 0), lightShader);//Calle
 	Plane* p2 = new Plane("modelos/cordon.jpg", 20, 20, glm::vec3(19, 1, 19), glm::vec3(9.5, -0.9, -9.5), glm::vec3(0, 0, 1), glm::vec3(0, 1, 0), lightShader);//Cordon
@@ -66,11 +68,11 @@ void init(void)
 	Plane* p5 = new Plane("modelos/cordon.jpg", 20, 1, glm::vec3(1, 0.09, 19), glm::vec3(-9.5, -0.99, -9.5), glm::vec3(0, 1, 0), glm::vec3(-1, 0, 0), lightShader);//Cordon
 	Plane* p6 = new Plane("modelos/cordon.jpg", 20, 1, glm::vec3(19, 0.09, 1), glm::vec3(-9.5, -0.99, 9.5), glm::vec3(0, 1, 0), glm::vec3(0, 0, 1), lightShader);//Cordon
 	Plane* p7 = new Plane("modelos/vereda.jpg", 40, 40, glm::vec3(18.9, 1, 18.9), glm::vec3(9.45, -0.89, -9.45), glm::vec3(0, 0, 1), glm::vec3(0, 1, 0), lightShader);//Vereda
-	Plane* p8 = new Plane("modelos/grass.jpg", 10, 10, glm::vec3(15, 1, 15), glm::vec3(7.5, -0.88, -7.5), glm::vec3(0, 0, 1), glm::vec3(0, 1, 0), lightShader);//Terreno
-	Water* water = new Water(vec3(0.f), vec3(0.f, 1.f, 0.f), vec3(1.f, 0.f, 0.f), waterShader, 35, 20, 20, "modelos/water1.jpg");
-
+	Plane* p8 = new Plane("modelos/grass.jpg", 10, 10, glm::vec3(200, 1.f, 200), glm::vec3(0.f,0.2,0.f), glm::vec3(0, 0, -1), glm::vec3(0, 1, 0), lightShader);//Terreno
+	Water* water = new Water(vec3(0.f, 1.5f, 0.f), vec3(0.f, 1.f, 0.f), vec3(0.f, 0.f, -1.f), waterShader, 35, 200, 200, "modelos/water1.jpg");
+	Terrain* terrain = new Terrain(vec3(0.f), vec3(0.f, 1.f, 0.f), vec3(1.f, 0.f, 0.f), hmShader, 50, 200, 200, "modelos/bariloche.jpg");
 	//set->addEntity(o1);
-	set->addEntity(o2);
+	//set->addEntity(o2);
 	//set->addEntity(p1);
 	//set->addEntity(p2);
 	//set->addEntity(p3);
@@ -78,10 +80,11 @@ void init(void)
 	//set->addEntity(p5);
 	//set->addEntity(p6);
 	//set->addEntity(p7);
-	//set->addEntity(p8);
-	set->addEntity(ao1);
+	set->addEntity(p8);
+	//set->addEntity(ao1);
 
 	set->addEntity(water);
+	set->addEntity(terrain);
 
 	std::cout << "Total entities: " << set->getEntities().size() << std::endl;
 
@@ -90,8 +93,8 @@ void init(void)
 	//glEnable(GL_CULL_FACE); // enable back face culling - try this and see what happens!
 
 	//init camera
-	Camera* camera = new Camera(vec3(0.f, 20.f, -10.f), half_pi<float>(), 0.f, 45.f, 4.0f / 3.0f, 1.f, 100.f);
-	Light* light1 = new Light(vec3(0, 20, 10));
+	Camera* camera = new Camera(vec3(0.f, 60.f, -100.f), half_pi<float>(), 0.f, 45.f, 4.0f / 3.0f, 1.f, 300.f);
+	Light* light1 = new Light(vec3(0, 50, -100));
 	set->changeNowCamera(camera);
 	set->addLight(light1);
 

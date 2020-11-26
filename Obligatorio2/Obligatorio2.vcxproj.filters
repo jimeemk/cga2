@@ -39,7 +39,6 @@
     <ClCompile Include="Plane.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-<<<<<<< HEAD
     <ClCompile Include="Octree.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
@@ -47,7 +46,8 @@
       <Filter>Archivos de origen</Filter>
     </ClCompile>
     <ClCompile Include="Water.cpp">
-=======
+    <Filter>Archivos de origen</Filter>
+    </ClCompile>
     <ClCompile Include="AnimatedModel.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
@@ -55,8 +55,10 @@
       <Filter>Archivos de origen</Filter>
     </ClCompile>
     <ClCompile Include="AnimatedObject.cpp">
->>>>>>> c63d7c7b6305ecf95c300a4ae4159dfd8c37307d
       <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="Terrain.cpp">
+     <Filter>Archivos de origen</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -81,7 +83,6 @@
     <ClInclude Include="Plane.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-<<<<<<< HEAD
     <ClInclude Include="Light.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
@@ -95,6 +96,15 @@
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="Water.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Terrain.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimatedModel.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimatedObject.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>
@@ -123,13 +133,11 @@
     <None Include="water.vert">
       <Filter>Shaders</Filter>
     </None>
-=======
-    <ClInclude Include="AnimatedModel.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="AnimatedObject.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
->>>>>>> c63d7c7b6305ecf95c300a4ae4159dfd8c37307d
+    <None Include="heightMap.frag">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="heightMap.vert">
+      <Filter>Shaders</Filter>
+    </None>
   </ItemGroup>
 </Project>
