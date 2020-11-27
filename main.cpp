@@ -78,7 +78,7 @@ void init(void)
 	text.push_back(t2);
 	Texture t3 = { Settings::TextureFromFile("modelos/arena.jpg"), "texture_diffuse", "modelos/arena.jpg" };
 	text.push_back(t3);
-	Terrain* terrain = new Terrain(vec3(0.f), vec3(0.f, 1.f, 0.f), vec3(1.f, 0.f, 0.f), suelo, 100, 200, 200,8, text);
+	Terrain* terrain = new Terrain(vec3(0.f), vec3(0.f, 1.f, 0.f), vec3(1.f, 0.f, 0.f), suelo, 300, 200, 200,8, text);
 	
 	std::vector<Texture> text2;
 	Texture ta = { Settings::TextureFromFile("modelos/montania.jpg"), "texture_height", "modelos/montania.jpg" };
@@ -86,14 +86,14 @@ void init(void)
 	text2.push_back(t2);
 	Texture t4 = { Settings::TextureFromFile("modelos/roca.jpg"), "texture_diffuse", "modelos/roca.jpg" };
 	text2.push_back(t4);
-	Terrain* terrainb = new Terrain(vec3(0.f), vec3(0.f, 1.f, 0.f), vec3(1.f, 0.f, 0.f), hmShader, 100, 200, 200, 45, text2);
+	Terrain* terrainb = new Terrain(vec3(0.f), vec3(0.f, 1.f, 0.f), vec3(1.f, 0.f, 0.f), hmShader, 300, 200, 200, 45, text2);
 
 	std::vector<Texture> text3;
 	Texture tc = { Settings::TextureFromFile("modelos/isla3.jpg"), "texture_height", "modelos/isla3.jpg" };
 	text3.push_back(tc);
 	text3.push_back(t2);
 	text3.push_back(t4);
-	Terrain* terrainc = new Terrain(vec3(0.f), vec3(0.f, 1.f, 0.f), vec3(1.f, 0.f, 0.f), hmShader, 100, 200, 200, 60, text3);
+	Terrain* terrainc = new Terrain(vec3(0.f), vec3(0.f, 1.f, 0.f), vec3(1.f, 0.f, 0.f), hmShader, 300, 200, 200, 60, text3);
 
 
 	//set->addEntity(o1);
