@@ -46,7 +46,7 @@
       <Filter>Archivos de origen</Filter>
     </ClCompile>
     <ClCompile Include="Water.cpp">
-    <Filter>Archivos de origen</Filter>
+      <Filter>Archivos de origen</Filter>
     </ClCompile>
     <ClCompile Include="AnimatedModel.cpp">
       <Filter>Archivos de origen</Filter>
@@ -58,7 +58,7 @@
       <Filter>Archivos de origen</Filter>
     </ClCompile>
     <ClCompile Include="Terrain.cpp">
-     <Filter>Archivos de origen</Filter>
+      <Filter>Archivos de origen</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -137,6 +137,18 @@
       <Filter>Shaders</Filter>
     </None>
     <None Include="heightMap.vert">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="suelo.frag">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="suelo.vert">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="animated_model.vert">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="animated_model.frag">
       <Filter>Shaders</Filter>
     </None>
   </ItemGroup>

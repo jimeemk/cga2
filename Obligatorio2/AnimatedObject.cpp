@@ -85,9 +85,9 @@ void AnimatedObject::initObject()
     centro.x = (min.x + max.x) / 2;
     centro.y = (min.y + max.y) / 2;
     centro.z = (min.z + max.z) / 2;
-    cout << "min: " << min.x << " ... " << min.y << " ... " << min.z << "\n";
-    cout << "max: " << max.x << " ... " << max.y << " ... " << max.z << "\n";
-    cout << "Centro: " << centro.x << " ... " << centro.y << " ... " << centro.z << "\n";
+    cout << "min negri: " << min.x << " ... " << min.y << " ... " << min.z << "\n";
+    cout << "max negri: " << max.x << " ... " << max.y << " ... " << max.z << "\n";
+    cout << "Centro negri: " << centro.x << " ... " << centro.y << " ... " << centro.z << "\n";
     pointsInitialAABB[0] = glm::vec3(min.x, min.y, min.z);
     pointsInitialAABB[1] = glm::vec3(min.x, min.y, max.z);
     pointsInitialAABB[2] = glm::vec3(min.x, max.y, min.z);
@@ -96,7 +96,6 @@ void AnimatedObject::initObject()
     pointsInitialAABB[5] = glm::vec3(max.x, min.y, max.z);
     pointsInitialAABB[6] = glm::vec3(max.x, max.y, min.z);
     pointsInitialAABB[7] = glm::vec3(max.x, max.y, max.z);
-
 
     modelMatrix = glm::translate(modelMatrix, glm::vec3(position.x, position.y, position.z));
     rotation();
@@ -107,7 +106,8 @@ void AnimatedObject::initObject()
     glm::vec3 maxAux;
     glm::vec3 minAux;
     getBounds(minAux, maxAux);//Esto no va aca, es para probar
-    
+    cout << "min negri2: " << minAux.x << " ... " << minAux.y << " ... " << minAux.z << "\n";
+    cout << "max negri2: " << maxAux.x << " ... " << maxAux.y << " ... " << maxAux.z << "\n";
 }
 float AnimatedObject::getMaxScale(float x, float y, float z)
 {

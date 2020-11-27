@@ -11,7 +11,7 @@ class Terrain : public Entity
 {
 public:
 	Terrain();
-	Terrain(vec3 pos, vec3 u, vec3 dir, Shader* sp, int den, float width, float height, std::string text);
+	Terrain(vec3 pos, vec3 u, vec3 dir, Shader* sp, int den, float width, float height,float t, vector<Texture> text);
 	glm::vec3 getPosition();
 	glm::vec3 getDirection();
 	Shader* getShaderProgram();
@@ -23,8 +23,9 @@ private:
 	int density;
 	float width;
 	float height;
+	float top;
 	Mesh* mesh;
-	std::string texture;
+	vector<Texture> texture;
 	void setupTerrain();
 };
 

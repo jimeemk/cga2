@@ -5,12 +5,13 @@ Terrain::Terrain()
 {
 }
 
-Terrain::Terrain(vec3 pos, vec3 u, vec3 dir, Shader* sp, int den, float width, float height, std::string text) : Entity(pos, normalize(u), normalize(dir), sp)
+Terrain::Terrain(vec3 pos, vec3 u, vec3 dir, Shader* sp, int den, float width, float height, float t, vector<Texture> text) : Entity(pos, normalize(u), normalize(dir), sp)
 {
 	density = den;
 	this->width = width;
 	this->height = height;
 	texture = text;
+	top = t;
 	modelMatrix = mat4(1.f);
 	setupTerrain();
 }
@@ -22,11 +23,6 @@ void Terrain::setupTerrain()
 	//vectores
 	std::vector<Vertex> vertices;
 	std::vector<unsigned int>indices;
-	std::vector<Texture>textures;
-	Texture t = { TextureFromFile(texture.c_str()), "texture_height", texture };
-	textures.push_back(t);
-	Texture t2 = { TextureFromFile("modelos/grass.jpg"), "texture_diffuse", "modelos/grass.jpg" };
-	textures.push_back(t2);
 
 	min = max = position;
 
@@ -64,7 +60,7 @@ void Terrain::setupTerrain()
 		}
 	}
 
-	mesh = new Mesh(vertices, indices, textures);
+	mesh = new Mesh(vertices, indices, texture);
 
 	pointsInitialAABB[0] = glm::vec3(min.x, min.y, min.z);
 	pointsInitialAABB[1] = glm::vec3(min.x, min.y, max.z);
@@ -104,6 +100,7 @@ int Terrain::getDensity()
 
 void Terrain::draw()
 {
+	shaderProgram->setFloat("top", top);
 	shaderProgram->setVec3("lightColor", Settings::getInstance()->getLights()[0]->color);
 	shaderProgram->setVec3("lightPos", Settings::getInstance()->getLights()[0]->position);
 	shaderProgram->setVec3("viewPos", Settings::getInstance()->getNowCamera()->getPosition());

@@ -184,6 +184,8 @@
     <ClInclude Include="Water.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="animated_model.frag" />
+    <None Include="animated_model.vert" />
     <None Include="arcoiris.frag" />
     <None Include="arcoiris.vert" />
     <None Include="heightMap.frag" />
@@ -192,6 +194,8 @@
     <None Include="light_cube.vert" />
     <None Include="simple.frag" />
     <None Include="simple.vert" />
+    <None Include="suelo.frag" />
+    <None Include="suelo.vert" />
     <None Include="water.frag" />
     <None Include="water.vert" />
   </ItemGroup>
