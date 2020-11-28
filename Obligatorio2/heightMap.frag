@@ -11,7 +11,7 @@ uniform vec3 lightColor;
 uniform sampler2D texture_height;
 
 
-varying vec4 vColor;
+flat varying vec4 vColor;
 
 void main()
 {

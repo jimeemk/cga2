@@ -12,7 +12,7 @@ uniform mat4 view;
 uniform mat4 projection;
 uniform float top;
 
-varying vec4 vColor;
+flat varying vec4 vColor;
 uniform sampler2D texture_height;
 uniform sampler2D texture_diffuse1;
 uniform sampler2D texture_diffuse2;
