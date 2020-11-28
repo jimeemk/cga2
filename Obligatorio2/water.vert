@@ -5,11 +5,9 @@ const float G = 9.81;
 
 layout (location = 0) in vec3 aPos;
 layout (location = 1) in vec3 aNormal;
-layout (location = 2) in vec2 aTexCoords;
 
-out vec3 FragPos;
-out vec3 Normal;
-out vec2 TexCoords;
+out vec3 g_FragPos;
+out vec3 g_Normal;
 
 uniform mat4 model;
 uniform mat4 view;
@@ -36,9 +34,8 @@ void main()
     position.y += 0.2 * sin(0.9 * position.x + 2.1 * position.z - speed * passedTime);
     position.z += 0.3 * cos(position.z - speed * passedTime);
 
-    TexCoords = aTexCoords;
-    FragPos = vec3(model * vec4(position, 1.0));
-    Normal = mat3(transpose(inverse(model))) * aNormal;  
+    g_FragPos = vec3(model * vec4(position, 1.0));
+    g_Normal = mat3(transpose(inverse(model))) * aNormal;  
     
-    gl_Position = projection * view * vec4(FragPos, 1.0);
+    gl_Position = projection * view * model * vec4(g_FragPos, 1.0);
 }

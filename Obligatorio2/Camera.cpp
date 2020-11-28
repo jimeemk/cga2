@@ -26,7 +26,7 @@ Camera::Camera()
 Camera::Camera(vec3 p, float h, float v, float fy, float a, float n, float f)
 {
 	position = p;
-	mode = WALK;
+	mode = FLY;
 	fovy = fy;
 	aspect = a;
 	tnear = n;

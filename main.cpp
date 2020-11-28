@@ -34,6 +34,7 @@ float speed;
 //mouse variables
 int current_x, current_y, last_x, last_y;
 bool wireframe;
+bool draw_bounds;
 
 // loadFile - loads text file into char* fname
 // allocates memory - so need to delete after use
@@ -53,11 +54,11 @@ void init(void)
 {
 	Settings* set = Settings::getInstance();
 	Shader* lightShader = new Shader("simple.vert", "simple.frag");
-	Shader* waterShader = new Shader("water.vert", "water.frag");
+	Shader* waterShader = new Shader("water.vert", "water.frag", "water.geom");
 	Shader* anim = new Shader("animated_model.vert", "animated_model.frag");
 	AnimatedObject* ao1 = new AnimatedObject("models/negro/Rumba Dancing.dae", glm::vec3(0, 0, -1), 2, glm::vec3(0, 0.8, 0), glm::vec3(0, 1, 0), glm::vec3(0, 0, 1), anim);
 	Object* o1 = new Object("modelos/12221_Cat_v1_l3.obj",glm::vec3(0, -1, 0), 0.8, glm::vec3(8, -0.6, -8.6),glm::vec3(0, 0, 1), glm::vec3(-1,0,-1), lightShader);
-	Object* o2 = new Object("modelos/Japanese_Temple.obj", glm::vec3(0,0,-1),10, glm::vec3(0,4.2,0), glm::vec3(0, 1, 0), glm::vec3(0, 0, 1), lightShader);
+	Object* o2 = new Object("modelos/Japanese_Temple.obj", glm::vec3(0,0,-1),10, glm::vec3(10.f, 4.2, 10.f), glm::vec3(0, 1, 0), glm::vec3(0, 0, 1), lightShader);
 	//Manzana 1: plaza
 	Plane* p1 = new Plane("modelos/asfalto.jpg", 100, 100, glm::vec3(20, 1, 20), glm::vec3(10, -1, -10), glm::vec3(0, 0, 1), glm::vec3(0, 1, 0), lightShader);//Calle
 	Plane* p2 = new Plane("modelos/cordon.jpg", 20, 20, glm::vec3(19, 1, 19), glm::vec3(9.5, -0.9, -9.5), glm::vec3(0, 0, 1), glm::vec3(0, 1, 0), lightShader);//Cordon
@@ -67,11 +68,11 @@ void init(void)
 	Plane* p6 = new Plane("modelos/cordon.jpg", 20, 1, glm::vec3(19, 0.09, 1), glm::vec3(-9.5, -0.99, 9.5), glm::vec3(0, 1, 0), glm::vec3(0, 0, 1), lightShader);//Cordon
 	Plane* p7 = new Plane("modelos/vereda.jpg", 40, 40, glm::vec3(18.9, 1, 18.9), glm::vec3(9.45, -0.89, -9.45), glm::vec3(0, 0, 1), glm::vec3(0, 1, 0), lightShader);//Vereda
 	Plane* p8 = new Plane("modelos/grass.jpg", 10, 10, glm::vec3(15, 1, 15), glm::vec3(7.5, -0.88, -7.5), glm::vec3(0, 0, 1), glm::vec3(0, 1, 0), lightShader);//Terreno
-	Water* water = new Water(vec3(0.f), vec3(0.f, 1.f, 0.f), vec3(1.f, 0.f, 0.f), waterShader, 35, 20, 20, "modelos/water1.jpg");
+	Water* water = new Water(vec3(0.f), vec3(0.f, 1.f, 0.f), vec3(0.f, 0.f, 1.f), waterShader, 50, 20, 20, "modelos/water1.jpg");
 
-	//set->addEntity(o1);
+	set->addEntity(o1);
 	set->addEntity(o2);
-	//set->addEntity(p1);
+	set->addEntity(p1);
 	//set->addEntity(p2);
 	//set->addEntity(p3);
 	//set->addEntity(p4);
@@ -81,7 +82,7 @@ void init(void)
 	//set->addEntity(p8);
 	set->addEntity(ao1);
 
-	set->addEntity(water);
+	//set->addEntity(water);
 
 	std::cout << "Total entities: " << set->getEntities().size() << std::endl;
 
@@ -91,7 +92,7 @@ void init(void)
 
 	//init camera
 	Camera* camera = new Camera(vec3(0.f, 20.f, -10.f), half_pi<float>(), 0.f, 45.f, 4.0f / 3.0f, 1.f, 100.f);
-	Light* light1 = new Light(vec3(0, 20, 10));
+	Light* light1 = new Light(vec3(10, 13, 10));
 	set->changeNowCamera(camera);
 	set->addLight(light1);
 
@@ -106,6 +107,7 @@ void init(void)
 	sensitivity = 0.10f;
 
 	wireframe = false;
+	draw_bounds = false;
 }
 
 
@@ -133,13 +135,15 @@ void draw(SDL_Window* window)
 		actualShader->use();
 		actualShader->setMat4("projection", projection);
 		actualShader->setMat4("view", view);
-		actualShader->setMat4("model", model);
+		if (!draw_bounds) actualShader->setMat4("model", model);
+		else actualShader->setMat4("model", mat4(1.f));
 		vec3 center;
 		float radio;
 		set->getEntities().at(i)->getSphericalBounds(center, radio);
 		if (set->getNowCamera()->intersectionSphereFrustum(center, radio))
 		{
-			set->getEntities().at(i)->draw();
+			if (!draw_bounds) set->getEntities().at(i)->draw();
+			else set->getEntities()[i]->drawBounds();
 		}
 	}
 
@@ -287,6 +291,9 @@ int main(int argc, char *argv[]) {
 					break;
 				case SDLK_l:
 					wireframe = !wireframe;
+					break;
+				case SDLK_b:
+					draw_bounds = !draw_bounds;
 					break;
 				}
 				break;
