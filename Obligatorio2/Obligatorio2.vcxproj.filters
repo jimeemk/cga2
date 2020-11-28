@@ -16,30 +16,141 @@
     <ClCompile Include="Water.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AnimatedModel.h" />
-    <ClInclude Include="AnimatedObject.h" />
-    <ClInclude Include="Camera.h" />
-    <ClInclude Include="Entity.h" />
-    <ClInclude Include="Light.h" />
-    <ClInclude Include="Mesh.h" />
-    <ClInclude Include="Model.h" />
-    <ClInclude Include="Object.h" />
-    <ClInclude Include="Octree.h" />
-    <ClInclude Include="OctreeNode.h" />
-    <ClInclude Include="Settings.h" />
-    <ClInclude Include="Plane.h" />
-    <ClInclude Include="Shader.h" />
-    <ClInclude Include="Water.h" />
+    <ClCompile Include="..\main.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\glad.c">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="Entity.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="Object.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="Settings.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="Plane.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="Octree.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="OctreeNode.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="Water.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimatedModel.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimatedObject.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="Terrain.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="arcoiris.frag" />
-    <None Include="arcoiris.vert" />
-    <None Include="light_cube.frag" />
-    <None Include="light_cube.vert" />
-    <None Include="simple.frag" />
-    <None Include="simple.vert" />
-    <None Include="water.frag" />
-    <None Include="water.vert" />
-    <None Include="water.geom" />
+    <ClInclude Include="Camera.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Model.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Object.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Settings.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Plane.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Light.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Octree.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="OctreeNode.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Water.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Terrain.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimatedModel.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimatedObject.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="arcoiris.frag">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="arcoiris.vert">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="light_cube.frag">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="light_cube.vert">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="simple.frag">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="simple.vert">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="water.frag">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="water.vert">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="water.geom">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="heightMap.frag">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="heightMap.vert">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="suelo.frag">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="suelo.vert">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="animated_model.vert">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="animated_model.frag">
+      <Filter>Shaders</Filter>
+    </None>
   </ItemGroup>
 </Project>

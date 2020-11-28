@@ -163,6 +163,7 @@
     <ClCompile Include="OctreeNode.cpp" />
     <ClCompile Include="Settings.cpp" />
     <ClCompile Include="Plane.cpp" />
+    <ClCompile Include="Terrain.cpp" />
     <ClCompile Include="Water.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -179,15 +180,22 @@
     <ClInclude Include="Settings.h" />
     <ClInclude Include="Plane.h" />
     <ClInclude Include="Shader.h" />
+    <ClInclude Include="Terrain.h" />
     <ClInclude Include="Water.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="animated_model.frag" />
+    <None Include="animated_model.vert" />
     <None Include="arcoiris.frag" />
     <None Include="arcoiris.vert" />
+    <None Include="heightMap.frag" />
+    <None Include="heightMap.vert" />
     <None Include="light_cube.frag" />
     <None Include="light_cube.vert" />
     <None Include="simple.frag" />
     <None Include="simple.vert" />
+    <None Include="suelo.frag" />
+    <None Include="suelo.vert" />
     <None Include="water.frag" />
     <None Include="water.geom" />
     <None Include="water.vert" />
