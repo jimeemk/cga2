@@ -35,6 +35,7 @@ float speed;
 //mouse variables
 int current_x, current_y, last_x, last_y;
 bool wireframe;
+bool draw_bounds;
 
 // loadFile - loads text file into char* fname
 // allocates memory - so need to delete after use
@@ -54,7 +55,7 @@ void init(void)
 {
 	Settings* set = Settings::getInstance();
 	Shader* lightShader = new Shader("simple.vert", "simple.frag");
-	Shader* waterShader = new Shader("water.vert", "water.frag");
+	Shader* waterShader = new Shader("water.vert", "water.frag", "water.geom");
 	//Shader* anim = new Shader("animated_model.vert", "animated_model.frag");
 	Shader* hmShader = new Shader("heightMap.vert", "heightMap.frag");
 	Shader* suelo = new Shader("suelo.vert", "suelo.frag");
@@ -136,6 +137,7 @@ void init(void)
 	sensitivity = 0.10f;
 
 	wireframe = false;
+	draw_bounds = false;
 }
 
 
@@ -163,13 +165,15 @@ void draw(SDL_Window* window)
 		actualShader->use();
 		actualShader->setMat4("projection", projection);
 		actualShader->setMat4("view", view);
-		actualShader->setMat4("model", model);
+		if (!draw_bounds) actualShader->setMat4("model", model);
+		else actualShader->setMat4("model", mat4(1.f));
 		vec3 center;
 		float radio;
 		set->getEntities().at(i)->getSphericalBounds(center, radio);
 		if (set->getNowCamera()->intersectionSphereFrustum(center, radio))
 		{
-			set->getEntities().at(i)->draw();
+			if (!draw_bounds) set->getEntities().at(i)->draw();
+			else set->getEntities()[i]->drawBounds();
 		}
 	}
 
@@ -317,6 +321,9 @@ int main(int argc, char *argv[]) {
 					break;
 				case SDLK_l:
 					wireframe = !wireframe;
+					break;
+				case SDLK_b:
+					draw_bounds = !draw_bounds;
 					break;
 				}
 				break;

@@ -7,6 +7,7 @@ Plane::Plane(string tex, int texx, int texy, glm::vec3 sca, glm::vec3 pos, glm::
 	textureRepetitionY = texy;
 	scale = sca;
 	texture = tex;
+	modelMatrix = mat4(1.f);
 	initPlane();
 }
 

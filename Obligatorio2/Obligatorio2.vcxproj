@@ -197,6 +197,7 @@
     <None Include="suelo.frag" />
     <None Include="suelo.vert" />
     <None Include="water.frag" />
+    <None Include="water.geom" />
     <None Include="water.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

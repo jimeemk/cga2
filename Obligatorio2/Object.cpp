@@ -5,6 +5,7 @@ Object::Object(string p, glm::vec3 ori, float esc, glm::vec3 pos, glm::vec3 u, g
     path = p;
     orientation = ori;
     scale = esc;
+    modelMatrix = mat4(1.f);
     model = new Model(p);
     initObject();
 }
@@ -49,9 +50,7 @@ void Object::initObject()
     centro.x = (min.x + max.x) / 2;
     centro.y = (min.y + max.y) / 2;
     centro.z = (min.z + max.z) / 2;
-    cout << "min: " << min.x << " ... " << min.y << " ... " << min.z << "\n";
-    cout << "max: " << max.x << " ... " << max.y << " ... " << max.z << "\n";
-    cout <<"Centro: "<< centro.x << " ... " << centro.y << " ... " << centro.z << "\n";
+
     pointsInitialAABB[0] = glm::vec3(min.x, min.y, min.z);
     pointsInitialAABB[1] = glm::vec3(min.x, min.y, max.z);
     pointsInitialAABB[2] = glm::vec3(min.x, max.y, min.z);

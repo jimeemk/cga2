@@ -23,6 +23,7 @@ public:
 	virtual Shader* getShaderProgram()=0;
 	virtual glm::mat4 getModelMatrix()= 0;
 	virtual void draw()=0;
+	void drawBounds();
 protected:
 	glm::vec3 min, max;
 	glm::vec3 position;

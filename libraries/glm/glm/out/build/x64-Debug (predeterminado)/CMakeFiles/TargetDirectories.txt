@@ -1,0 +1,2 @@
+C:/Users/jairo/OneDrive/Escritorio/fing/CGA/Obligatorio2/cga2/libraries/glm/glm/out/build/x64-Debug (predeterminado)/CMakeFiles/edit_cache.dir
+C:/Users/jairo/OneDrive/Escritorio/fing/CGA/Obligatorio2/cga2/libraries/glm/glm/out/build/x64-Debug (predeterminado)/CMakeFiles/rebuild_cache.dir
