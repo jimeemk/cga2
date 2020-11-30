@@ -2,7 +2,7 @@
 
 Settings::Settings()
 {
-    
+	setTerrainTexture();
 }
 
 Settings::~Settings()
@@ -183,6 +183,84 @@ void Settings::getBounds(vec3& min, vec3& max)
 void Settings::changeNowCamera(Camera* c)
 {
 	now_camera = c;
+}
+
+void Settings::setTerrainTexture()
+{
+	//Harcodeo las imagenes y los top, despues cuando se cargue desde el xml va a quedar mejor
+	vector<FIBITMAP*> imagenes;
+	vector<std::string> paths;
+	vector<int> tops;
+	paths.push_back("modelos/isla2.jpg");
+	paths.push_back("modelos/montania.jpg");
+	paths.push_back("modelos/isla3.jpg");
+	tops.push_back(8);
+	tops.push_back(45);
+	tops.push_back(60);
+
+	for (int i = 0; i < paths.size(); i++)
+	{
+		FIBITMAP* imagen;
+		string filename = paths.at(i);
+		imagen = FreeImage_Load(
+			FreeImage_GetFileType(filename.c_str(), 0),
+			filename.c_str());
+		imagenes.push_back(imagen);
+	}
+	unsigned w = FreeImage_GetWidth(imagenes.at(0)); //Todas miden lo mismo
+	unsigned h = FreeImage_GetHeight(imagenes.at(0));
+	terrainTexture= FreeImage_Allocate(w, h, 24);
+	for (int j = 0; j < w; j++)
+	{
+		for (int k = 0; k < h; k++)
+		{
+			RGBQUAD maxColor;
+			bool primeraVez = true;
+			for (int l = 0; l < imagenes.size(); l++)
+			{
+				RGBQUAD col;
+				if (primeraVez)
+				{
+					primeraVez = false;
+					FreeImage_GetPixelColor(imagenes.at(l), (int)(j), (int)(k), &col);
+					maxColor.rgbRed = (int)((float)(col.rgbRed * tops.at(l)) / (float)60.0);
+					maxColor.rgbGreen = 0;//Ojo con esto, lleno solo el rojo
+					maxColor.rgbBlue = 0;
+				}
+				else
+				{
+					FreeImage_GetPixelColor(imagenes.at(l), (int)(j), (int)(k), &col);
+					if ((float)(col.rgbRed * tops.at(l)) / (float)60.0 > maxColor.rgbRed)
+					{
+						maxColor.rgbRed = (int)((float)(col.rgbRed * tops.at(l)) / (float)60.0);
+					}
+				}
+					
+			}
+			FreeImage_SetPixelColor(terrainTexture, j, k, &maxColor);
+		}
+	}
+	if (FreeImage_Save(FIF_JPEG, terrainTexture, "terrenoFinal.jpg", 0)) {
+		cout << "Image saved" << endl;
+	}
+	for (int i = 0; i < imagenes.size(); i++)
+	{
+		FreeImage_Unload(imagenes.at(i));
+	}
+}
+
+float Settings::getHeightTerrain(float x, float z)
+{
+	//Voy a considerar que la escena esta entre x=0, x=200 y z=0, z=-200
+	RGBQUAD color;
+	unsigned w = FreeImage_GetWidth(terrainTexture); 
+	unsigned h = FreeImage_GetHeight(terrainTexture);
+	bool col = FreeImage_GetPixelColor(terrainTexture, (int)((x/200.0)*w), (int)((z/-200.0)*h), &color);
+	//Considero que el top de todo es 60, por lo que para poner los colores, tengo que saber que despues lo voy a multiplicar por 60
+	if (col)
+		return (color.rgbRed / 255.0) * 60;
+	else
+		return -1;
 }
 
 Camera* Settings::getNowCamera()

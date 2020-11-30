@@ -19,13 +19,13 @@ uniform sampler2D texture_diffuse2;
 
 void main( void ){
 
-float y = texture(texture_height, aTexCoords).g* top;
-vec3 position = aPos;
-position.y = y;
+//float y = texture(texture_height, aTexCoords).g* top;
+//vec3 position = aPos;
+//position.y = y;
 
 TexCoords = aTexCoords;
 Normal = mat3(transpose(inverse(model))) * aNormal;  
-FragPos = vec3(model * vec4(position, 1.f));
+FragPos = vec3(model * vec4(aPos, 1.f));
 gl_Position = projection * view * vec4(FragPos, 1.0);
 
 if(FragPos.y<1.2){

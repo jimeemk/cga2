@@ -5,12 +5,13 @@ Terrain::Terrain()
 {
 }
 
-Terrain::Terrain(vec3 pos, vec3 u, vec3 dir, Shader* sp, int den, float width, float height, float t, vector<Texture> text) : Entity(pos, normalize(u), normalize(dir), sp)
+Terrain::Terrain(vec3 pos, vec3 u, vec3 dir, Shader* sp, int den, float width, float height, float t, vector<Texture> text, std::string hm) : Entity(pos, normalize(u), normalize(dir), sp)
 {
 	density = den;
 	this->width = width;
 	this->height = height;
 	texture = text;
+	heightMap = hm;
 	top = t;
 	modelMatrix = mat4(1.f);
 	setupTerrain();
@@ -23,9 +24,19 @@ void Terrain::setupTerrain()
 	//vectores
 	std::vector<Vertex> vertices;
 	std::vector<unsigned int>indices;
-
 	min = max = position;
+	FIBITMAP* imagen=nullptr;
+	unsigned w = 0;
+	unsigned h = 0;
+	
+	string filename = heightMap;
+	imagen = FreeImage_Load(
+	FreeImage_GetFileType(filename.c_str(), 0),
+	filename.c_str());
+	w= FreeImage_GetWidth(imagen)-1;
+	h= FreeImage_GetHeight(imagen)-1;
 
+	
 	//aux
 	float delta_h = width / (density - 1);
 	float delta_v = height / (density - 1);
@@ -35,7 +46,15 @@ void Terrain::setupTerrain()
 		for (int j = 0; j < density; j++)
 		{
 			vec3 point = position + (i * delta_h * direction) + (j * delta_v * v);
-			vertices.push_back({ point, u, vec2(i / float(density - 1), j / float(density - 1)) });
+			vec2 tc = vec2(i / float(density - 1), j / float(density - 1));
+			RGBQUAD color; 
+			bool col=FreeImage_GetPixelColor(imagen, (int)(tc.x*w), (int)(tc.y*h), &color);
+			if (col)
+			{
+				point.y = point.y + (color.rgbRed / 255.0)*top;//Como es siempre gris, miro solo el primer color
+			}
+
+			vertices.push_back({ point, u, tc });
 			//indices
 			if (j != density - 1 && i != density - 1)
 			{
@@ -71,6 +90,7 @@ void Terrain::setupTerrain()
 	pointsInitialAABB[6] = glm::vec3(max.x, max.y, min.z);
 	pointsInitialAABB[7] = glm::vec3(max.x, max.y, max.z);
 	calcBounds();
+	FreeImage_Unload(imagen);
 }
 
 vec3 Terrain::getPosition()
@@ -109,4 +129,114 @@ void Terrain::draw()
 
 Terrain::~Terrain()
 {
+}
+
+FIBITMAP* Terrain::getHeightFromMap(const char* path) {
+	string filename = string(path);
+	FIBITMAP* bitmap = FreeImage_Load(
+		FreeImage_GetFileType(filename.c_str(), 0),
+		filename.c_str());
+	unsigned width = FreeImage_GetWidth(bitmap);
+	unsigned height = FreeImage_GetHeight(bitmap);
+	int bpp = FreeImage_GetBPP(bitmap);
+
+	FIBITMAP* bitmap2 = FreeImage_Allocate(width, height, bpp);
+	return bitmap2;
+}
+
+
+
+void Terrain::aumentarX() //r
+{
+
+}
+
+void Terrain::disminuirX() //f
+{
+
+}
+
+void Terrain::aumentarY() //t
+{
+
+}
+
+void Terrain::disminuirY()//g
+{
+
+}
+
+void Terrain::aumentarZ()//y
+{
+
+}
+
+void Terrain::disminuirZ() //h
+{
+
+}
+
+void Terrain::rotarMasX() //u
+{
+
+}
+
+void Terrain::rotarMenosX()//j
+{
+
+}
+
+void Terrain::rotarMasY()//i
+{
+
+}
+
+void Terrain::rotarMenosY() //k
+{
+
+}
+
+void Terrain::rotarMasZ()//o
+{
+
+}
+
+void Terrain::rotarMenosZ()//l
+{
+
+}
+
+void Terrain::escMasX()//1
+{
+
+}
+
+void Terrain::escMenosX()//2
+{
+
+}
+
+void Terrain::escMasY()//3
+{
+
+}
+
+void Terrain::escMenosY()//4
+{
+
+}
+
+void Terrain::escMasZ()//5
+{
+
+}
+
+void Terrain::escMenosZ()//6
+{
+
+}
+
+void Terrain::guardarEntity()//7
+{
+	cout << "GUARDAR:";
 }

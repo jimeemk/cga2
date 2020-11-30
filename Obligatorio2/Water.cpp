@@ -124,3 +124,98 @@ void Water::draw()
 Water::~Water()
 {
 }
+
+void Water::aumentarX() //r
+{
+
+}
+
+void Water::disminuirX() //f
+{
+
+}
+
+void Water::aumentarY() //t
+{
+
+}
+
+void Water::disminuirY()//g
+{
+
+}
+
+void Water::aumentarZ()//y
+{
+
+}
+
+void Water::disminuirZ() //h
+{
+
+}
+
+void Water::rotarMasX() //u
+{
+
+}
+
+void Water::rotarMenosX()//j
+{
+
+}
+
+void Water::rotarMasY()//i
+{
+
+}
+
+void Water::rotarMenosY() //k
+{
+
+}
+
+void Water::rotarMasZ()//o
+{
+
+}
+
+void Water::rotarMenosZ()//l
+{
+
+}
+
+void Water::escMasX()//1
+{
+
+}
+
+void Water::escMenosX()//2
+{
+
+}
+
+void Water::escMasY()//3
+{
+
+}
+
+void Water::escMenosY()//4
+{
+
+}
+
+void Water::escMasZ()//5
+{
+
+}
+
+void Water::escMenosZ()//6
+{
+
+}
+
+void Water::guardarEntity()//7
+{
+	cout << "GUARDAR:";
+}

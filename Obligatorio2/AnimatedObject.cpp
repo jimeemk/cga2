@@ -180,3 +180,97 @@ void AnimatedObject::rotation()
 
 }
 
+void AnimatedObject::aumentarX() //r
+{
+
+}
+
+void AnimatedObject::disminuirX() //f
+{
+
+}
+
+void AnimatedObject::aumentarY() //t
+{
+
+}
+
+void AnimatedObject::disminuirY()//g
+{
+
+}
+
+void AnimatedObject::aumentarZ()//y
+{
+
+}
+
+void AnimatedObject::disminuirZ() //h
+{
+
+}
+
+void AnimatedObject::rotarMasX() //u
+{
+
+}
+
+void AnimatedObject::rotarMenosX()//j
+{
+
+}
+
+void AnimatedObject::rotarMasY()//i
+{
+
+}
+
+void AnimatedObject::rotarMenosY() //k
+{
+
+}
+
+void AnimatedObject::rotarMasZ()//o
+{
+
+}
+
+void AnimatedObject::rotarMenosZ()//l
+{
+
+}
+
+void AnimatedObject::escMasX()//1
+{
+
+}
+
+void AnimatedObject::escMenosX()//2
+{
+
+}
+
+void AnimatedObject::escMasY()//3
+{
+
+}
+
+void AnimatedObject::escMenosY()//4
+{
+
+}
+
+void AnimatedObject::escMasZ()//5
+{
+
+}
+
+void AnimatedObject::escMenosZ()//6
+{
+
+}
+
+void AnimatedObject::guardarEntity()//7
+{
+    cout << "GUARDAR:";
+}

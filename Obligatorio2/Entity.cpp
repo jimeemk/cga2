@@ -171,4 +171,3 @@ void Entity::drawBounds()
 	glBindVertexArray(lightCubeVAO);
 	glDrawArrays(GL_TRIANGLES, 0, 36);
 }
-

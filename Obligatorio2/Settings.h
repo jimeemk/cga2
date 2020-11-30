@@ -25,6 +25,7 @@ private:
 	Camera* now_camera;
 	std::vector<Entity*> entities;
 	std::vector<Light*> lights;
+	FIBITMAP* terrainTexture;
 	static int init_time;
 	//bounds 
 	vec3 min_bound;
@@ -37,6 +38,8 @@ public:
 	Shader* addShader(Shader* s);
 	void addEntity(Entity* e);
 	void changeNowCamera(Camera* c);
+	void setTerrainTexture();
+	float getHeightTerrain(float x, float z);
 	static GLuint initShaders(const char* vertFile, const char* fragFile);
 	static void printShaderError(GLint shader);
 	static const char* loadFile(const char* fname);

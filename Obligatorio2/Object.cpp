@@ -93,7 +93,7 @@ void Object::rotation()
     glm::vec3 initialDir = orientation;
     float tita1, tita2 = 0;
     glm::vec3 dir1,dir2=glm::vec3(1,0,0);
-
+    glm::vec3 upv = up;
     if (glm::cross(initialDir, direction)!=glm::vec3(0.0))//Verifico si de entrada son iguales
     {
         if (initialDir.x != 0 || initialDir.z != 0)//La primera rotacion la hago por eje x o y dependiendo cual conviene. Por ejemplo, si initialDir es 1 0 0, no me sirve rotar en x.
@@ -107,23 +107,23 @@ void Object::rotation()
             tita1 = glm::orientedAngle(normalize(initialDir), normalize(direction), dir1);
         }
 
-        up = glm::rotate(up, tita1, dir1);//Actualizo up
+        upv = glm::rotate(upv, tita1, dir1);//Actualizo up
         initialDir = glm::rotate(initialDir, tita1, dir1);//Actualizo vector "initialDir"
 
         if (glm::cross(initialDir, direction) != glm::vec3(0.0))//Verifico que ya no esten paralelos
         {
             dir2 = normalize(glm::cross(initialDir, direction));//En el paso anterior, pase mi problema 3d a uno 2d, ahora en ese plano (calculando el vector perpendicular con producto cruz y tomandolo como eje de referencia), voy a calcular el angulo entre los dos vectores
             tita2 = glm::orientedAngle(normalize(initialDir), normalize(direction), dir2);
-            up = glm::rotate(up, tita2, dir2);
+            upv = glm::rotate(upv, tita2, dir2);
             initialDir = glm::rotate(initialDir, tita2, glm::cross(initialDir, direction));
         }
     }
     
-    if (glm::cross(direction, up) != glm::vec3(0.0))//Me cubro del caso dir= 0,1,0
+    if (glm::cross(direction, upv) != glm::vec3(0.0))//Me cubro del caso dir= 0,1,0
     {
-        float titaFinal = glm::orientedAngle(normalize(up),glm::vec3(0, 1, 0), normalize(direction));//Esto es para alinear el up con el (0,1,0)
+        float titaFinal = glm::orientedAngle(normalize(upv),glm::vec3(0, 1, 0), normalize(direction));//Esto es para alinear el up con el (0,1,0)
         modelMatrix = glm::rotate(modelMatrix, titaFinal, normalize(direction));
-        up = glm::rotate(up, titaFinal, normalize(direction));
+        upv = glm::rotate(upv, titaFinal, normalize(direction));
     }
 
     if (glm::dot(initialDir,direction)<0)//Si en realidad obtuve un vector opuesto, es decir, estoy mirando para el otro lado
@@ -141,4 +141,137 @@ void Object::rotation()
     modelMatrix = glm::rotate(modelMatrix, tita1, dir1);//Recordar que esta rotacion se hace primero
 
 }
+
+
+void Object::aumentarX() //r
+{
+    modelMatrix = mat4(1.f);
+    position.x += 0.2;
+    initObject();
+}
+
+void Object::disminuirX() //f
+{
+    modelMatrix = mat4(1.f);
+    position.x -= 0.2;
+    initObject();
+}
+
+void Object::aumentarY() //t
+{
+    modelMatrix = mat4(1.f);
+    position.y += 0.2;
+    initObject();
+}
+
+void Object::disminuirY()//g
+{
+    modelMatrix = mat4(1.f);
+    position.y -= 0.2;
+    initObject();
+}
+
+void Object::aumentarZ()//y
+{
+    modelMatrix = mat4(1.f);
+    position.z += 0.2;
+    initObject();
+}
+
+void Object::disminuirZ() //h
+{
+    modelMatrix = mat4(1.f);
+    position.z -= 0.2;
+    initObject();
+}
+
+void Object::rotarMasX() //u
+{
+    modelMatrix = mat4(1.f);
+    direction.x += 0.2;
+    initObject();
+}
+
+void Object::rotarMenosX()//j
+{
+    modelMatrix = mat4(1.f);
+    direction.x -= 0.2;
+    initObject();
+}
+
+void Object::rotarMasY()//i
+{
+    modelMatrix = mat4(1.f);
+    direction.y += 0.2;
+    initObject();
+}
+
+void Object::rotarMenosY() //k
+{
+    modelMatrix = mat4(1.f);
+    direction.y -= 0.2;
+    initObject();
+}
+
+void Object::rotarMasZ()//o
+{
+    modelMatrix = mat4(1.f);
+    direction.z += 0.2;
+    initObject();
+}
+
+void Object::rotarMenosZ()//l
+{
+    modelMatrix = mat4(1.f);
+    direction.z -= 0.2;
+    initObject();
+}
+
+void Object::escMasX()//1
+{
+    modelMatrix = mat4(1.f);
+    scale += 0.2;
+    initObject();
+}
+
+void Object::escMenosX()//2
+{
+    modelMatrix = mat4(1.f);
+    scale -= 0.2;
+    initObject();
+}
+
+void Object::escMasY()//3
+{
+    modelMatrix = mat4(1.f);
+    initObject();
+}
+
+void Object::escMenosY()//4
+{
+    modelMatrix = mat4(1.f);
+    initObject();
+}
+
+void Object::escMasZ()//5
+{
+    modelMatrix = mat4(1.f);
+    initObject();
+}
+
+void Object::escMenosZ()//6
+{
+    modelMatrix = mat4(1.f);
+    initObject();
+}
+
+void Object::guardarEntity()//7
+{
+    cout << "GUARDAR: position:" << position.x<< "; " << position.y << "; " << position.z << "; \n";
+    cout << "dir:" << direction.x << "; " << direction.y << "; " << direction.z << "; \n";
+    cout << "escala:" << scale << "; \n";
+
+}
+
+
     

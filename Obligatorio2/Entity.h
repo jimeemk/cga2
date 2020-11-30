@@ -24,6 +24,26 @@ public:
 	virtual glm::mat4 getModelMatrix()= 0;
 	virtual void draw()=0;
 	void drawBounds();
+	virtual void aumentarX()=0; //r
+	virtual void disminuirX() = 0; //f
+	virtual void aumentarY() = 0; //t
+	virtual void disminuirY() = 0;//g
+	virtual void aumentarZ() = 0;//y
+	virtual void disminuirZ() = 0; //h
+	virtual void rotarMasX() = 0; //u
+	virtual void rotarMenosX() = 0;//j
+	virtual void rotarMasY() = 0; //i
+	virtual void rotarMenosY() = 0; //k
+	virtual void rotarMasZ() = 0;//o
+	virtual void rotarMenosZ() = 0;//l
+	virtual void escMasX() = 0;//1
+	virtual void escMenosX() = 0;//2
+	virtual void escMasY() = 0;//3
+	virtual void escMenosY() = 0;//4
+	virtual void escMasZ() = 0;//5
+	virtual void escMenosZ() = 0;//6
+	virtual void guardarEntity() = 0;//7
+
 protected:
 	glm::vec3 min, max;
 	glm::vec3 position;

@@ -27,6 +27,7 @@ using namespace std;
 GLuint vao, vbo[2]; // handles for our VAO and two VBOs
 float r = 0;
 unsigned int last_time, current_time;
+Entity* newObj;
 
 //pos, target, up
 float sensitivity;
@@ -73,30 +74,31 @@ void init(void)
 	//Plane* p8 = new Plane("modelos/grass.jpg", 10, 10, glm::vec3(200, 1.f, 200), glm::vec3(0.f,0.2,0.f), glm::vec3(0, 0, -1), glm::vec3(0, 1, 0), lightShader);//Terreno
 	Water* water = new Water(vec3(0.f, 0.7f, 0.f), vec3(0.f, 1.f, 0.f), vec3(1.f, 0.f, 0.f), waterShader, 35, 200, 200, "modelos/water1.jpg");
 	std::vector<Texture> text;
-	Texture t = { Settings::TextureFromFile("modelos/isla2.jpg"), "texture_height", "modelos/isla2.jpg" };
-	text.push_back(t);
+	//Texture t = { Settings::TextureFromFile("modelos/isla2.jpg"), "texture_height", "modelos/isla2.jpg" };
+	//text.push_back(t);
 	Texture t2 = { Settings::TextureFromFile("modelos/grass2.jpg"), "texture_diffuse", "modelos/grass2.jpg" };
 	text.push_back(t2);
 	Texture t3 = { Settings::TextureFromFile("modelos/arena.jpg"), "texture_diffuse", "modelos/arena.jpg" };
 	text.push_back(t3);
-	Terrain* terrain = new Terrain(vec3(0.f), vec3(0.f, 1.f, 0.f), vec3(1.f, 0.f, 0.f), suelo, 300, 200, 200,8, text);
+	Terrain* terrain = new Terrain(vec3(0.f), vec3(0.f, 1.f, 0.f), vec3(1.f, 0.f, 0.f), suelo, 300, 200, 200,8, text, "modelos/isla2.jpg");
 	
 	std::vector<Texture> text2;
-	Texture ta = { Settings::TextureFromFile("modelos/montania.jpg"), "texture_height", "modelos/montania.jpg" };
-	text2.push_back(ta);
+	//Texture ta = { Settings::TextureFromFile("modelos/montania.jpg"), "texture_height", "modelos/montania.jpg" };
+	//text2.push_back(ta);
 	text2.push_back(t2);
 	Texture t4 = { Settings::TextureFromFile("modelos/roca.jpg"), "texture_diffuse", "modelos/roca.jpg" };
 	text2.push_back(t4);
-	Terrain* terrainb = new Terrain(vec3(0.f), vec3(0.f, 1.f, 0.f), vec3(1.f, 0.f, 0.f), hmShader, 300, 200, 200, 45, text2);
+	Terrain* terrainb = new Terrain(vec3(0.f), vec3(0.f, 1.f, 0.f), vec3(1.f, 0.f, 0.f), hmShader, 300, 200, 200, 45, text2, "modelos/montania.jpg");
 
 	std::vector<Texture> text3;
-	Texture tc = { Settings::TextureFromFile("modelos/isla3.jpg"), "texture_height", "modelos/isla3.jpg" };
-	text3.push_back(tc);
+	//Texture tc = { Settings::TextureFromFile("modelos/isla3.jpg"), "texture_height", "modelos/isla3.jpg" };
+	//text3.push_back(tc);
 	text3.push_back(t2);
 	text3.push_back(t4);
-	Terrain* terrainc = new Terrain(vec3(0.f), vec3(0.f, 1.f, 0.f), vec3(1.f, 0.f, 0.f), hmShader, 300, 200, 200, 60, text3);
+	Terrain* terrainc = new Terrain(vec3(0.f), vec3(0.f, 1.f, 0.f), vec3(1.f, 0.f, 0.f), hmShader, 300, 200, 200, 60, text3, "modelos/isla3.jpg");
 
 
+	newObj = new Object("modelos/12221_Cat_v1_l3.obj", glm::vec3(0, -1, 0), 0.8, glm::vec3(100, 30, -100), glm::vec3(0, 0, 1), glm::vec3(-1, 0, 0), lightShader);
 	//set->addEntity(o1);
 	//set->addEntity(o2);
 	//set->addEntity(p1);
@@ -113,6 +115,7 @@ void init(void)
 	set->addEntity(terrain);
 	set->addEntity(terrainb);
 	set->addEntity(terrainc);
+	set->addEntity(newObj);
 
 	std::cout << "Total entities: " << set->getEntities().size() << std::endl;
 
@@ -165,16 +168,18 @@ void draw(SDL_Window* window)
 		actualShader->use();
 		actualShader->setMat4("projection", projection);
 		actualShader->setMat4("view", view);
-		if (!draw_bounds) actualShader->setMat4("model", model);
-		else actualShader->setMat4("model", mat4(1.f));
+		//if (!draw_bounds) 
+		actualShader->setMat4("model", model);
+		//else actualShader->setMat4("model", mat4(1.f));
 		vec3 center;
 		float radio;
-		set->getEntities().at(i)->getSphericalBounds(center, radio);
-		if (set->getNowCamera()->intersectionSphereFrustum(center, radio))
-		{
-			if (!draw_bounds) set->getEntities().at(i)->draw();
-			else set->getEntities()[i]->drawBounds();
-		}
+		//set->getEntities().at(i)->getSphericalBounds(center, radio);
+		//if (set->getNowCamera()->intersectionSphereFrustum(center, radio))
+		//{
+			//if (!draw_bounds) 
+		set->getEntities().at(i)->draw();
+		//	else set->getEntities()[i]->drawBounds();
+		//}
 	}
 
 	lightCubeShader.use();
@@ -189,6 +194,10 @@ void draw(SDL_Window* window)
 	if (wireframe) glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
 	SDL_GL_SwapWindow(window); // swap buffers
+
+	vec3 camPos=set->getNowCamera()->getPosition();
+	cout << "Camara en" << camPos.x << ";" << camPos.z<<"\n";
+	cout <<"Altura en este lugar:"<<set->getHeightTerrain(camPos.x, camPos.z)<<"\n";
 }
 
 
@@ -288,6 +297,60 @@ int main(int argc, char *argv[]) {
 				case SDLK_LEFT:
 					//camera->moveCamera();
 					break;
+				case SDLK_r:
+					newObj->aumentarX();
+					break;
+				case SDLK_t:
+					newObj->aumentarY();
+					break;
+				case SDLK_y:
+					newObj->aumentarZ();
+					break;
+				case SDLK_f:
+					newObj->disminuirX();
+					break;
+				case SDLK_g:
+					newObj->disminuirY();
+					break;
+				case SDLK_h:
+					newObj->disminuirZ();
+					break;
+				case SDLK_u:
+					newObj->rotarMasX();
+					break;
+				case SDLK_i:
+					newObj->rotarMasY();
+					break;
+				case SDLK_o:
+					newObj->rotarMasZ();
+					break;
+				case SDLK_j:
+					newObj->rotarMenosX();
+					break;
+				case SDLK_k:
+					newObj->rotarMenosY();
+					break;
+				case SDLK_l:
+					newObj->rotarMenosZ();
+					break;
+				case SDLK_1:
+					newObj->escMasX();
+					break;
+				case SDLK_2:
+					newObj->escMenosX();
+					break;
+				case SDLK_3:
+					newObj->escMasY();
+					break;
+				case SDLK_4:
+					newObj->escMenosY();
+					break;
+				case SDLK_5:
+					newObj->escMasZ();
+					break;
+				case SDLK_6:
+					newObj->escMenosZ();
+					break;
 				}
 				break;
 
@@ -319,11 +382,14 @@ int main(int argc, char *argv[]) {
 				case SDLK_c:
 					Settings::getInstance()->getNowCamera()->changeMode();
 					break;
-				case SDLK_l:
+				case SDLK_z:
 					wireframe = !wireframe;
 					break;
 				case SDLK_b:
 					draw_bounds = !draw_bounds;
+					break;
+				case SDLK_7:
+					newObj->guardarEntity();
 					break;
 				}
 				break;
