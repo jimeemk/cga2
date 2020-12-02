@@ -319,11 +319,47 @@ unsigned int Settings::TextureFromFile(const char* path) {
 	return textureID;
 }
 
-vec3 Settings::clampToScene(vec3 point)
-{
+vec3 Settings::clampToScene(vec3 point) {
 	if (point.x < min_bound.x) point.x = min_bound.x;
 	if (point.z < min_bound.z) point.z = min_bound.z;
 	if (point.x > max_bound.x) point.x = max_bound.x;
 	if (point.z > max_bound.z) point.z = max_bound.z;
 	return point;
+}
+
+void Settings::SetLightsToShader(Shader* shader) {
+
+	//// directional light
+	//shader->setVec3("dirLight.direction", -0.2f, -1.0f, -0.3f);
+	//shader->setVec3("dirLight.ambient", 0.05f, 0.05f, 0.05f);
+	//shader->setVec3("dirLight.diffuse", 0.4f, 0.4f, 0.4f);
+	//shader->setVec3("dirLight.specular", 0.5f, 0.5f, 0.5f);
+	
+	// point light 1
+	shader->setVec3("pointLights[0].position", Settings::getInstance()->getLights()[0]->position);
+	shader->setVec3("pointLights[0].color", Settings::getInstance()->getLights()[0]->color);
+	shader->setFloat("pointLights[0].constant", 0.0f);
+	shader->setFloat("pointLights[0].linear", 0.04f);
+	shader->setFloat("pointLights[0].quadratic", 0.0f);
+
+	// point light 2
+	shader->setVec3("pointLights[1].position", Settings::getInstance()->getLights()[1]->position);
+	shader->setVec3("pointLights[1].color", Settings::getInstance()->getLights()[1]->color);
+	shader->setFloat("pointLights[1].constant", 0.0f);
+	shader->setFloat("pointLights[1].linear", 0.04f);
+	shader->setFloat("pointLights[1].quadratic", 0.0f);
+
+	//// point light 3
+	shader->setVec3("pointLights[2].position", Settings::getInstance()->getLights()[2]->position);
+	shader->setVec3("pointLights[2].color", Settings::getInstance()->getLights()[2]->color);
+	shader->setFloat("pointLights[2].constant", 0.0f);
+	shader->setFloat("pointLights[2].linear", 0.04f);
+	shader->setFloat("pointLights[2].quadratic", 0.0f);
+	
+	//// point light 4
+	//shader->setVec3("pointLights[3].position", Settings::getInstance()->getLights()[3]->position);
+	//shader->setVec3("pointLights[3].color", Settings::getInstance()->getLights()[3]->color);
+	//shader->setFloat("pointLights[3].constant", 0.0f);
+	//shader->setFloat("pointLights[3].linear", 0.04f);
+	//shader->setFloat("pointLights[3].quadratic", 0.0f);
 }

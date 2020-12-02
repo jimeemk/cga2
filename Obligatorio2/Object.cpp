@@ -36,8 +36,7 @@ Shader* Object::getShaderProgram()
 
 void Object::draw()
 {
-    shaderProgram->setVec3("lightColor", Settings::getInstance()->getLights()[0]->color);
-    shaderProgram->setVec3("lightPos", Settings::getInstance()->getLights()[0]->position);
+    Settings::SetLightsToShader(shaderProgram);
     shaderProgram->setVec3("viewPos", Settings::getInstance()->getNowCamera()->getPosition());
     model->Draw(shaderProgram->ID);
 }
