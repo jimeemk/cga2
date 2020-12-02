@@ -124,7 +124,7 @@ void init(void)
 	//glEnable(GL_CULL_FACE); // enable back face culling - try this and see what happens!
 
 	//init camera
-	Camera* camera = new Camera(vec3(0.f, 60.f, -100.f), half_pi<float>(), 0.f, 45.f, 4.0f / 3.0f, 1.f, 300.f);
+	Camera* camera = new Camera(vec3(0.f, 60.f, -100.f), half_pi<float>(), 0.f, 45.f, 4.0f / 3.0f, 0.01f, 100.f, 20.f);
 	Light* light1 = new Light(vec3(0, 50, -100));
 	set->changeNowCamera(camera);
 	set->addLight(light1);
@@ -134,7 +134,7 @@ void init(void)
 	current_time = SDL_GetTicks();
 
 	//init speed
-	speed = 25.f;
+	speed = 10.f;
 
 	//init mouse variables
 	sensitivity = 0.10f;
@@ -155,7 +155,6 @@ void draw(SDL_Window* window)
 	glm::mat4 view = set->getNowCamera()->getViewMatrix();
 	glm::mat4 model;
 
-	//Shader lightingShader("simple.vert", "simple.frag");
 	Shader lightCubeShader("light_cube.vert", "light_cube.frag");
 	Shader* actualShader;
 
@@ -168,18 +167,16 @@ void draw(SDL_Window* window)
 		actualShader->use();
 		actualShader->setMat4("projection", projection);
 		actualShader->setMat4("view", view);
-		//if (!draw_bounds) 
-		actualShader->setMat4("model", model);
-		//else actualShader->setMat4("model", mat4(1.f));
+		if (!draw_bounds) actualShader->setMat4("model", model);
+		else actualShader->setMat4("model", mat4(1.f));
 		vec3 center;
 		float radio;
-		//set->getEntities().at(i)->getSphericalBounds(center, radio);
-		//if (set->getNowCamera()->intersectionSphereFrustum(center, radio))
-		//{
-			//if (!draw_bounds) 
-		set->getEntities().at(i)->draw();
-		//	else set->getEntities()[i]->drawBounds();
-		//}
+		set->getEntities().at(i)->getSphericalBounds(center, radio);
+		if (set->getNowCamera()->intersectionSphereFrustum(center, radio))
+		{
+			if (!draw_bounds) set->getEntities().at(i)->draw();
+			else set->getEntities()[i]->drawBounds();
+		}
 	}
 
 	lightCubeShader.use();

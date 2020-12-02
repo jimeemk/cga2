@@ -49,4 +49,5 @@ public:
 	void addLight(Light*);
 	int getInitTime();
 	static unsigned int TextureFromFile(const char* path);
+	vec3 clampToScene(vec3);
 };

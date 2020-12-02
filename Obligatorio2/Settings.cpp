@@ -318,3 +318,12 @@ unsigned int Settings::TextureFromFile(const char* path) {
 
 	return textureID;
 }
+
+vec3 Settings::clampToScene(vec3 point)
+{
+	if (point.x < min_bound.x) point.x = min_bound.x;
+	if (point.z < min_bound.z) point.z = min_bound.z;
+	if (point.x > max_bound.x) point.x = max_bound.x;
+	if (point.z > max_bound.z) point.z = max_bound.z;
+	return point;
+}
