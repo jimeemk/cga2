@@ -124,7 +124,7 @@ void init(void)
 	//glEnable(GL_CULL_FACE); // enable back face culling - try this and see what happens!
 
 	//init camera
-	Camera* camera = new Camera(vec3(0.f, 60.f, -100.f), half_pi<float>(), 0.f, 45.f, 4.0f / 3.0f, 1.f, 300.f);
+	Camera* camera = new Camera(vec3(0.f, 60.f, -100.f), half_pi<float>(), 0.f, 45.f, 4.0f / 3.0f, 0.01f, 100.f, 20.f);
 	Light* light1 = new Light(vec3(190, 50, -100));
 	Light* light2 = new Light(vec3(50, 50, -100));
 	Light* light3 = new Light(vec3(100, 25, -150));
