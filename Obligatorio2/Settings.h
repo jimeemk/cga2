@@ -52,4 +52,5 @@ public:
 	static unsigned int TextureFromFile(const char* path);
 	vec3 clampToScene(vec3);
 	static void SetLightsToShader(Shader* shader);
+	bool colliding(vec3, vec3);
 };

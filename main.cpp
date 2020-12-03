@@ -67,7 +67,7 @@ void init(void)
 	set->addShader(suelo);
 	//AnimatedObject* ao1 = new AnimatedObject("models/negro/Rumba Dancing.dae", glm::vec3(0, 0, -1), 10, glm::vec3(100, 5, -100), glm::vec3(0, 1, 0), glm::vec3(0, 0, 1), anim);
 	//Object* o1 = new Object("modelos/12221_Cat_v1_l3.obj",glm::vec3(0, -1, 0), 0.8, glm::vec3(8, -0.6, -8.6),glm::vec3(0, 0, 1), glm::vec3(-1,0,-1), lightShader);
-	//Object* o2 = new Object("modelos/Japanese_Temple.obj", glm::vec3(0,0,-1),10, glm::vec3(0,4.2,0), glm::vec3(0, 1, 0), glm::vec3(0, 0, 1), lightShader);
+	Object* o2 = new Object("modelos/Japanese_Temple.obj", glm::vec3(0,0,-1),70, glm::vec3(100,20,-150), glm::vec3(0, 1, 0), glm::vec3(0, 0, 1), lightShader);
 	//Manzana 1: plaza
 	//Plane* p1 = new Plane("modelos/asfalto.jpg", 100, 100, glm::vec3(20, 1, 20), glm::vec3(10, -1, -10), glm::vec3(0, 0, 1), glm::vec3(0, 1, 0), lightShader);//Calle
 	//Plane* p2 = new Plane("modelos/cordon.jpg", 20, 20, glm::vec3(19, 1, 19), glm::vec3(9.5, -0.9, -9.5), glm::vec3(0, 0, 1), glm::vec3(0, 1, 0), lightShader);//Cordon
@@ -111,7 +111,7 @@ void init(void)
 
 	newObj = new Object("modelos/Library_Large_003.obj", glm::vec3(1, 0, 0), 10, glm::vec3(200, 50, -200), glm::vec3(0, 1, 0), glm::vec3(1, 0, 0), lightShader);
 	//set->addEntity(o1);
-	//set->addEntity(o2);
+	set->addEntity(o2);
 	//set->addEntity(p1);
 	//set->addEntity(p2);
 	//set->addEntity(p3);
@@ -131,7 +131,7 @@ void init(void)
 	set->addEntity(terrain6);
 	set->addEntity(terrain7);
 	//set->addEntity(terrainc);
-	set->addEntity(newObj);
+	//set->addEntity(newObj);
 
 	std::cout << "Total entities: " << set->getEntities().size() << std::endl;
 	loadXMLEntities("xml/objetos.xml");
@@ -140,7 +140,7 @@ void init(void)
 	//glEnable(GL_CULL_FACE); // enable back face culling - try this and see what happens!
 
 	//init camera
-	Camera* camera = new Camera(vec3(200.f, 60.f, -200.f), half_pi<float>(), 0.f, 45.f, 4.0f / 3.0f, 0.01f, 500.f, 20.f);
+	Camera* camera = new Camera(vec3(210.f, 60.f, -200.f), half_pi<float>(), 0.f, 65.f, 4.0f / 3.0f, 0.01f, 500.f, 10.f);
 	Light* light1 = new Light(vec3(190, 50, -100));
 	Light* light2 = new Light(vec3(50, 50, -100));
 	Light* light3 = new Light(vec3(100, 25, -150));

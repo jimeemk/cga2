@@ -44,6 +44,8 @@ public:
 	virtual void escMenosZ() = 0;//6
 	virtual void guardarEntity() = 0;//7
 
+	virtual bool intersectionBoxBounds(vec3, vec3);
+
 protected:
 	glm::vec3 min, max;
 	glm::vec3 position;
