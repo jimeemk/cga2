@@ -363,7 +363,6 @@ void Settings::SetLightsToShader(Shader* shader) {
 	//shader->setFloat("pointLights[3].linear", 0.04f);
 	//shader->setFloat("pointLights[3].quadratic", 0.0f);
 }
-}
 
 bool Settings::colliding(vec3 bound_min, vec3 bound_max)
 {

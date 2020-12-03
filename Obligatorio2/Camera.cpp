@@ -29,17 +29,19 @@ Camera::Camera(vec3 p, float h, float v, float fy, float a, float n, float f, fl
 	position = p;
 	position.y = Settings::getInstance()->getHeightTerrain(position.x, position.z) + size * 0.5;
 	mode = WALK;
-	fovy = fy;
+	fovy = radians(fy);
 	aspect = a;
 	tnear = n;
 	tfar = f;
 	horizontalAngle = clampHorizontal(h);
 	verticalAngle = clampVertical(v);
 
-	vec3 target = position + spherical_to_cartesian(horizontalAngle, verticalAngle);
+	vec3 front = normalize(spherical_to_cartesian(horizontalAngle, verticalAngle));
+	vec3 r = normalize(cross(front, vec3(0.f, 1.f, 0.f)));
+	vec3 up = normalize(cross(r, front));
 
 	//matrices de la camara
-	view_matrix = lookAt(position, target, vec3(0.f, 1.f, 0.f));
+	view_matrix = lookAt(position, position + front, up);
 	projection_matrix = perspective(fovy, aspect, tnear, tfar);
 
 	//calculo del frustum
