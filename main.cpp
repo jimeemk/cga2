@@ -124,10 +124,17 @@ void init(void)
 	//glEnable(GL_CULL_FACE); // enable back face culling - try this and see what happens!
 
 	//init camera
-	Camera* camera = new Camera(vec3(0.f, 60.f, -100.f), half_pi<float>(), 0.f, 45.f, 4.0f / 3.0f, 1.f, 500.f, 8.f);
-	Light* light1 = new Light(vec3(0, 50, -100));
+	Camera* camera = new Camera(vec3(0.f, 60.f, -100.f), half_pi<float>(), 0.f, 45.f, 4.0f / 3.0f, 0.01f, 100.f, 20.f);
+	Light* light1 = new Light(vec3(190, 50, -100));
+	Light* light2 = new Light(vec3(50, 50, -100));
+	Light* light3 = new Light(vec3(100, 25, -150));
+	Light* light4 = new Light(vec3(-500, 20, -30));
+	
 	set->changeNowCamera(camera);
 	set->addLight(light1);
+	set->addLight(light2);
+	set->addLight(light3);
+	//set->addLight(light4);
 
 	//init time
 	last_time = 0;
@@ -179,22 +186,26 @@ void draw(SDL_Window* window)
 		}
 	}
 
-	lightCubeShader.use();
-	lightCubeShader.setMat4("projection", projection);
-	lightCubeShader.setMat4("view", view);
-	model = glm::mat4(1.0f);
-	model = glm::translate(model, set->getLights()[0]->position);
-	model = glm::scale(model, glm::vec3(0.2f));
-	lightCubeShader.setMat4("model", model);
-	set->getLights()[0]->drawLight();
+
+	for (int i = 0; i < set->getLights().size(); i++) {
+		lightCubeShader.use();
+		lightCubeShader.setMat4("projection", projection);
+		lightCubeShader.setMat4("view", view);
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, set->getLights()[i]->position);
+		model = glm::scale(model, glm::vec3(0.2f));
+		lightCubeShader.setMat4("model", model);
+		set->getLights()[i]->drawLight();
+	}
+	
 
 	if (wireframe) glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
 	SDL_GL_SwapWindow(window); // swap buffers
 
 	vec3 camPos=set->getNowCamera()->getPosition();
-	cout << "Camara en" << camPos.x << ";" << camPos.z<<"\n";
-	cout <<"Altura en este lugar:"<<set->getHeightTerrain(camPos.x, camPos.z)<<"\n";
+	//cout << "Camara en" << camPos.x << ";" << camPos.z<<"\n";
+	//cout <<"Altura en este lugar:"<<set->getHeightTerrain(camPos.x, camPos.z)<<"\n";
 }
 
 
