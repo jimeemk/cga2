@@ -1,14 +1,35 @@
 <?xml version="1.0" ?>
-
 <file>
-  
-  <objetos>
-    <objeto path="modelos/12221_Cat_v1_l3.obj" scale="3" shader="0">
-		<orientation x="0" y="-1" z="0"/>
-        <position x="8" y="1" z="-8"/>
-        <up x="0" y="0" z="1"/>
-		<direction x="-1" y="0" z="-1"/>
-	</objeto>
-  </objetos>
-  
+    <objetos>
+        <objeto path="modelos/Library_Large_003.obj" scale="14" shader="3">
+            <orientation x="1" y="0" z="0" />
+            <position x="185" y="34" z="-206" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0" />
+        </objeto>
+        <objeto path="modelos/tree.obj" scale="6" shader="3">
+            <orientation x="1" y="0" z="0" />
+            <position x="195" y="34" z="-200" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0" />
+        </objeto>
+        <objeto path="modelos/tree.obj" scale="6" shader="3">
+            <orientation x="1" y="0" z="0" />
+            <position x="163" y="37" z="-209" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0" />
+        </objeto>
+        <objeto path="modelos/tree.obj" scale="6" shader="3">
+            <orientation x="1" y="0" z="0" />
+            <position x="147" y="36" z="-235" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0" />
+        </objeto>
+        <objeto path="modelos/tree.obj" scale="5" shader="3">
+            <orientation x="1" y="0" z="0" />
+            <position x="210" y="33" z="-235" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0" />
+        </objeto>
+    </objetos>
 </file>

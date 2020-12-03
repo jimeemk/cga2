@@ -121,8 +121,7 @@ int Terrain::getDensity()
 void Terrain::draw()
 {
 	shaderProgram->setFloat("top", top);
-	shaderProgram->setVec3("lightColor", Settings::getInstance()->getLights()[0]->color);
-	shaderProgram->setVec3("lightPos", Settings::getInstance()->getLights()[0]->position);
+	Settings::SetLightsToShader(shaderProgram);
 	shaderProgram->setVec3("viewPos", Settings::getInstance()->getNowCamera()->getPosition());
 	mesh->Draw(shaderProgram->ID);
 }

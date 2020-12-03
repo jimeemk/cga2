@@ -191,12 +191,20 @@ void Settings::setTerrainTexture()
 	vector<FIBITMAP*> imagenes;
 	vector<std::string> paths;
 	vector<int> tops;
-	paths.push_back("modelos/prueba2.jpg");
-	paths.push_back("modelos/montania.jpg");
-	paths.push_back("modelos/isla3.jpg");
-	tops.push_back(8);
-	tops.push_back(45);
-	tops.push_back(60);
+	paths.push_back("modelos/parteAdentro2.jpg");
+	paths.push_back("modelos/parteAfuera.jpg");
+	paths.push_back("modelos/m1.jpg");
+	paths.push_back("modelos/m2.jpg");
+	paths.push_back("modelos/m3.jpg");
+	paths.push_back("modelos/m4.jpg");
+	paths.push_back("modelos/m5.jpg");
+	tops.push_back(36);
+	tops.push_back(30);
+	tops.push_back(120);
+	tops.push_back(130);
+	tops.push_back(150);
+	tops.push_back(140);
+	tops.push_back(100);
 
 	for (int i = 0; i < paths.size(); i++)
 	{
@@ -255,7 +263,7 @@ float Settings::getHeightTerrain(float x, float z)
 	RGBQUAD color;
 	unsigned w = FreeImage_GetWidth(terrainTexture); 
 	unsigned h = FreeImage_GetHeight(terrainTexture);
-	bool col = FreeImage_GetPixelColor(terrainTexture, (int)((x/200.0)*w), (int)((z/-200.0)*h), &color);
+	bool col = FreeImage_GetPixelColor(terrainTexture, (int)((x/400.0)*w), (int)((z/-400.0)*h), &color);
 	//Considero que el top de todo es 60, por lo que para poner los colores, tengo que saber que despues lo voy a multiplicar por 60
 	if (col)
 		return (color.rgbRed / 255.0) * 60;
@@ -317,4 +325,49 @@ unsigned int Settings::TextureFromFile(const char* path) {
 	}
 
 	return textureID;
+}
+
+vec3 Settings::clampToScene(vec3 point) {
+	if (point.x < min_bound.x) point.x = min_bound.x;
+	if (point.z < min_bound.z) point.z = min_bound.z;
+	if (point.x > max_bound.x) point.x = max_bound.x;
+	if (point.z > max_bound.z) point.z = max_bound.z;
+	return point;
+}
+
+void Settings::SetLightsToShader(Shader* shader) {
+
+	//// directional light
+	//shader->setVec3("dirLight.direction", -0.2f, -1.0f, -0.3f);
+	//shader->setVec3("dirLight.ambient", 0.05f, 0.05f, 0.05f);
+	//shader->setVec3("dirLight.diffuse", 0.4f, 0.4f, 0.4f);
+	//shader->setVec3("dirLight.specular", 0.5f, 0.5f, 0.5f);
+	
+	// point light 1
+	shader->setVec3("pointLights[0].position", Settings::getInstance()->getLights()[0]->position);
+	shader->setVec3("pointLights[0].color", Settings::getInstance()->getLights()[0]->color);
+	shader->setFloat("pointLights[0].constant", 0.0f);
+	shader->setFloat("pointLights[0].linear", 0.04f);
+	shader->setFloat("pointLights[0].quadratic", 0.0f);
+
+	// point light 2
+	shader->setVec3("pointLights[1].position", Settings::getInstance()->getLights()[1]->position);
+	shader->setVec3("pointLights[1].color", Settings::getInstance()->getLights()[1]->color);
+	shader->setFloat("pointLights[1].constant", 0.0f);
+	shader->setFloat("pointLights[1].linear", 0.04f);
+	shader->setFloat("pointLights[1].quadratic", 0.0f);
+
+	//// point light 3
+	shader->setVec3("pointLights[2].position", Settings::getInstance()->getLights()[2]->position);
+	shader->setVec3("pointLights[2].color", Settings::getInstance()->getLights()[2]->color);
+	shader->setFloat("pointLights[2].constant", 0.0f);
+	shader->setFloat("pointLights[2].linear", 0.04f);
+	shader->setFloat("pointLights[2].quadratic", 0.0f);
+	
+	//// point light 4
+	//shader->setVec3("pointLights[3].position", Settings::getInstance()->getLights()[3]->position);
+	//shader->setVec3("pointLights[3].color", Settings::getInstance()->getLights()[3]->color);
+	//shader->setFloat("pointLights[3].constant", 0.0f);
+	//shader->setFloat("pointLights[3].linear", 0.04f);
+	//shader->setFloat("pointLights[3].quadratic", 0.0f);
 }

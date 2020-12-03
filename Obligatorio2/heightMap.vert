@@ -12,7 +12,7 @@ uniform mat4 view;
 uniform mat4 projection;
 uniform float top;
 
-flat varying vec4 vColor;
+varying vec4 vColor;
 uniform sampler2D texture_height;
 uniform sampler2D texture_diffuse1;
 uniform sampler2D texture_diffuse2;
@@ -28,15 +28,15 @@ Normal = mat3(transpose(inverse(model))) * aNormal;
 FragPos = vec3(model * vec4(aPos, 1.f));
 gl_Position = projection * view * vec4(FragPos, 1.0);
 
-if(fract(sin(dot(FragPos.xy ,vec2(12.9898,78.233))) * 43758.5453)>(1-(FragPos.y/top)*1.5))
-{
+//if(fract(sin(dot(FragPos.xy ,vec2(12.9898,78.233))) * 43758.5453)>(1-(FragPos.y/top)*1.5))
+//{
 //vec4 result = vec4(0.5+(FragPos.y/top)/10,0.5+(FragPos.y/top)/10,0.5+(FragPos.y/top)/10, 1.f);
-vColor = texture(texture_diffuse2, TexCoords);
-}
-else
-{
-vec4 result = vec4(texture(texture_diffuse1, TexCoords).r,texture(texture_diffuse1, TexCoords).g, texture(texture_diffuse1, TexCoords).b,1.0);
-vColor = result;
-}
+vColor = vec4(0.42,0.45,0.5,1.0); //texture(texture_diffuse2, TexCoords);
+//}
+//else
+//{
+//vec4 result = vec4(texture(texture_diffuse1, TexCoords).r,texture(texture_diffuse1, TexCoords).g, texture(texture_diffuse1, TexCoords).b,1.0);
+//vColor = result;
+//}
 
 }

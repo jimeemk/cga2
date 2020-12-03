@@ -20,7 +20,7 @@
 #include "Obligatorio2/Shader.h"
 #include "Obligatorio2/Water.h"
 #include "Obligatorio2/Terrain.h"
-
+#include "Obligatorio2/Xml.h"
 using namespace std;
 
 // global variables - normally would avoid globals, using in this demo
@@ -38,6 +38,7 @@ int current_x, current_y, last_x, last_y;
 bool wireframe;
 bool draw_bounds;
 
+Shader* lightShader;
 // loadFile - loads text file into char* fname
 // allocates memory - so need to delete after use
 
@@ -55,7 +56,7 @@ void exitFatalError(char* message)
 void init(void)
 {
 	Settings* set = Settings::getInstance();
-	Shader* lightShader = new Shader("simple.vert", "simple.frag");
+	lightShader = new Shader("simple.vert", "simple.frag");
 	Shader* waterShader = new Shader("water.vert", "water.frag", "water.geom");
 	//Shader* anim = new Shader("animated_model.vert", "animated_model.frag");
 	Shader* hmShader = new Shader("heightMap.vert", "heightMap.frag");
@@ -76,7 +77,7 @@ void init(void)
 	//Plane* p6 = new Plane("modelos/cordon.jpg", 20, 1, glm::vec3(19, 0.09, 1), glm::vec3(-9.5, -0.99, 9.5), glm::vec3(0, 1, 0), glm::vec3(0, 0, 1), lightShader);//Cordon
 	//Plane* p7 = new Plane("modelos/vereda.jpg", 40, 40, glm::vec3(18.9, 1, 18.9), glm::vec3(9.45, -0.89, -9.45), glm::vec3(0, 0, 1), glm::vec3(0, 1, 0), lightShader);//Vereda
 	//Plane* p8 = new Plane("modelos/grass.jpg", 10, 10, glm::vec3(200, 1.f, 200), glm::vec3(0.f,0.2,0.f), glm::vec3(0, 0, -1), glm::vec3(0, 1, 0), lightShader);//Terreno
-	Water* water = new Water(vec3(0.f, 0.7f, 0.f), vec3(0.f, 1.f, 0.f), vec3(1.f, 0.f, 0.f), waterShader, 35, 200, 200, "modelos/water1.jpg");
+	Water* water = new Water(vec3(-60.f, 0.5f, 60.f), vec3(0.f, 1.f, 0.f), vec3(1.f, 0.f, 0.f), waterShader, 35, 520, 520, "modelos/water1.jpg");
 	std::vector<Texture> text;
 	//Texture t = { Settings::TextureFromFile("modelos/isla2.jpg"), "texture_height", "modelos/isla2.jpg" };
 	//text.push_back(t);
@@ -84,25 +85,31 @@ void init(void)
 	text.push_back(t2);
 	Texture t3 = { Settings::TextureFromFile("modelos/arena.jpg"), "texture_diffuse", "modelos/arena.jpg" };
 	text.push_back(t3);
-	Terrain* terrain = new Terrain(vec3(0.f), vec3(0.f, 1.f, 0.f), vec3(1.f, 0.f, 0.f), suelo, 300, 200, 200,8, text, "modelos/prueba2.jpg");
-	
+	Terrain* terrain = new Terrain(vec3(0.f), vec3(0.f, 1.f, 0.f), vec3(1.f, 0.f, 0.f), suelo, 50, 400, 400,38, text, "modelos/parteAdentro2.jpg");
+	Terrain* terrain2 = new Terrain(vec3(0.f), vec3(0.f, 1.f, 0.f), vec3(1.f, 0.f, 0.f), hmShader, 50, 400, 400, 30, text, "modelos/parteAfuera.jpg");
+	Terrain* terrain3 = new Terrain(vec3(0.f), vec3(0.f, 1.f, 0.f), vec3(1.f, 0.f, 0.f), hmShader, 50, 400, 400, 120, text, "modelos/m1.jpg");
+	Terrain* terrain4 = new Terrain(vec3(0.f), vec3(0.f, 1.f, 0.f), vec3(1.f, 0.f, 0.f), hmShader, 50, 400, 400, 130, text, "modelos/m2.jpg");
+	Terrain* terrain5 = new Terrain(vec3(0.f), vec3(0.f, 1.f, 0.f), vec3(1.f, 0.f, 0.f), hmShader, 50, 400, 400, 150, text, "modelos/m3.jpg");
+	Terrain* terrain6 = new Terrain(vec3(0.f), vec3(0.f, 1.f, 0.f), vec3(1.f, 0.f, 0.f), hmShader, 50, 400, 400, 140, text, "modelos/m4.jpg");
+	Terrain* terrain7 = new Terrain(vec3(0.f), vec3(0.f, 1.f, 0.f), vec3(1.f, 0.f, 0.f), hmShader, 50, 400, 400, 100, text, "modelos/m5.jpg");
+
 	std::vector<Texture> text2;
 	//Texture ta = { Settings::TextureFromFile("modelos/montania.jpg"), "texture_height", "modelos/montania.jpg" };
 	//text2.push_back(ta);
 	text2.push_back(t2);
 	Texture t4 = { Settings::TextureFromFile("modelos/roca.jpg"), "texture_diffuse", "modelos/roca.jpg" };
 	text2.push_back(t4);
-	Terrain* terrainb = new Terrain(vec3(0.f), vec3(0.f, 1.f, 0.f), vec3(1.f, 0.f, 0.f), hmShader, 300, 200, 200, 45, text2, "modelos/montania.jpg");
+	Terrain* terrainb = new Terrain(vec3(0.f), vec3(0.f, 1.f, 0.f), vec3(1.f, 0.f, 0.f), hmShader, 50, 200, 200, 60, text2, "modelos/montania.jpg");
 
 	std::vector<Texture> text3;
 	//Texture tc = { Settings::TextureFromFile("modelos/isla3.jpg"), "texture_height", "modelos/isla3.jpg" };
 	//text3.push_back(tc);
 	text3.push_back(t2);
 	text3.push_back(t4);
-	Terrain* terrainc = new Terrain(vec3(0.f), vec3(0.f, 1.f, 0.f), vec3(1.f, 0.f, 0.f), hmShader, 300, 200, 200, 60, text3, "modelos/isla3.jpg");
+	Terrain* terrainc = new Terrain(vec3(0.f), vec3(0.f, 1.f, 0.f), vec3(1.f, 0.f, 0.f), hmShader, 50, 200, 200, 75, text3, "modelos/isla3.jpg");
 
 
-	newObj = new Object("modelos/12221_Cat_v1_l3.obj", glm::vec3(0, -1, 0), 0.8, glm::vec3(100, 30, -100), glm::vec3(0, 0, 1), glm::vec3(-1, 0, 0), lightShader);
+	newObj = new Object("modelos/Library_Large_003.obj", glm::vec3(1, 0, 0), 10, glm::vec3(200, 50, -200), glm::vec3(0, 1, 0), glm::vec3(1, 0, 0), lightShader);
 	//set->addEntity(o1);
 	//set->addEntity(o2);
 	//set->addEntity(p1);
@@ -117,28 +124,40 @@ void init(void)
 
 	set->addEntity(water);
 	set->addEntity(terrain);
-	set->addEntity(terrainb);
-	set->addEntity(terrainc);
+	set->addEntity(terrain2);
+	set->addEntity(terrain3);
+	set->addEntity(terrain4);
+	set->addEntity(terrain5);
+	set->addEntity(terrain6);
+	set->addEntity(terrain7);
+	//set->addEntity(terrainc);
 	set->addEntity(newObj);
 
 	std::cout << "Total entities: " << set->getEntities().size() << std::endl;
-
+	loadXMLEntities("xml/objetos.xml");
 	 // Create and start shader program
 	glEnable(GL_DEPTH_TEST); // enable depth testing
 	//glEnable(GL_CULL_FACE); // enable back face culling - try this and see what happens!
 
 	//init camera
-	Camera* camera = new Camera(vec3(0.f, 60.f, -100.f), half_pi<float>(), 0.f, 45.f, 4.0f / 3.0f, 1.f, 300.f);
-	Light* light1 = new Light(vec3(0, 50, -100));
+	Camera* camera = new Camera(vec3(200.f, 60.f, -200.f), half_pi<float>(), 0.f, 45.f, 4.0f / 3.0f, 0.01f, 500.f, 20.f);
+	Light* light1 = new Light(vec3(190, 50, -100));
+	Light* light2 = new Light(vec3(50, 50, -100));
+	Light* light3 = new Light(vec3(100, 25, -150));
+	Light* light4 = new Light(vec3(-500, 20, -30));
+	
 	set->changeNowCamera(camera);
 	set->addLight(light1);
+	set->addLight(light2);
+	set->addLight(light3);
+	//set->addLight(light4);
 
 	//init time
 	last_time = 0;
 	current_time = SDL_GetTicks();
 
 	//init speed
-	speed = 25.f;
+	speed = 10.f;
 
 	//init mouse variables
 	sensitivity = 0.10f;
@@ -159,7 +178,6 @@ void draw(SDL_Window* window)
 	glm::mat4 view = set->getNowCamera()->getViewMatrix();
 	glm::mat4 model;
 
-	//Shader lightingShader("simple.vert", "simple.frag");
 	Shader lightCubeShader("light_cube.vert", "light_cube.frag");
 	Shader* actualShader;
 
@@ -172,36 +190,40 @@ void draw(SDL_Window* window)
 		actualShader->use();
 		actualShader->setMat4("projection", projection);
 		actualShader->setMat4("view", view);
-		//if (!draw_bounds) 
-		actualShader->setMat4("model", model);
-		//else actualShader->setMat4("model", mat4(1.f));
+		if (!draw_bounds) actualShader->setMat4("model", model);
+		else actualShader->setMat4("model", mat4(1.f));
 		vec3 center;
 		float radio;
-		//set->getEntities().at(i)->getSphericalBounds(center, radio);
-		//if (set->getNowCamera()->intersectionSphereFrustum(center, radio))
-		//{
-			//if (!draw_bounds) 
-		set->getEntities().at(i)->draw();
-		//	else set->getEntities()[i]->drawBounds();
-		//}
+		set->getEntities().at(i)->getSphericalBounds(center, radio);
+		if (set->getNowCamera()->intersectionSphereFrustum(center, radio) || true)
+		{
+			if (!draw_bounds) set->getEntities().at(i)->draw();
+			else set->getEntities()[i]->drawBounds();
+		}
 	}
 
-	lightCubeShader.use();
-	lightCubeShader.setMat4("projection", projection);
-	lightCubeShader.setMat4("view", view);
-	model = glm::mat4(1.0f);
-	model = glm::translate(model, set->getLights()[0]->position);
-	model = glm::scale(model, glm::vec3(0.2f));
-	lightCubeShader.setMat4("model", model);
-	set->getLights()[0]->drawLight();
+
+	for (int i = 0; i < set->getLights().size(); i++) {
+		lightCubeShader.use();
+		lightCubeShader.setMat4("projection", projection);
+		lightCubeShader.setMat4("view", view);
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, set->getLights()[i]->position);
+		model = glm::scale(model, glm::vec3(0.2f));
+		lightCubeShader.setMat4("model", model);
+		set->getLights()[i]->drawLight();
+	}
+	
 
 	if (wireframe) glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
 	SDL_GL_SwapWindow(window); // swap buffers
 
-	//vec3 camPos=set->getNowCamera()->getPosition();
-	//cout << "Camara en" << camPos.x << ";" << camPos.z<<"\n";
-	//cout <<"Altura en este lugar:"<<set->getHeightTerrain(camPos.x, camPos.z)<<"\n";  
+
+	vec3 camPos=set->getNowCamera()->getPosition();
+	//cout << "Camara en" << camPos.x << ";" << camPos.z << "\n";
+	//cout << "Altura en este lugar:" << set->getHeightTerrain(camPos.x, camPos.z) << "\n";
+
 }
 
 
@@ -393,7 +415,12 @@ int main(int argc, char *argv[]) {
 					draw_bounds = !draw_bounds;
 					break;
 				case SDLK_7:
+					
+					Settings* set = Settings::getInstance();
 					newObj->guardarEntity();
+					saveXMLEntities("xml/objetos.xml");
+					newObj = new Object("modelos/Library_Large_003.obj", glm::vec3(1, 0, 0), 10, newObj->getPosition(), glm::vec3(0, 1, 0), glm::vec3(1, 0, 0), lightShader);
+					set->addEntity(newObj);
 					break;
 				}
 				break;

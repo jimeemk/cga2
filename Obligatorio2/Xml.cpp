@@ -69,7 +69,7 @@ void loadXMLEntities(const char* ruta)
 	}
 }
 
-void saveXMLEntities(const char* ruta, vector<Entity*> entities)
+void saveXMLEntities(const char* ruta)
 {
 	TiXmlDocument doc;
 	TiXmlDeclaration* declaracion = new TiXmlDeclaration("1.0", "", "");
@@ -79,14 +79,16 @@ void saveXMLEntities(const char* ruta, vector<Entity*> entities)
 	doc.LinkEndChild(root);
 
 	TiXmlElement* objetos = new TiXmlElement("objetos");
-	for (int i = 0; i < entities.size(); i++)
+	Settings* set = Settings::getInstance();
+	for (int i = 0; i < set->getEntities().size(); i++)
 	{
-		if (Object* o = dynamic_cast<Object*>(entities.at(i)))
+		if (Object* o = dynamic_cast<Object*>(set->getEntities().at(i)))
 		{
 
 			TiXmlElement* objeto = new TiXmlElement("objeto");
 			objeto->SetAttribute("path", o->getPath().c_str());
 			objeto->SetAttribute("scale", o->getScale());
+			objeto->SetAttribute("shader", 3);
 			TiXmlElement* orientation = new TiXmlElement("orientation");
 			orientation->SetAttribute("x", o->getOrientation().x);
 			orientation->SetAttribute("y", o->getOrientation().y);

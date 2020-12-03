@@ -25,7 +25,7 @@ class Camera
 {
 public:
 	Camera();
-	Camera(vec3, float, float, float, float, float, float); //no recibe modo de la camara, default = walk
+	Camera(vec3, float, float, float, float, float, float, float); //no recibe modo de la camara, default = walk
 	vec3 getPosition();
 	mat4 getViewMatrix();
 	mat4 getProjectionMatrix();
@@ -51,4 +51,5 @@ private:
 	float aspect;
 	float tnear;
 	float tfar;
+	float size;
 };

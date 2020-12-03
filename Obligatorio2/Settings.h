@@ -17,6 +17,7 @@ using namespace glm;
 class Entity;
 class Camera;
 
+
 class Settings {
 private:
 	Settings();
@@ -49,4 +50,6 @@ public:
 	void addLight(Light*);
 	int getInitTime();
 	static unsigned int TextureFromFile(const char* path);
+	vec3 clampToScene(vec3);
+	static void SetLightsToShader(Shader* shader);
 };

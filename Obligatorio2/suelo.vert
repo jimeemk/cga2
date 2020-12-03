@@ -28,19 +28,19 @@ Normal = mat3(transpose(inverse(model))) * aNormal;
 FragPos = vec3(model * vec4(aPos, 1.f));
 gl_Position = projection * view * vec4(FragPos, 1.0);
 
-if(FragPos.y<1.2){
-	vec4 result = texture(texture_diffuse2, TexCoords);
-	vColor = result;
-}
-else if (FragPos.y<10)
-{
+//if(FragPos.y<1.2){
+//	vec4 result = texture(texture_diffuse2, TexCoords);
+//	vColor = result;
+//}
+//else if (FragPos.y<10)
+//{
 	vec4 result = texture(texture_diffuse1, TexCoords);
 	vColor = result;
-}
-else
-{
-	vec4 result = vec4(0.5,0.5,0.5,1.f);
-	vColor = result;
-}
+//}
+//else
+//{
+//	vec4 result = vec4(0.5,0.5,0.5,1.f);
+//	vColor = result;
+//}
 
 }
