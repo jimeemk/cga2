@@ -327,3 +327,9 @@ vec3 Settings::clampToScene(vec3 point)
 	if (point.z > max_bound.z) point.z = max_bound.z;
 	return point;
 }
+
+bool Settings::colliding(vec3 bound_min, vec3 bound_max)
+{
+	for (int i = 0; i < entities.size(); i++) if (entities[i]->intersectionBoxBounds(bound_min, bound_max)) return true;
+	return false;
+}

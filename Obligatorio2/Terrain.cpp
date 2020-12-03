@@ -240,3 +240,8 @@ void Terrain::guardarEntity()//7
 {
 	cout << "GUARDAR:";
 }
+
+bool Terrain::intersectionBoxBounds(vec3 min, vec3 max)
+{
+	return false;
+}

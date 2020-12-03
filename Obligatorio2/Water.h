@@ -39,6 +39,8 @@ public:
 	void escMasZ();//5
 	void escMenosZ();//6
 	void guardarEntity();//7
+
+	bool intersectionBoxBounds(vec3, vec3);
 private:
 	int density;
 	float width;

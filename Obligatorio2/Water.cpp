@@ -219,3 +219,8 @@ void Water::guardarEntity()//7
 {
 	cout << "GUARDAR:";
 }
+
+bool Water::intersectionBoxBounds(vec3 min, vec3 max)
+{
+	return false;
+}

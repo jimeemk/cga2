@@ -43,7 +43,6 @@ Camera::Camera(vec3 p, float h, float v, float fy, float a, float n, float f, fl
 	projection_matrix = perspective(fovy, aspect, tnear, tfar);
 
 	//calculo del frustum
-	//near, far, left, right, bottom, up
 	updateFrustum();
 }
 
@@ -110,11 +109,14 @@ void Camera::updatePosition(float delta, movement_direction d)
 		break;
 	}
 
-	position = Settings::getInstance()->clampToScene(position);
+	//Si estoy caminando la altura es la del terreno
 	if (mode == WALK) position.y = Settings::getInstance()->getHeightTerrain(position.x, position.z) + size * 0.5f;
-	
-	//Si colisono con algo o estoy fuera, no me muevo
-	if ( mode == WALK && position.y == -1) position = last_position;
+
+	vec3 min_camera = position - vec3(size * 0.5f);
+	vec3 max_camera = position + vec3(size * 0.5f);
+
+	//Si estoy caminando y la altura del terreno es -1 (fuera de los limetes) o choco con alguna AABB
+	if ( (mode == WALK && position.y == -1 + size * 0.5f) || Settings::getInstance()->colliding(min_camera, max_camera)) position = last_position;
 	else {
 		vec3 target = position + spherical_to_cartesian(horizontalAngle, verticalAngle);
 		view_matrix = lookAt(position, target, u);
@@ -126,11 +128,17 @@ void Camera::updatePosition(float delta, movement_direction d)
 
 void Camera::moveCamera(float h_cant, float v_cant)
 {
-	//camera coords
+	//Actualizar valores de los angulos
 	horizontalAngle = clampHorizontal(horizontalAngle + h_cant);
 	verticalAngle = clampVertical(verticalAngle + v_cant);
-	vec3 target = position + spherical_to_cartesian(horizontalAngle, verticalAngle);
-	view_matrix = lookAt(position, target, vec3(0.f, 1.f, 0.f));
+
+	//Sistema de coordenadas de la camara
+	vec3 n = normalize(spherical_to_cartesian(horizontalAngle, verticalAngle));
+	vec3 r = normalize(cross(n, vec3(0.f, 1.f, 0.f)));
+	vec3 u = normalize(cross(r, n));
+
+	vec3 target = position + n;
+	view_matrix = lookAt(position, target, u);
 
 	//actualizar frustum
 	updateFrustum();
@@ -151,41 +159,53 @@ void Camera::getFrustum(plane ret[6])
 	for (int i = 0; i < 6; i++) ret[i] = frustum[i];
 }
 
-void Camera::updateFrustum()
-{
-	vec3 target = spherical_to_cartesian(horizontalAngle, verticalAngle);
-	vec3 front = normalize(target - position);
-	vec3 right = normalize(cross(front, vec3(0.f, 1.f, 0.f)));
-	vec3 up = normalize(cross(right, front));
-
-	float fovh = fovy * aspect;
-
-	vec3 points[6] = { position + tnear * front , position + tfar * front, position, position, position, position };
-	vec3 normals[6] = {
-		front,
-		-front,
-		rotate(front, radians(fovh - 90), up),
-		rotate(front, radians(90 - fovh), up),
-		rotate(front, radians(fovy - 90), right),
-		rotate(front, radians(90 - fovy), right) };
-
-	for (int i = 0; i < 6; i++)
-	{
-		frustum[i].normal = normalize(normals[i]);
-		frustum[i].d = -dot(frustum[i].normal, points[i]);
-	}
-}
-
 Camera::~Camera()
 {
+}
+
+void Camera::updateFrustum()
+{
+	mat4 m = projection_matrix * view_matrix;
+
+	//Codigo sacado de internet
+	frustum[0].normal.x = m[0][3] - m[0][0];
+	frustum[0].normal.y = m[1][3] - m[1][0];
+	frustum[0].normal.z = m[2][3] - m[2][0];
+	frustum[0].d = m[3][3] - m[3][0];
+	
+	frustum[1].normal.x = m[0][3] + m[0][0];
+	frustum[1].normal.y = m[1][3] + m[1][0];
+	frustum[1].normal.z = m[2][3] + m[2][0];
+	frustum[1].d = m[3][3] + m[3][0];
+
+	frustum[2].normal.x = m[0][3] + m[0][1];
+	frustum[2].normal.y = m[1][3] + m[1][1];
+	frustum[2].normal.z = m[2][3] + m[2][1];
+	frustum[2].d = m[3][3] + m[3][1];
+
+	frustum[3].normal.x = m[0][3] - m[0][1];
+	frustum[3].normal.y = m[1][3] - m[1][1];
+	frustum[3].normal.z = m[2][3] - m[2][1];
+	frustum[3].d = m[3][3] - m[3][1];
+
+	frustum[4].normal.x = m[0][3] - m[0][2];
+	frustum[4].normal.y = m[1][3] - m[1][2];
+	frustum[4].normal.z = m[2][3] - m[2][2];
+	frustum[4].d = m[3][3] - m[3][2];
+
+	frustum[5].normal.x = m[0][3] + m[0][2];
+	frustum[5].normal.y = m[1][3] + m[1][2];
+	frustum[5].normal.z = m[2][3] + m[2][2];
+	frustum[5].d = m[3][3] + m[3][2];
+
+	for (int i = 0; i < 6; i++) frustum[i].normalize();
+
 }
 
 bool Camera::intersectionSphereFrustum(vec3 center, float radio)
 {
 	for (int i = 0; i < 6; i++)
-	{
-		if (dot(center, frustum[i].normal) + frustum[i].d + radio < 0) return false;
-	}
-
+		if (dot(center, frustum[i].normal) + frustum[i].d + radio < 0)
+			return false;
 	return true;
 }

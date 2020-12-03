@@ -50,4 +50,5 @@ public:
 	int getInitTime();
 	static unsigned int TextureFromFile(const char* path);
 	vec3 clampToScene(vec3);
+	bool colliding(vec3, vec3);
 };

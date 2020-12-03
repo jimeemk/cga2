@@ -19,6 +19,15 @@ enum movement_direction {FRONT, RIGHT, LEFT, BACK, UP, DOWN};
 struct plane {
 	vec3 normal;
 	float d;
+
+	void normalize()
+	{
+		float scale = 1.f / length(normal);
+		normal.x *= scale;
+		normal.y *= scale;
+		normal.z *= scale;
+		d *= scale;
+	}
 };
 
 class Camera
