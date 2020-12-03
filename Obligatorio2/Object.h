@@ -11,6 +11,10 @@ public:
 	~Object();
 	glm::vec3 getPosition();
 	glm::vec3 getDirection();
+	glm::vec3 getUp();
+	glm::vec3 getOrientation();
+	float getScale();
+	string getPath();
 	Shader* getShaderProgram();
 	glm::mat4 getModelMatrix();
 	void draw();

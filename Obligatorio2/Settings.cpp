@@ -191,7 +191,7 @@ void Settings::setTerrainTexture()
 	vector<FIBITMAP*> imagenes;
 	vector<std::string> paths;
 	vector<int> tops;
-	paths.push_back("modelos/isla2.jpg");
+	paths.push_back("modelos/prueba2.jpg");
 	paths.push_back("modelos/montania.jpg");
 	paths.push_back("modelos/isla3.jpg");
 	tops.push_back(8);

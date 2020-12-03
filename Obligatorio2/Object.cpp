@@ -24,9 +24,29 @@ glm::vec3 Object::getDirection()
     return direction;
 }
 
+glm::vec3 Object::getUp()
+{
+    return up;
+}
+
+glm::vec3 Object::getOrientation()
+{
+    return orientation;
+}
+
 glm::mat4 Object::getModelMatrix()
 {
     return modelMatrix;
+}
+
+float Object::getScale()
+{
+    return scale;
+}
+
+string Object::getPath()
+{
+    return path;
 }
 
 Shader* Object::getShaderProgram()

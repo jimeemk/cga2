@@ -60,6 +60,10 @@ void init(void)
 	//Shader* anim = new Shader("animated_model.vert", "animated_model.frag");
 	Shader* hmShader = new Shader("heightMap.vert", "heightMap.frag");
 	Shader* suelo = new Shader("suelo.vert", "suelo.frag");
+	set->addShader(lightShader);
+	set->addShader(waterShader);
+	set->addShader(hmShader);
+	set->addShader(suelo);
 	//AnimatedObject* ao1 = new AnimatedObject("models/negro/Rumba Dancing.dae", glm::vec3(0, 0, -1), 10, glm::vec3(100, 5, -100), glm::vec3(0, 1, 0), glm::vec3(0, 0, 1), anim);
 	//Object* o1 = new Object("modelos/12221_Cat_v1_l3.obj",glm::vec3(0, -1, 0), 0.8, glm::vec3(8, -0.6, -8.6),glm::vec3(0, 0, 1), glm::vec3(-1,0,-1), lightShader);
 	//Object* o2 = new Object("modelos/Japanese_Temple.obj", glm::vec3(0,0,-1),10, glm::vec3(0,4.2,0), glm::vec3(0, 1, 0), glm::vec3(0, 0, 1), lightShader);
@@ -80,7 +84,7 @@ void init(void)
 	text.push_back(t2);
 	Texture t3 = { Settings::TextureFromFile("modelos/arena.jpg"), "texture_diffuse", "modelos/arena.jpg" };
 	text.push_back(t3);
-	Terrain* terrain = new Terrain(vec3(0.f), vec3(0.f, 1.f, 0.f), vec3(1.f, 0.f, 0.f), suelo, 300, 200, 200,8, text, "modelos/isla2.jpg");
+	Terrain* terrain = new Terrain(vec3(0.f), vec3(0.f, 1.f, 0.f), vec3(1.f, 0.f, 0.f), suelo, 300, 200, 200,8, text, "modelos/prueba2.jpg");
 	
 	std::vector<Texture> text2;
 	//Texture ta = { Settings::TextureFromFile("modelos/montania.jpg"), "texture_height", "modelos/montania.jpg" };
@@ -195,9 +199,9 @@ void draw(SDL_Window* window)
 
 	SDL_GL_SwapWindow(window); // swap buffers
 
-	vec3 camPos=set->getNowCamera()->getPosition();
-	cout << "Camara en" << camPos.x << ";" << camPos.z<<"\n";
-	cout <<"Altura en este lugar:"<<set->getHeightTerrain(camPos.x, camPos.z)<<"\n";
+	//vec3 camPos=set->getNowCamera()->getPosition();
+	//cout << "Camara en" << camPos.x << ";" << camPos.z<<"\n";
+	//cout <<"Altura en este lugar:"<<set->getHeightTerrain(camPos.x, camPos.z)<<"\n";  
 }
 
 
