@@ -178,5 +178,14 @@
     <None Include="animated_model.frag">
       <Filter>Shaders</Filter>
     </None>
+    <None Include="..\..\..\..\..\..\Downloads\glsl-atmosphere-master\glsl-atmosphere-master\index.glsl">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="atmosphere.frag">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="atmosphere.vert">
+      <Filter>Shaders</Filter>
+    </None>
   </ItemGroup>
 </Project>

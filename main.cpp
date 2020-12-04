@@ -55,16 +55,16 @@ void exitFatalError(char* message)
 
 void init(void)
 {
-	Settings* set = Settings::getInstance();
+	Settings* settings = Settings::getInstance();
 	lightShader = new Shader("simple.vert", "simple.frag");
 	Shader* waterShader = new Shader("water.vert", "water.frag", "water.geom");
 	//Shader* anim = new Shader("animated_model.vert", "animated_model.frag");
 	Shader* hmShader = new Shader("heightMap.vert", "heightMap.frag");
 	Shader* suelo = new Shader("suelo.vert", "suelo.frag");
-	set->addShader(lightShader);
-	set->addShader(waterShader);
-	set->addShader(hmShader);
-	set->addShader(suelo);
+	settings->addShader(lightShader);
+	settings->addShader(waterShader);
+	settings->addShader(hmShader);
+	settings->addShader(suelo);
 	//AnimatedObject* ao1 = new AnimatedObject("models/negro/Rumba Dancing.dae", glm::vec3(0, 0, -1), 10, glm::vec3(100, 5, -100), glm::vec3(0, 1, 0), glm::vec3(0, 0, 1), anim);
 	//Object* o1 = new Object("modelos/12221_Cat_v1_l3.obj",glm::vec3(0, -1, 0), 0.8, glm::vec3(8, -0.6, -8.6),glm::vec3(0, 0, 1), glm::vec3(-1,0,-1), lightShader);
 	Object* o2 = new Object("modelos/Japanese_Temple.obj", glm::vec3(0,0,-1),70, glm::vec3(100,20,-150), glm::vec3(0, 1, 0), glm::vec3(0, 0, 1), lightShader);
@@ -111,7 +111,7 @@ void init(void)
 
 	newObj = new Object("modelos/Library_Large_003.obj", glm::vec3(1, 0, 0), 10, glm::vec3(200, 50, -200), glm::vec3(0, 1, 0), glm::vec3(1, 0, 0), lightShader);
 	//set->addEntity(o1);
-	set->addEntity(o2);
+	settings->addEntity(o2);
 	//set->addEntity(p1);
 	//set->addEntity(p2);
 	//set->addEntity(p3);
@@ -122,18 +122,18 @@ void init(void)
 	//set->addEntity(p8);
 	//set->addEntity(ao1);
 
-	set->addEntity(water);
-	set->addEntity(terrain);
-	set->addEntity(terrain2);
-	set->addEntity(terrain3);
-	set->addEntity(terrain4);
-	set->addEntity(terrain5);
-	set->addEntity(terrain6);
-	set->addEntity(terrain7);
+	settings->addEntity(water);
+	settings->addEntity(terrain);
+	settings->addEntity(terrain2);
+	settings->addEntity(terrain3);
+	settings->addEntity(terrain4);
+	settings->addEntity(terrain5);
+	settings->addEntity(terrain6);
+	settings->addEntity(terrain7);
 	//set->addEntity(terrainc);
 	//set->addEntity(newObj);
 
-	std::cout << "Total entities: " << set->getEntities().size() << std::endl;
+	std::cout << "Total entities: " << settings->getEntities().size() << std::endl;
 	loadXMLEntities("xml/objetos.xml");
 	 // Create and start shader program
 	glEnable(GL_DEPTH_TEST); // enable depth testing
@@ -146,10 +146,10 @@ void init(void)
 	Light* light3 = new Light(vec3(100, 25, -150));
 	Light* light4 = new Light(vec3(-500, 20, -30));
 	
-	set->changeNowCamera(camera);
-	set->addLight(light1);
-	set->addLight(light2);
-	set->addLight(light3);
+	settings->changeNowCamera(camera);
+	settings->addLight(light1);
+	settings->addLight(light2);
+	settings->addLight(light3);
 	//set->addLight(light4);
 
 	//init time
@@ -246,11 +246,11 @@ int main(int argc, char *argv[]) {
 		SDL_Log("Failed to initialize SDL: %s", SDL_GetError());
 		return 1;
 	}
+	
 	// SET ATTRIBUTE ONLY after initialize
 	SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
 	SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS, 1); // on antialiasing sdl
 	SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, 4); //subsamples for each pixel
-
 	SDL_GL_SetAttribute(SDL_GL_ACCELERATED_VISUAL, 1); // set to 1 to require hardware acceleration
 
 	SDL_Window *window = NULL;
@@ -280,7 +280,7 @@ int main(int argc, char *argv[]) {
 	//para multiples teclas presionadas
 	bool keys[6] = {false};
 
-	while (running)		// the event loop
+	while (running)
 	{
 		//Calculo del tiempo que pasa entre frame y frame
 		last_time = current_time;

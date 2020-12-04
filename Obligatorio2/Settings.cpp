@@ -337,11 +337,9 @@ vec3 Settings::clampToScene(vec3 point) {
 
 void Settings::SetLightsToShader(Shader* shader) {
 
-	//// directional light
-	//shader->setVec3("dirLight.direction", -0.2f, -1.0f, -0.3f);
-	//shader->setVec3("dirLight.ambient", 0.05f, 0.05f, 0.05f);
-	//shader->setVec3("dirLight.diffuse", 0.4f, 0.4f, 0.4f);
-	//shader->setVec3("dirLight.specular", 0.5f, 0.5f, 0.5f);
+	// directional light
+	shader->setVec3("directionalLight.direction", 0, -1.0f, -0.3f);
+	shader->setVec3("directionalLight.color", 1, 1, 1);
 	
 	// point light 1
 	shader->setVec3("pointLights[0].position", Settings::getInstance()->getLights()[0]->position);
