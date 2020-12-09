@@ -18,6 +18,7 @@
 #include "Obligatorio2/Plane.h"
 #include "Obligatorio2/Settings.h"
 #include "Obligatorio2/Shader.h"
+#include "Obligatorio2/Skybox.h"
 #include "Obligatorio2/Water.h"
 #include "Obligatorio2/Terrain.h"
 #include "Obligatorio2/Xml.h"
@@ -39,8 +40,9 @@ bool wireframe;
 bool draw_bounds;
 
 Shader* lightShader;
-// loadFile - loads text file into char* fname
-// allocates memory - so need to delete after use
+Shader* _skyboxShader;
+unsigned int skyboxVAO, skyboxVBO, cubemapTexture;
+Skybox* skybox;
 
 
 // Something went wrong - print SDL error message and quit
@@ -53,18 +55,52 @@ void exitFatalError(char* message)
 }
 
 
+unsigned int loadCubemap(vector<std::string> faces) {
+	unsigned int textureID;
+	glGenTextures(1, &textureID);
+
+	int width, height, nrChannels;
+	for (unsigned int i = 0; i < faces.size(); i++) {
+		FIBITMAP* bitmap = FreeImage_Load(FreeImage_GetFileType(faces[i].c_str(), 0), faces[i].c_str());
+		FIBITMAP* pImage = FreeImage_ConvertTo32Bits(bitmap);
+		int width = FreeImage_GetWidth(pImage);
+		int height = FreeImage_GetHeight(pImage);
+
+		if (pImage) {
+			glBindTexture(GL_TEXTURE_CUBE_MAP, textureID);
+			glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, GL_RGBA8, width, height, 0, GL_BGRA, GL_UNSIGNED_BYTE, (void*) FreeImage_GetBits(pImage));
+			FreeImage_Unload(pImage);
+		} else {
+			std::cout << "Cubemap tex failed to load at path: " << faces[i] << std::endl;
+			FreeImage_Unload(pImage);
+		}
+	}
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
+
+	return textureID;
+}
+
+
 void init(void)
 {
 	Settings* settings = Settings::getInstance();
+	
 	lightShader = new Shader("simple.vert", "simple.frag");
 	Shader* waterShader = new Shader("water.vert", "water.frag", "water.geom");
-	//Shader* anim = new Shader("animated_model.vert", "animated_model.frag");
 	Shader* hmShader = new Shader("heightMap.vert", "heightMap.frag");
 	Shader* suelo = new Shader("suelo.vert", "suelo.frag");
+	//Shader* anim = new Shader("animated_model.vert", "animated_model.frag");
+	
 	settings->addShader(lightShader);
 	settings->addShader(waterShader);
 	settings->addShader(hmShader);
 	settings->addShader(suelo);
+	
+
 	//AnimatedObject* ao1 = new AnimatedObject("models/negro/Rumba Dancing.dae", glm::vec3(0, 0, -1), 10, glm::vec3(100, 5, -100), glm::vec3(0, 1, 0), glm::vec3(0, 0, 1), anim);
 	//Object* o1 = new Object("modelos/12221_Cat_v1_l3.obj",glm::vec3(0, -1, 0), 0.8, glm::vec3(8, -0.6, -8.6),glm::vec3(0, 0, 1), glm::vec3(-1,0,-1), lightShader);
 	Object* o2 = new Object("modelos/Japanese_Temple.obj", glm::vec3(0,0,-1),70, glm::vec3(100,20,-150), glm::vec3(0, 1, 0), glm::vec3(0, 0, 1), lightShader);
@@ -110,17 +146,17 @@ void init(void)
 
 
 	newObj = new Object("modelos/Library_Large_003.obj", glm::vec3(1, 0, 0), 10, glm::vec3(200, 50, -200), glm::vec3(0, 1, 0), glm::vec3(1, 0, 0), lightShader);
-	//set->addEntity(o1);
+	//settings->addEntity(o1);
 	settings->addEntity(o2);
-	//set->addEntity(p1);
-	//set->addEntity(p2);
-	//set->addEntity(p3);
-	//set->addEntity(p4);
-	//set->addEntity(p5);
-	//set->addEntity(p6);
-	//set->addEntity(p7);
-	//set->addEntity(p8);
-	//set->addEntity(ao1);
+	//settings->addEntity(p1);
+	//settings->addEntity(p2);
+	//settings->addEntity(p3);
+	//settings->addEntity(p4);
+	//settings->addEntity(p5);
+	//settings->addEntity(p6);
+	//settings->addEntity(p7);
+	//settings->addEntity(p8);
+	//settings->addEntity(ao1);
 
 	settings->addEntity(water);
 	settings->addEntity(terrain);
@@ -135,17 +171,18 @@ void init(void)
 
 	std::cout << "Total entities: " << settings->getEntities().size() << std::endl;
 	loadXMLEntities("xml/objetos.xml");
-	 // Create and start shader program
+	
 	glEnable(GL_DEPTH_TEST); // enable depth testing
 	//glEnable(GL_CULL_FACE); // enable back face culling - try this and see what happens!
 
 	//init camera
 	Camera* camera = new Camera(vec3(210.f, 60.f, -200.f), half_pi<float>(), 0.f, 65.f, 4.0f / 3.0f, 0.01f, 500.f, 10.f);
-	Light* light1 = new Light(vec3(190, 50, -100));
+	Light* light1 = new Light(vec3(0, 0, 0));
 	Light* light2 = new Light(vec3(50, 50, -100));
 	Light* light3 = new Light(vec3(100, 25, -150));
 	Light* light4 = new Light(vec3(-500, 20, -30));
-	
+	skybox = new Skybox();
+
 	settings->changeNowCamera(camera);
 	settings->addLight(light1);
 	settings->addLight(light2);
@@ -167,6 +204,24 @@ void init(void)
 }
 
 
+void drawLights(glm::mat4 projection, glm::mat4 view) {
+	Settings* settings = Settings::getInstance();
+	Shader lightCubeShader("light_cube.vert", "light_cube.frag");
+	glm::mat4 model;
+
+	for (int i = 0; i < settings->getLights().size(); i++) {
+		lightCubeShader.use();
+		lightCubeShader.setMat4("projection", projection);
+		lightCubeShader.setMat4("view", view);
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, settings->getLights()[i]->position);
+		model = glm::scale(model, glm::vec3(0.2f));
+		lightCubeShader.setMat4("model", model);
+		settings->getLights()[i]->drawLight();
+	}
+}
+
+
 void draw(SDL_Window* window)
 {
 	glClearColor(0.3, 0.3, 0.3, 1.0); // set background colour
@@ -178,7 +233,6 @@ void draw(SDL_Window* window)
 	glm::mat4 view = set->getNowCamera()->getViewMatrix();
 	glm::mat4 model;
 
-	Shader lightCubeShader("light_cube.vert", "light_cube.frag");
 	Shader* actualShader;
 
 	if (wireframe) glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
@@ -190,8 +244,13 @@ void draw(SDL_Window* window)
 		actualShader->use();
 		actualShader->setMat4("projection", projection);
 		actualShader->setMat4("view", view);
-		if (!draw_bounds) actualShader->setMat4("model", model);
-		else actualShader->setMat4("model", mat4(1.f));
+		
+		if (!draw_bounds) {
+			actualShader->setMat4("model", model);
+		} else {
+			actualShader->setMat4("model", mat4(1.f));
+		}
+		
 		vec3 center;
 		float radio;
 		set->getEntities().at(i)->getSphericalBounds(center, radio);
@@ -202,28 +261,16 @@ void draw(SDL_Window* window)
 		}
 	}
 
-
-	for (int i = 0; i < set->getLights().size(); i++) {
-		lightCubeShader.use();
-		lightCubeShader.setMat4("projection", projection);
-		lightCubeShader.setMat4("view", view);
-		model = glm::mat4(1.0f);
-		model = glm::translate(model, set->getLights()[i]->position);
-		model = glm::scale(model, glm::vec3(0.2f));
-		lightCubeShader.setMat4("model", model);
-		set->getLights()[i]->drawLight();
-	}
-	
+	drawLights(projection, view);
+	skybox->Draw(view, projection);
 
 	if (wireframe) glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-
+	
 	SDL_GL_SwapWindow(window); // swap buffers
 
-
-	vec3 camPos=set->getNowCamera()->getPosition();
+	//vec3 camPos=set->getNowCamera()->getPosition();
 	//cout << "Camara en" << camPos.x << ";" << camPos.z << "\n";
 	//cout << "Altura en este lugar:" << set->getHeightTerrain(camPos.x, camPos.z) << "\n";
-
 }
 
 
@@ -237,6 +284,8 @@ void cleanup(void)
 		glDeleteProgram(Settings::getInstance()->getShaders().at(i)->ID);
 	glDeleteBuffers(2, vbo);
 	glDeleteVertexArrays(1, &vao);
+	glDeleteVertexArrays(1, &skyboxVAO);
+
 }
 
 
@@ -256,8 +305,7 @@ int main(int argc, char *argv[]) {
 	SDL_Window *window = NULL;
 	SDL_GLContext gl_context;
 
-	window = SDL_CreateWindow("Ventana", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 
-																	800, 600, SDL_WINDOW_OPENGL);
+	window = SDL_CreateWindow("Ventana", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 800, 600, SDL_WINDOW_OPENGL);
 
 	//SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN);
 
@@ -415,7 +463,6 @@ int main(int argc, char *argv[]) {
 					draw_bounds = !draw_bounds;
 					break;
 				case SDLK_7:
-					
 					Settings* set = Settings::getInstance();
 					newObj->guardarEntity();
 					saveXMLEntities("xml/objetos.xml");
@@ -444,6 +491,7 @@ int main(int argc, char *argv[]) {
 		}
 
 		draw(window); // call the draw function
+
 	}
 
 	cleanup();
