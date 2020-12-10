@@ -36,12 +36,11 @@ float speed;
 
 //mouse variables
 int current_x, current_y, last_x, last_y;
+
 bool wireframe;
 bool draw_bounds;
 
 Shader* lightShader;
-Shader* _skyboxShader;
-unsigned int skyboxVAO, skyboxVBO, cubemapTexture;
 Skybox* skybox;
 
 
@@ -285,8 +284,7 @@ void cleanup(void)
 		glDeleteProgram(Settings::getInstance()->getShaders().at(i)->ID);
 	glDeleteBuffers(2, vbo);
 	glDeleteVertexArrays(1, &vao);
-	glDeleteVertexArrays(1, &skyboxVAO);
-
+	delete skybox;
 }
 
 
