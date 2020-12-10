@@ -31,7 +31,7 @@ void main()
 	float alpha = frequency * dot(vec3(1.f, 0.f, 0.f), vec3(position.x, 0.f, position.z)) - speed * passedTime;
 
     position.x += 0.3 * cos(position.x - speed * passedTime);
-    position.y += 0.2 * sin(0.9 * position.x + 2.1 * position.z - speed * passedTime);
+    position.y += 0.5 * sin(0.9 * position.x + 2.1 * position.z - speed * passedTime);
     position.z += 0.3 * cos(position.z - speed * passedTime);
 
     g_FragPos = vec3(model * vec4(position, 1.0));

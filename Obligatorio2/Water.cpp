@@ -115,9 +115,12 @@ void Water::draw()
 	float delta_time = (now - last_time) / 1000.f;
 	//last_time = now;
 	shaderProgram->setFloat("passedTime", (now - last_time) / 1000.f);
-	//shaderProgram->setVec3("lightColor", Settings::getInstance()->getLights()[0]->color);
-	//shaderProgram->setVec3("lightPos", Settings::getInstance()->getLights()[0]->position);
 	Settings::getInstance()->SetLightsToShader(shaderProgram);
+	vec3 minScene, maxScene;
+	Settings::getInstance()->getBounds(minScene, maxScene);
+	shaderProgram->setVec3("minScene", minScene);
+	shaderProgram->setVec3("maxScene", maxScene);
+	shaderProgram->setInt("skybox", 0);
 	shaderProgram->setVec3("viewPos", Settings::getInstance()->getNowCamera()->getPosition());
 	mesh->Draw(shaderProgram->ID);
 }

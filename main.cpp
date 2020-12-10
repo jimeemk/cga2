@@ -113,7 +113,7 @@ void init(void)
 	//Plane* p6 = new Plane("modelos/cordon.jpg", 20, 1, glm::vec3(19, 0.09, 1), glm::vec3(-9.5, -0.99, 9.5), glm::vec3(0, 1, 0), glm::vec3(0, 0, 1), lightShader);//Cordon
 	//Plane* p7 = new Plane("modelos/vereda.jpg", 40, 40, glm::vec3(18.9, 1, 18.9), glm::vec3(9.45, -0.89, -9.45), glm::vec3(0, 0, 1), glm::vec3(0, 1, 0), lightShader);//Vereda
 	//Plane* p8 = new Plane("modelos/grass.jpg", 10, 10, glm::vec3(200, 1.f, 200), glm::vec3(0.f,0.2,0.f), glm::vec3(0, 0, -1), glm::vec3(0, 1, 0), lightShader);//Terreno
-	Water* water = new Water(vec3(-60.f, 0.5f, 60.f), vec3(0.f, 1.f, 0.f), vec3(1.f, 0.f, 0.f), waterShader, 35, 520, 520, "modelos/water1.jpg");
+	Water* water = new Water(vec3(-60.f, 5.f, 60.f), vec3(0.f, 1.f, 0.f), vec3(1.f, 0.f, 0.f), waterShader, 35, 520, 520, "modelos/water1.jpg");
 	std::vector<Texture> text;
 	//Texture t = { Settings::TextureFromFile("modelos/isla2.jpg"), "texture_height", "modelos/isla2.jpg" };
 	//text.push_back(t);
@@ -182,6 +182,7 @@ void init(void)
 	Light* light3 = new Light(vec3(100, 25, -150));
 	Light* light4 = new Light(vec3(-500, 20, -30));
 	skybox = new Skybox();
+	settings->setCubeMapTextureSkybox(skybox->getCubeMapTexture());
 
 	settings->changeNowCamera(camera);
 	settings->addLight(light1);

@@ -31,6 +31,7 @@ private:
 	//bounds 
 	vec3 min_bound;
 	vec3 max_bound;
+	unsigned int cubemapTextureSkybox;
 public:
 	~Settings();
 	static Settings* getInstance();
@@ -53,4 +54,6 @@ public:
 	vec3 clampToScene(vec3);
 	static void SetLightsToShader(Shader* shader);
 	bool colliding(vec3, vec3);
+	void setCubeMapTextureSkybox(unsigned int);
+	unsigned int getCubeMapTextureSkybox();
 };

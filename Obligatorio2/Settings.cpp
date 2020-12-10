@@ -375,3 +375,13 @@ bool Settings::colliding(vec3 bound_min, vec3 bound_max)
 	for (int i = 0; i < entities.size(); i++) if (entities[i]->intersectionBoxBounds(bound_min, bound_max)) return true;
 	return false;
 }
+
+void Settings::setCubeMapTextureSkybox(unsigned int id)
+{
+	cubemapTextureSkybox = id;
+}
+
+unsigned int Settings::getCubeMapTextureSkybox()
+{
+	return cubemapTextureSkybox;
+}
