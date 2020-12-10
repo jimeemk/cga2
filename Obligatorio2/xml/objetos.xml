@@ -7,29 +7,90 @@
             <up x="0" y="1" z="0" />
             <direction x="1" y="0" z="0" />
         </objeto>
-        <objeto path="modelos/tree.obj" scale="6" shader="3">
+        
+		<objeto path="modelos/tree.obj" scale="6" shader="3">
             <orientation x="1" y="0" z="0" />
             <position x="195" y="34" z="-200" />
             <up x="0" y="1" z="0" />
             <direction x="1" y="0" z="0" />
         </objeto>
-        <objeto path="modelos/tree.obj" scale="6" shader="3">
+        
+		<objeto path="modelos/tree.obj" scale="6" shader="3">
             <orientation x="1" y="0" z="0" />
             <position x="163" y="37" z="-209" />
             <up x="0" y="1" z="0" />
             <direction x="1" y="0" z="0" />
         </objeto>
-        <objeto path="modelos/tree.obj" scale="6" shader="3">
+        
+		<objeto path="modelos/tree.obj" scale="6" shader="3">
             <orientation x="1" y="0" z="0" />
             <position x="147" y="36" z="-235" />
             <up x="0" y="1" z="0" />
             <direction x="1" y="0" z="0" />
         </objeto>
-        <objeto path="modelos/tree.obj" scale="5" shader="3">
+        
+		<objeto path="modelos/tree.obj" scale="5" shader="3">
             <orientation x="1" y="0" z="0" />
             <position x="210" y="33" z="-235" />
             <up x="0" y="1" z="0" />
             <direction x="1" y="0" z="0" />
         </objeto>
+		
+		<objeto path="modelos/clouds/Cloud1.obj" scale="50" shader="3">
+            <orientation x="1" y="0" z="0" />
+            <position x="210" y="150" z="-235" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0" />
+        </objeto>
+		
+		<objeto path="modelos/clouds/Cloud1.obj" scale="100" shader="3">
+            <orientation x="1" y="0" z="0" />
+            <position x="180" y="250" z="-335" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0" />
+        </objeto>		
+		
+		<objeto path="modelos/clouds/Cloud2.obj" scale="50" shader="3">
+            <orientation x="1" y="0" z="0" />
+            <position x="310" y="150" z="-305" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0" />
+        </objeto>
+		
+		<objeto path="modelos/clouds/Cloud3.obj" scale="50" shader="3">
+            <orientation x="1" y="0" z="0" />
+            <position x="110" y="150" z="-275" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0" />
+        </objeto>
+		
+		<objeto path="modelos/clouds/Cloud4.obj" scale="70" shader="3">
+            <orientation x="1" y="0" z="0" />
+            <position x="210" y="150" z="-35" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0" />
+        </objeto>
+		
+		<objeto path="modelos/clouds/Cloud5.obj" scale="50" shader="3">
+            <orientation x="1" y="0" z="0" />
+            <position x="160" y="130" z="-205" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0" />
+        </objeto>
+		
+		<objeto path="modelos/clouds/Cloud6.obj" scale="50" shader="3">
+            <orientation x="1" y="0" z="0" />
+            <position x="100" y="180" z="-215" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0" />
+        </objeto>
+		
+		<objeto path="modelos/clouds/Cloud8.obj" scale="50" shader="3">
+            <orientation x="1" y="0" z="0" />
+            <position x="180" y="90" z="-135" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0" />
+        </objeto>		
+
     </objetos>
 </file>
