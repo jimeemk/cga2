@@ -141,7 +141,7 @@ void init(void)
 
 	//init camera
 	Camera* camera = new Camera(vec3(210.f, 60.f, -200.f), half_pi<float>(), 0.f, 65.f, 4.0f / 3.0f, 0.01f, 500.f, 10.f);
-	Light* light1 = new Light(vec3(190, 50, -100));
+	Light* light1 = new Light(vec3(185,80, -206));
 	Light* light2 = new Light(vec3(50, 50, -100));
 	Light* light3 = new Light(vec3(100, 25, -150));
 	Light* light4 = new Light(vec3(-500, 20, -30));
@@ -169,7 +169,7 @@ void init(void)
 
 void draw(SDL_Window* window)
 {
-	glClearColor(0.3, 0.3, 0.3, 1.0); // set background colour
+	glClearColor(0.0, 0.66, 0.89, 1.0); // set background colour
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 	
 	// Create perspective projection matrix
