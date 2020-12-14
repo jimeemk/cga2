@@ -34,8 +34,9 @@ class Camera
 {
 public:
 	Camera();
-	Camera(vec3, float, float, float, float, float, float, float); //no recibe modo de la camara, default = walk
+	Camera(vec3, float, float, float, float, float, float, float, bool); //no recibe modo de la camara, default = walk
 	vec3 getPosition();
+	void setPosition(vec3 pos);
 	mat4 getViewMatrix();
 	mat4 getProjectionMatrix();
 	void getFrustum(plane[6]);
@@ -56,6 +57,7 @@ private:
 	mat4 view_matrix;
 	mat4 projection_matrix;
 	plane frustum[6];
+	bool perspectiveMode;
 	float fovy;
 	float aspect;
 	float tnear;

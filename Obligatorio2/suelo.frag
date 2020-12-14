@@ -1,6 +1,11 @@
 #version 400 core
 out vec4 FragColor;
 
+struct DirLight {
+    vec3 direction;
+	vec3 color;
+};
+
 struct PointLight {
     vec3 position;
     vec3 color;
@@ -18,18 +23,19 @@ in vec2 TexCoords;
 
 uniform vec3 viewPos; 
 uniform PointLight pointLights[NUM_POINT_LIGHTS];
+uniform DirLight directionalLight;
 uniform sampler2D texture_height;
 
 varying vec4 vColor;
 
 vec4 CalcPointLight(PointLight light, vec3 normal, vec3 fragPos, vec3 viewDir);
-
+vec4 CalcDirLight(DirLight light, vec3 normal, vec3 viewDir);
 
 void main()
 {
     vec3 norm = normalize(cross(dFdx(FragPos), dFdy(FragPos)));
     vec3 viewDir = normalize(viewPos - FragPos);
-    vec4 result = vec4(0);
+    vec4 result = CalcDirLight(directionalLight, norm, viewDir);
     for (int i = 0; i < NUM_POINT_LIGHTS; i++) {
         result += CalcPointLight(pointLights[i], norm, FragPos, viewDir);
     }
@@ -57,4 +63,24 @@ vec4 CalcPointLight(PointLight light, vec3 normal, vec3 fragPos, vec3 viewDir) {
     
     vec4 result = (vec4(ambient,1.0) + vec4(diffuse,1.0) + vec4(specular,1.0)) * vColor * attenuation;
     return result;
+}
+
+// calculates the color when using a directional light.
+vec4 CalcDirLight(DirLight light, vec3 normal, vec3 viewDir)
+{
+    vec3 lightDir = normalize(-light.direction);
+    // ambient shading
+    float ambientStrength = 0.2;    
+    // diffuse shading
+    float diff = max(dot(normal, lightDir), 0.0);
+    // specular shading
+    vec3 reflectDir = reflect(-lightDir, normal);
+    float spec = pow(max(dot(viewDir, reflectDir), 0.0), 32);
+    float specularStrength = 0.1;
+
+    // combine results
+    vec3 ambient =  ambientStrength * light.color;
+    vec3 diffuse = diff * light.color;;
+    vec3 specular = specularStrength * spec * vec3(1);;
+    return (vec4(ambient, 1) + vec4(diffuse, 1) + vec4(specular, 1)) * vColor;
 }

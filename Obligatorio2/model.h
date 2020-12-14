@@ -26,6 +26,7 @@ public:
     vector<Texture> textures_loaded;	// stores all the textures loaded so far, optimization to make sure textures aren't loaded more than once.
     vector<Mesh>    meshes;
     string directory;
+    string p;
     bool gammaCorrection;
     glm::vec3 min;
     glm::vec3 max;
@@ -34,6 +35,7 @@ public:
     // constructor, expects a filepath to a 3D model.
     Model(string const& path, bool gamma = false) : gammaCorrection(gamma)
     {
+        p = path;
         firstTime = true;
         loadModel(path);
     }
@@ -138,7 +140,7 @@ private:
             vector.y = mesh->mVertices[i].y;
             vector.z = mesh->mVertices[i].z;
             vertex.Position = vector;
-
+            
             if (firstTime)
             {
                 firstTime = false;
@@ -201,7 +203,12 @@ private:
         // diffuse: texture_diffuseN
         // specular: texture_specularN
         // normal: texture_normalN
-
+        aiColor3D color;
+        material->Get(AI_MATKEY_COLOR_DIFFUSE, color);
+        glm::vec3 diffuseColor;
+        diffuseColor.x = color.r;
+        diffuseColor.y = color.g;
+        diffuseColor.z = color.b;
         // 1. diffuse maps
         vector<Texture> diffuseMaps = loadMaterialTextures(material, aiTextureType_DIFFUSE, "texture_diffuse");
         textures.insert(textures.end(), diffuseMaps.begin(), diffuseMaps.end());
@@ -215,8 +222,10 @@ private:
         std::vector<Texture> heightMaps = loadMaterialTextures(material, aiTextureType_AMBIENT, "texture_height");
         textures.insert(textures.end(), heightMaps.begin(), heightMaps.end());
 
+
         // return a mesh object created from the extracted mesh data
-        return Mesh(vertices, indices, textures);
+        Mesh m = Mesh(vertices, indices, textures, diffuseColor);
+        return m;
     }
 
     // checks all material textures of a given type and loads the textures if they're not loaded yet.
@@ -224,15 +233,44 @@ private:
     vector<Texture> loadMaterialTextures(aiMaterial* mat, aiTextureType type, string typeName)
     {
         vector<Texture> textures;
-        for (unsigned int i = 0; i < mat->GetTextureCount(type); i++)
+        if (p.at(p.size() - 1) != 'x')
         {
-            aiString str;
-            mat->GetTexture(type, i, &str);
+            for (unsigned int i = 0; i < mat->GetTextureCount(type); i++)
+            {
+                aiString str;
+                mat->GetTexture(type, i, &str);
+                // check if texture was loaded before and if so, continue to next iteration: skip loading a new texture
+                bool skip = false;
+                for (unsigned int j = 0; j < textures_loaded.size(); j++)
+                {
+                    if (std::strcmp(textures_loaded[j].path.data(), str.C_Str()) == 0)
+                    {
+                        textures.push_back(textures_loaded[j]);
+                        skip = true; // a texture with the same filepath has already been loaded, continue to next one. (optimization)
+                        break;
+                    }
+                }
+                if (!skip)
+                {   // if texture hasn't been loaded already, load it
+
+                    Texture texture;
+                    texture.id = TextureFromFile(str.C_Str(), this->directory);
+                    texture.type = typeName;
+                    texture.path = str.C_Str();
+                    textures.push_back(texture);
+                    textures_loaded.push_back(texture);  // store it as texture loaded for entire model, to ensure we won't unnecesery load duplicate textures.
+                }
+            }
+        }
+        else
+        {
+            string st=p.substr(p.find_last_of('/')+1,p.size()-1);
+            st = st.substr(0,  st.size()- 4 )+ "_albedo.jpg";
             // check if texture was loaded before and if so, continue to next iteration: skip loading a new texture
             bool skip = false;
             for (unsigned int j = 0; j < textures_loaded.size(); j++)
             {
-                if (std::strcmp(textures_loaded[j].path.data(), str.C_Str()) == 0)
+                if (std::strcmp(textures_loaded[j].path.data(), st.c_str()) == 0)
                 {
                     textures.push_back(textures_loaded[j]);
                     skip = true; // a texture with the same filepath has already been loaded, continue to next one. (optimization)
@@ -242,9 +280,9 @@ private:
             if (!skip)
             {   // if texture hasn't been loaded already, load it
                 Texture texture;
-                texture.id = TextureFromFile(str.C_Str(), this->directory);
+                texture.id = TextureFromFile(st.c_str(), p.substr(0,p.find_last_of('/')));
                 texture.type = typeName;
-                texture.path = str.C_Str();
+                texture.path = st.c_str();
                 textures.push_back(texture);
                 textures_loaded.push_back(texture);  // store it as texture loaded for entire model, to ensure we won't unnecesery load duplicate textures.
             }

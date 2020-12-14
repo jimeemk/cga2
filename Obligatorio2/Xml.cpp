@@ -53,14 +53,25 @@ void loadXMLEntities(const char* ruta)
 						float x = stof(dir->Attribute("x"));
 						float y = stof(dir->Attribute("y"));
 						float z = stof(dir->Attribute("z"));
-						d = vec3(x, y, z);
+						if (x > 0 && z == 0 && y == 0)
+							d = vec3(x, y, z + 0.0001);
+						else
+							d = vec3(x, y, z);
 					}
 					std::string path = obj_ele->Attribute("path");
 					float scale = stof(obj_ele->Attribute("scale"));
 					unsigned int shaderId = stof(obj_ele->Attribute("shader"));
-
+					unsigned int hasTexture = stof(obj_ele->Attribute("hasTexture"));
+					bool ht = false;
+					int se = 1;
+					if (hasTexture == 1)
+					{
+						ht = true;
+						se = 0;
+					}
 					Settings* set = Settings::getInstance();
-					Object* obj = new Object(path, o, scale, p, u, d, set->getShaders().at(shaderId));
+
+					Object* obj = new Object(path, o, scale, p, u, d, set->getShaders().at(se),ht);
 					set->addEntity(obj);
 					obj_ele = obj_ele->NextSiblingElement("objeto");
 				}
@@ -87,27 +98,35 @@ void saveXMLEntities(const char* ruta)
 
 			TiXmlElement* objeto = new TiXmlElement("objeto");
 			objeto->SetAttribute("path", o->getPath().c_str());
-			objeto->SetAttribute("scale", o->getScale());
-			objeto->SetAttribute("shader", 3);
+			objeto->SetDoubleAttribute("scale", o->getScale());
+			if (o->getHasTexture())
+			{
+				objeto->SetAttribute("hasTexture", 1);
+				objeto->SetAttribute("shader", 0);
+			}
+			else {
+				objeto->SetAttribute("hasTexture", 0);
+				objeto->SetAttribute("shader", 1);
+			}
 			TiXmlElement* orientation = new TiXmlElement("orientation");
-			orientation->SetAttribute("x", o->getOrientation().x);
-			orientation->SetAttribute("y", o->getOrientation().y);
-			orientation->SetAttribute("z", o->getOrientation().z);
+			orientation->SetDoubleAttribute("x", o->getOrientation().x);
+			orientation->SetDoubleAttribute("y", o->getOrientation().y);
+			orientation->SetDoubleAttribute("z", o->getOrientation().z);
 			objeto->LinkEndChild(orientation);
 			TiXmlElement* position = new TiXmlElement("position");
-			position->SetAttribute("x", o->getPosition().x);
-			position->SetAttribute("y", o->getPosition().y);
-			position->SetAttribute("z", o->getPosition().z);
+			position->SetDoubleAttribute("x", o->getPosition().x);
+			position->SetDoubleAttribute("y", o->getPosition().y);
+			position->SetDoubleAttribute("z", o->getPosition().z);
 			objeto->LinkEndChild(position);
 			TiXmlElement* up = new TiXmlElement("up");
-			up->SetAttribute("x", o->getUp().x);
-			up->SetAttribute("y", o->getUp().y);
-			up->SetAttribute("z", o->getUp().z);
+			up->SetDoubleAttribute("x", o->getUp().x);
+			up->SetDoubleAttribute("y", o->getUp().y);
+			up->SetDoubleAttribute("z", o->getUp().z);
 			objeto->LinkEndChild(up);
 			TiXmlElement* direction = new TiXmlElement("direction");
-			direction->SetAttribute("x", o->getDirection().x);
-			direction->SetAttribute("y", o->getDirection().y);
-			direction->SetAttribute("z", o->getDirection().z);
+			direction->SetDoubleAttribute("x", o->getDirection().x);
+			direction->SetDoubleAttribute("y", o->getDirection().y);
+			direction->SetDoubleAttribute("z", o->getDirection().z);
 			objeto->LinkEndChild(direction);
 
 			

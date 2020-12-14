@@ -1,10 +1,11 @@
 #include "Object.h"
 
-Object::Object(string p, glm::vec3 ori, float esc, glm::vec3 pos, glm::vec3 u, glm::vec3 dir, Shader* sh) : Entity(pos,u,dir,sh)
+Object::Object(string p, glm::vec3 ori, float esc, glm::vec3 pos, glm::vec3 u, glm::vec3 dir, Shader* sh, bool ht) : Entity(pos,u,dir,sh)
 {
     path = p;
     orientation = ori;
     scale = esc;
+    hasTexture = ht;
     modelMatrix = mat4(1.f);
     model = new Model(p);
     initObject();
@@ -37,6 +38,11 @@ glm::vec3 Object::getOrientation()
 glm::mat4 Object::getModelMatrix()
 {
     return modelMatrix;
+}
+
+bool Object::getHasTexture()
+{
+    return hasTexture;
 }
 
 float Object::getScale()
@@ -257,6 +263,7 @@ void Object::escMenosX()//2
 {
     modelMatrix = mat4(1.f);
     scale -= 0.2;
+    cout <<"Scale: "<< scale <<'\n';
     initObject();
 }
 

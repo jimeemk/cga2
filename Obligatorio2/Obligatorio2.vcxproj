@@ -192,14 +192,19 @@
     <ClInclude Include="Xml.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\..\..\..\..\Downloads\glsl-atmosphere-master\glsl-atmosphere-master\index.glsl" />
     <None Include="animated_model.frag" />
     <None Include="animated_model.vert" />
     <None Include="arcoiris.frag" />
     <None Include="arcoiris.vert" />
+    <None Include="atmosphere.frag" />
+    <None Include="atmosphere.vert" />
     <None Include="heightMap.frag" />
     <None Include="heightMap.vert" />
     <None Include="light_cube.frag" />
     <None Include="light_cube.vert" />
+    <None Include="material.frag" />
+    <None Include="material.vert" />
     <None Include="simple.frag" />
     <None Include="simple.vert" />
     <None Include="suelo.frag" />

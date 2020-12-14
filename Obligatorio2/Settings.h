@@ -53,4 +53,5 @@ public:
 	vec3 clampToScene(vec3);
 	static void SetLightsToShader(Shader* shader);
 	bool colliding(vec3, vec3);
+	void changeEntity(Entity* o, Entity* n);
 };

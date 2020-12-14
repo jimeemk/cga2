@@ -191,7 +191,7 @@ void Settings::setTerrainTexture()
 	vector<FIBITMAP*> imagenes;
 	vector<std::string> paths;
 	vector<int> tops;
-	paths.push_back("modelos/parteAdentro2.jpg");
+	paths.push_back("modelos/parteAdentro8.jpg");
 	paths.push_back("modelos/parteAfuera.jpg");
 	paths.push_back("modelos/m1.jpg");
 	paths.push_back("modelos/m2.jpg");
@@ -337,11 +337,9 @@ vec3 Settings::clampToScene(vec3 point) {
 
 void Settings::SetLightsToShader(Shader* shader) {
 
-	//// directional light
-	//shader->setVec3("dirLight.direction", -0.2f, -1.0f, -0.3f);
-	//shader->setVec3("dirLight.ambient", 0.05f, 0.05f, 0.05f);
-	//shader->setVec3("dirLight.diffuse", 0.4f, 0.4f, 0.4f);
-	//shader->setVec3("dirLight.specular", 0.5f, 0.5f, 0.5f);
+	// directional light
+	shader->setVec3("directionalLight.direction", 0, -1.0f, -0.3f);
+	shader->setVec3("directionalLight.color", 1, 1, 1);
 	
 	// point light 1
 	shader->setVec3("pointLights[0].position", Settings::getInstance()->getLights()[0]->position);
@@ -376,4 +374,15 @@ bool Settings::colliding(vec3 bound_min, vec3 bound_max)
 {
 	for (int i = 0; i < entities.size(); i++) if (entities[i]->intersectionBoxBounds(bound_min, bound_max)) return true;
 	return false;
+}
+
+void Settings::changeEntity(Entity* o, Entity* n)
+{
+	for (int i = 0; i < entities.size(); i++)
+	{
+		if (o->getPosition() == entities.at(i)->getPosition())
+		{
+			o = n;
+		}
+	}
 }
