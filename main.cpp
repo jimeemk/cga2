@@ -170,9 +170,9 @@ void init(void)
 	//set->addEntity(terrainc);
 	settings->addEntity(newObj);
 
-	std::cout << "Total entities: " << settings->getEntities().size() << std::endl;
-	loadXMLEntities("xml/objetos.xml");
 	
+	loadXMLEntities("xml/objetos.xml");
+	std::cout << "Total entities: " << settings->getEntities().size() << std::endl;
 	glEnable(GL_DEPTH_TEST); // enable depth testing
 	//glEnable(GL_CULL_FACE); // enable back face culling - try this and see what happens!
 
@@ -239,7 +239,7 @@ void draw(SDL_Window* window)
 	Shader* actualShader;
 
 	if (wireframe) glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-
+	int contador = 0;
 	for (int i = 0; i < set->getEntities().size(); i++)
 	{
 		model = set->getEntities().at(i)->getModelMatrix();
@@ -257,15 +257,17 @@ void draw(SDL_Window* window)
 		vec3 center;
 		float radio;
 		set->getEntities().at(i)->getSphericalBounds(center, radio);
-		if (set->getNowCamera()->intersectionSphereFrustum(center, radio) || true)
+		
+		if (set->getNowCamera()->intersectionSphereFrustum(center, radio))
 		{
+			contador++;
 			if (!draw_bounds) set->getEntities().at(i)->draw();
 			else set->getEntities()[i]->drawBounds();
 		}
 	}
 
 	drawLights(projection, view);
-	//skybox->Draw(view, projection);
+	skybox->Draw(view, projection);
 
 	if (wireframe) glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 	
