@@ -116,7 +116,7 @@ void init(void)
 	std::vector<Texture> texture_water;
 	Texture tagua = { Settings::TextureFromFile("modelos/grass2.jpg"), "texture_diffuse", "modelos/grass2.jpg" };
 	texture_water.push_back(tagua);
-	Water* water = new Water(vec3(-60.f, 5.f, 60.f), vec3(0.f, 1.f, 0.f), vec3(1.f, 0.f, 0.f), waterShader, 31, 1520, 1520, texture_water);
+	Water* water = new Water(vec3(-600.f, 5.f, 600.f), vec3(0.f, 1.f, 0.f), vec3(1.f, 0.f, 0.f), waterShader, 100, 1520, 1520, texture_water);
 
 	//Texture t = { Settings::TextureFromFile("modelos/isla2.jpg"), "texture_height", "modelos/isla2.jpg" };
 	//text.push_back(t);
@@ -183,8 +183,8 @@ void init(void)
 	//glEnable(GL_CULL_FACE); // enable back face culling - try this and see what happens!
 
 	//init camera
-	camera = new Camera(vec3(210.f, 60.f, -200.f), half_pi<float>(), 0.f, 65.f, 4.0f / 3.0f, 0.01f, 500.f, 2.f, false);
-	camera2 = new Camera(vec3(210.f, 200.f, -200.f), half_pi<float>(), 0.f, 65.f, 4.0f / 3.0f, 0.01f, 500.f, 2.f, true);
+	camera = new Camera(vec3(210.f, 60.f, -200.f), half_pi<float>(), 0.f, 65.f, 4.0f / 3.0f, 0.01f, 500.f, 6.f, false);
+	camera2 = new Camera(vec3(210.f, 200.f, -200.f), half_pi<float>(), 0.f, 65.f, 4.0f / 3.0f, 0.01f, 500.f, 6.f, true);
 	Light* light1 = new Light(vec3(185,80, -206));
 //	Light* light1 = new Light(vec3(0, 0, 0));
 	Light* light2 = new Light(vec3(50, 50, -100));

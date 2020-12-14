@@ -59,7 +59,7 @@ void main()
     
     float fresnel = Eta + (1.0 - Eta) * pow(max(0.0, 1.0 - dot(viewDir, norm)), 5.0);
 
-    FragColor = mix(lightComponent, reflectionComponent, fresnel);
+    FragColor = mix(lightComponent, reflectionComponent*0.6, fresnel);
 }
 
 vec4 CalcReflectionComponent(vec3 normal, vec3 viewPos, vec3 point)

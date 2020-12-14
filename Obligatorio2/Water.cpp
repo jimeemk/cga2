@@ -86,16 +86,16 @@ void Water::setupWater()
 
 	// Wave One
 	waveParameters[0].x = 19.0f;
-	waveParameters[0].y = 1.7f;
-	waveParameters[0].z = 12.0f;
+	waveParameters[0].y = 2.7f;
+	waveParameters[0].z = 24.0f;
 	waveParameters[0].w = 0.8f;
 	waveDirections[0].x = +1.0f;
 	waveDirections[0].y = +1.0f;
 
 	// Wave Two
 	waveParameters[1].x = 7.0f; //speed
-	waveParameters[1].y = 0.6f; //amplitude
-	waveParameters[1].z = 7.0f; //wavelength
+	waveParameters[1].y = 1.6f; //amplitude
+	waveParameters[1].z = 14.0f; //wavelength
 	waveParameters[1].w = 0.8f;
 	waveDirections[1].x = +1.0f;
 	waveDirections[1].y = +0.0f;
