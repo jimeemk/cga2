@@ -112,7 +112,7 @@ void init(void)
 	AnimatedObject* policia = new AnimatedObject("models/policia/Dancing Twerk.dae", glm::vec3(0, 0, -1), 2, glm::vec3(172.5, 34, -189.3), glm::vec3(0, 1, 0), glm::vec3(0, 0, -1), anim);
 	AnimatedObject* zombie1 = new AnimatedObject("models/zombie2/Thriller Part 1.dae", glm::vec3(0, 0, -1), 2.5, glm::vec3(158.7, 33.8, -168), glm::vec3(0, 1, 0), glm::vec3(0, 0, 1), anim);
 	//AnimatedObject* zombie2 = new AnimatedObject("models/zombie/Thriller Part 3.dae", glm::vec3(0, 0, -1), 3, glm::vec3(162.5, 34, -165), glm::vec3(0, 1, 0), glm::vec3(0, 0, 1), anim);
-	Water* water = new Water(vec3(-60.f, 0.5f, 60.f), vec3(0.f, 1.f, 0.f), vec3(1.f, 0.f, 0.f), waterShader, 35, 520, 520, "modelos/water1.jpg");
+	Water* water = new Water(vec3(-60.f, 0.5f, 60.f), vec3(0.f, 1.f, 0.f), vec3(1.f, 0.f, 0.f), waterShader, 35, 1520, 1520, "modelos/water1.jpg");
 	std::vector<Texture> text;
 	Texture t2 = { Settings::TextureFromFile("modelos/grass2.jpg"), "texture_diffuse", "modelos/grass2.jpg" };
 	text.push_back(t2);
@@ -265,7 +265,7 @@ void draw(SDL_Window* window)
 	}
 
 	drawLights(projection, view);
-	skybox->Draw(view, projection);
+	//skybox->Draw(view, projection);
 
 	if (wireframe) glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 	

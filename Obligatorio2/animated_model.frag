@@ -32,6 +32,7 @@ uniform PointLight point_light;
 uniform vec3 view_pos;
 
 
+
 vec3 CalcPointLight(PointLight light, vec3 normal, vec3 view_dir, vec3 frag_pos)
 {
 	vec3 light_dir = normalize(light.position - frag_pos);

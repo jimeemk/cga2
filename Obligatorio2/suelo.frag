@@ -31,6 +31,17 @@ varying vec4 vColor;
 vec4 CalcPointLight(PointLight light, vec3 normal, vec3 fragPos, vec3 viewDir);
 vec4 CalcDirLight(DirLight light, vec3 normal, vec3 viewDir);
 
+float getFogFactor(float d)
+{
+    const float FogMax = 120.0;
+    const float FogMin = 10.0;
+
+    if (d>=FogMax) return 1;
+    if (d<=FogMin) return 0;
+
+    return 1 - (FogMax - d) / (FogMax - FogMin);
+}
+
 void main()
 {
     vec3 norm = normalize(cross(dFdx(FragPos), dFdy(FragPos)));
@@ -40,7 +51,12 @@ void main()
         result += CalcPointLight(pointLights[i], norm, FragPos, viewDir);
     }
 
-    FragColor = result;
+    float alpha = 1.f;
+    float d = distance(viewPos, FragPos);
+    alpha = getFogFactor(d);
+    
+    vec3 res=mix(vec3(result.x,result.y,result.z), vec3(0.42,0.45,0.5), alpha);
+    FragColor = vec4(res,1.0);
 } 
 
 vec4 CalcPointLight(PointLight light, vec3 normal, vec3 fragPos, vec3 viewDir) {

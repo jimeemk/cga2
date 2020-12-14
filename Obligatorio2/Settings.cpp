@@ -241,16 +241,16 @@ void Settings::setTerrainTexture()
 				{
 					primeraVez = false;
 					FreeImage_GetPixelColor(imagenes.at(l), (int)(j), (int)(k), &col);
-					maxColor.rgbRed = (int)((float)(col.rgbRed * tops.at(l)) / (float)60.0);
+					maxColor.rgbRed = (int)((float)(col.rgbRed * tops.at(l)) / (float)150.0);
 					maxColor.rgbGreen = 0;//Ojo con esto, lleno solo el rojo
 					maxColor.rgbBlue = 0;
 				}
 				else
 				{
 					FreeImage_GetPixelColor(imagenes.at(l), (int)(j), (int)(k), &col);
-					if ((float)(col.rgbRed * tops.at(l)) / (float)60.0 > maxColor.rgbRed)
+					if ((float)(col.rgbRed * tops.at(l)) / (float)150.0 > maxColor.rgbRed)
 					{
-						maxColor.rgbRed = (int)((float)(col.rgbRed * tops.at(l)) / (float)60.0);
+						maxColor.rgbRed = (int)((float)(col.rgbRed * tops.at(l)) / (float)150.0);
 					}
 				}
 					
@@ -274,9 +274,9 @@ float Settings::getHeightTerrain(float x, float z)
 	unsigned w = FreeImage_GetWidth(terrainTexture); 
 	unsigned h = FreeImage_GetHeight(terrainTexture);
 	bool col = FreeImage_GetPixelColor(terrainTexture, (int)((x/400.0)*w), (int)((z/-400.0)*h), &color);
-	//Considero que el top de todo es 60, por lo que para poner los colores, tengo que saber que despues lo voy a multiplicar por 60
+	//Considero que el top de todo es 150, por lo que para poner los colores, tengo que saber que despues lo voy a multiplicar por 60
 	if (col)
-		return (color.rgbRed / 255.0) * 60;
+		return (color.rgbRed / 255.0) * 150;
 	else
 		return -1;
 }

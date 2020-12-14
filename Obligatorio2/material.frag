@@ -32,6 +32,16 @@ uniform sampler2D texture_diffuse1;
 vec4 CalcPointLight(PointLight light, vec3 normal, vec3 fragPos, vec3 viewDir);
 vec4 CalcDirLight(DirLight light, vec3 normal, vec3 viewDir);
 
+float getFogFactor(float d)
+{
+    const float FogMax = 120.0;
+    const float FogMin = 10.0;
+
+    if (d>=FogMax) return 1;
+    if (d<=FogMin) return 0;
+
+    return 1 - (FogMax - d) / (FogMax - FogMin);
+}
 
 void main()
 {
@@ -42,7 +52,13 @@ void main()
         result += CalcPointLight(pointLights[i], norm, FragPos, viewDir);
     }
 
-    FragColor = result;
+    
+    float alpha = 1.f;
+    float d = distance(viewPos, FragPos);
+    alpha = getFogFactor(d);
+    
+    vec3 res=mix(vec3(result.x,result.y,result.z), vec3(0.42,0.45,0.5), alpha);
+    FragColor = vec4(res,1.0);
 } 
 
 
@@ -64,7 +80,7 @@ vec4 CalcPointLight(PointLight light, vec3 normal, vec3 fragPos, vec3 viewDir) {
 
     float attenuation = (1 / (light.linear * length(light.position - FragPos)));
     
-    vec4 result = (vec4(diffuse,1.0)) * attenuation*0.7;
+    vec4 result = (vec4(diffuse,0.1)) * attenuation*0.7;
     return result;
 }
 

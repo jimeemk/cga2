@@ -27,6 +27,17 @@ uniform DirLight directionalLight;
 vec4 CalcPointLight(PointLight light, vec3 normal, vec3 fragPos, vec3 viewDir);
 vec4 CalcDirLight(DirLight light, vec3 normal, vec3 viewDir);
 
+float getFogFactor(float d)
+{
+    const float FogMax = 300.0;
+    const float FogMin = 10.0;
+
+    if (d>=FogMax) return 1;
+    if (d<=FogMin) return 0;
+
+    return 1 - (FogMax - d) / (FogMax - FogMin);
+}
+
 void main()
 {  	
     vec3 norm = normalize(v_Normal);
@@ -38,6 +49,13 @@ void main()
     }    
     
     FragColor = result;
+
+    float alpha = 1.f;
+    float d = distance(viewPos, v_FragPos);
+    alpha = getFogFactor(d);
+    
+    vec3 res=mix(vec3(result.x,result.y,result.z), vec3(result.x,result.y,result.z)*0.4, alpha);
+    FragColor = vec4(res,1.0);
 }
 
 vec4 CalcPointLight(PointLight light, vec3 normal, vec3 fragPos, vec3 viewDir) {
