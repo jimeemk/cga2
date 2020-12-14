@@ -69,8 +69,8 @@ vec4 CalcPointLight(PointLight light, vec3 normal, vec3 fragPos, vec3 viewDir) {
   	
     // diffuse
     vec3 lightDir = normalize(light.position - FragPos);
-   // float diff = max(dot(normal, lightDir), 0.0);
-    vec3 diffuse = vec3(diffuser,diffuseg,diffuseb);
+    float diff = max(dot(normal, lightDir), 0.0);
+    vec3 diffuse = diff * vec3(diffuser,diffuseg,diffuseb);
     
     // specular
     float specularStrength = 0.1;
