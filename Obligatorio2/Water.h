@@ -6,13 +6,15 @@
 #include "SDL.h"
 #include "SDL_opengl.h"
 
+#define NUMBERWAVES 4
+
 using namespace glm;
 
 class Water : public Entity
 {
 public:
 	Water();
-	Water(vec3 pos, vec3 u, vec3 dir, Shader* sp, int den, float width, float height, std::string text);
+	Water(vec3 pos, vec3 u, vec3 dir, Shader* sp, int den, float width, float height, std::vector<Texture> texture);
 	glm::vec3 getPosition();
 	glm::vec3 getDirection();
 	Shader* getShaderProgram();
@@ -46,9 +48,14 @@ private:
 	float width;
 	float height;
 	Mesh* mesh;
-	std::string texture;
+	std::vector<Texture> texture;
 	void setupWater();
 	int last_time;
 	float c;
+	unsigned int terrainColorTexture;
+	vec4 waveParameters[NUMBERWAVES];
+	vec2 waveDirections[NUMBERWAVES];
+	void setWavesValues();
+	unsigned int id;
 };
 

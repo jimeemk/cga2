@@ -1,0 +1,16 @@
+﻿  Building Custom Rule C:/Users/jairo/Downloads/bullet-2.82-r2704/src/BulletSoftBody/CMakeLists.txt
+  btSoftBody.cpp
+C:\Users\jairo\Downloads\bullet-2.82-r2704\src\BulletSoftBody\btSoftBody.cpp(3338,47): warning C4244: '=': conversión de '__int64' a 'int'; posible pérdida de datos
+C:\Users\jairo\Downloads\bullet-2.82-r2704\src\BulletSoftBody\btSoftBody.cpp(3339,47): warning C4244: '=': conversión de '__int64' a 'int'; posible pérdida de datos
+C:\Users\jairo\Downloads\bullet-2.82-r2704\src\BulletSoftBody\btSoftBody.cpp(3363,48): warning C4244: '=': conversión de '__int64' a 'int'; posible pérdida de datos
+C:\Users\jairo\Downloads\bullet-2.82-r2704\src\BulletSoftBody\btSoftBody.cpp(3384,49): warning C4244: '=': conversión de '__int64' a 'int'; posible pérdida de datos
+C:\Users\jairo\Downloads\bullet-2.82-r2704\src\BulletSoftBody\btSoftBody.cpp(3408,38): warning C4244: '=': conversión de '__int64' a 'int'; posible pérdida de datos
+  btSoftBodyConcaveCollisionAlgorithm.cpp
+  btSoftBodyHelpers.cpp
+  btSoftBodyRigidBodyCollisionConfiguration.cpp
+  btSoftRigidCollisionAlgorithm.cpp
+  btSoftRigidDynamicsWorld.cpp
+  btSoftSoftCollisionAlgorithm.cpp
+  btDefaultSoftBodySolver.cpp
+  Generando código...
+  BulletSoftBody.vcxproj -> C:\Users\jairo\Downloads\bullet-2.82-r2704\lib\Release\BulletSoftBody.lib

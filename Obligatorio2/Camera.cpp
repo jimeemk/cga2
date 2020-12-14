@@ -114,11 +114,8 @@ void Camera::updatePosition(float delta, movement_direction d)
 	//Si estoy caminando la altura es la del terreno
 	if (mode == WALK) position.y = Settings::getInstance()->getHeightTerrain(position.x, position.z) + size * 0.5f;
 
-	vec3 min_camera = position - vec3(size * 0.5f);
-	vec3 max_camera = position + vec3(size * 0.5f);
-
 	//Si estoy caminando y la altura del terreno es -1 (fuera de los limetes) o choco con alguna AABB
-	if ( (mode == WALK && position.y == -1 + size * 0.5f) || Settings::getInstance()->colliding(min_camera, max_camera)) position = last_position;
+	if (mode == WALK && position.y == -1 + size * 0.5f) position = last_position;
 	else {
 		vec3 target = position + spherical_to_cartesian(horizontalAngle, verticalAngle);
 		view_matrix = lookAt(position, target, u);

@@ -112,8 +112,12 @@ void init(void)
 	//Plane* p6 = new Plane("modelos/cordon.jpg", 20, 1, glm::vec3(19, 0.09, 1), glm::vec3(-9.5, -0.99, 9.5), glm::vec3(0, 1, 0), glm::vec3(0, 0, 1), lightShader);//Cordon
 	//Plane* p7 = new Plane("modelos/vereda.jpg", 40, 40, glm::vec3(18.9, 1, 18.9), glm::vec3(9.45, -0.89, -9.45), glm::vec3(0, 0, 1), glm::vec3(0, 1, 0), lightShader);//Vereda
 	//Plane* p8 = new Plane("modelos/grass.jpg", 10, 10, glm::vec3(200, 1.f, 200), glm::vec3(0.f,0.2,0.f), glm::vec3(0, 0, -1), glm::vec3(0, 1, 0), lightShader);//Terreno
-	Water* water = new Water(vec3(-60.f, 5.f, 60.f), vec3(0.f, 1.f, 0.f), vec3(1.f, 0.f, 0.f), waterShader, 35, 520, 520, "modelos/water1.jpg");
 	std::vector<Texture> text;
+	std::vector<Texture> texture_water;
+	Texture tagua = { Settings::TextureFromFile("modelos/grass2.jpg"), "texture_diffuse", "modelos/grass2.jpg" };
+	texture_water.push_back(tagua);
+	Water* water = new Water(vec3(-60.f, 5.f, 60.f), vec3(0.f, 1.f, 0.f), vec3(1.f, 0.f, 0.f), waterShader, 500, 520, 520, texture_water);
+
 	//Texture t = { Settings::TextureFromFile("modelos/isla2.jpg"), "texture_height", "modelos/isla2.jpg" };
 	//text.push_back(t);
 	Texture t2 = { Settings::TextureFromFile("modelos/grass2.jpg"), "texture_diffuse", "modelos/grass2.jpg" };
@@ -194,7 +198,7 @@ void init(void)
 	current_time = SDL_GetTicks();
 
 	//init speed
-	speed = 10.f;
+	speed = 20.f;
 
 	//init mouse variables
 	sensitivity = 0.10f;
@@ -267,10 +271,6 @@ void draw(SDL_Window* window)
 	if (wireframe) glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 	
 	SDL_GL_SwapWindow(window); // swap buffers
-
-	//vec3 camPos=set->getNowCamera()->getPosition();
-	//cout << "Camara en" << camPos.x << ";" << camPos.z << "\n";
-	//cout << "Altura en este lugar:" << set->getHeightTerrain(camPos.x, camPos.z) << "\n";
 }
 
 

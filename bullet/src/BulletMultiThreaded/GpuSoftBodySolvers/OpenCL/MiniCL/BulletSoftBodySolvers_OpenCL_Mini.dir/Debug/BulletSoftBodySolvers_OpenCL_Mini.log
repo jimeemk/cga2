@@ -1,0 +1,12 @@
+﻿  Building Custom Rule C:/Users/jairo/Downloads/bullet-2.82-r2704/bullet-2.82-r2704/src/BulletMultiThreaded/GpuSoftBodySolvers/OpenCL/MiniCL/CMakeLists.txt
+  btSoftBodySolver_OpenCL.cpp
+C:\Users\jairo\Downloads\bullet-2.82-r2704\bullet-2.82-r2704\src\vectormath\sse\vec_aos.h(580,51): warning C4838: la conversión de 'unsigned int' en 'const int' requiere una conversión de restricción
+C:\Users\jairo\Downloads\bullet-2.82-r2704\bullet-2.82-r2704\src\vectormath\sse\vec_aos.h(580,63): warning C4838: la conversión de 'unsigned int' en 'const int' requiere una conversión de restricción
+C:\Users\jairo\Downloads\bullet-2.82-r2704\bullet-2.82-r2704\src\vectormath\sse\vec_aos.h(580,75): warning C4838: la conversión de 'unsigned int' en 'const int' requiere una conversión de restricción
+C:\Users\jairo\Downloads\bullet-2.82-r2704\bullet-2.82-r2704\src\vectormath\sse\vec_aos.h(580,87): warning C4838: la conversión de 'unsigned int' en 'const int' requiere una conversión de restricción
+C:\Users\jairo\Downloads\bullet-2.82-r2704\bullet-2.82-r2704\src\BulletMultiThreaded\GpuSoftBodySolvers\OpenCL\btSoftBodySolver_OpenCL.cpp(782,22): warning C4244: 'inicializando': conversión de '__int64' a 'int'; posible pérdida de datos
+C:\Users\jairo\Downloads\bullet-2.82-r2704\bullet-2.82-r2704\src\BulletMultiThreaded\GpuSoftBodySolvers\OpenCL\btSoftBodySolver_OpenCL.cpp(783,22): warning C4244: 'inicializando': conversión de '__int64' a 'int'; posible pérdida de datos
+C:\Users\jairo\Downloads\bullet-2.82-r2704\bullet-2.82-r2704\src\BulletMultiThreaded\GpuSoftBodySolvers\OpenCL\btSoftBodySolver_OpenCL.cpp(784,22): warning C4244: 'inicializando': conversión de '__int64' a 'int'; posible pérdida de datos
+C:\Users\jairo\Downloads\bullet-2.82-r2704\bullet-2.82-r2704\src\BulletMultiThreaded\GpuSoftBodySolvers\OpenCL\btSoftBodySolver_OpenCL.cpp(804,22): warning C4244: 'inicializando': conversión de '__int64' a 'int'; posible pérdida de datos
+C:\Users\jairo\Downloads\bullet-2.82-r2704\bullet-2.82-r2704\src\BulletMultiThreaded\GpuSoftBodySolvers\OpenCL\btSoftBodySolver_OpenCL.cpp(805,22): warning C4244: 'inicializando': conversión de '__int64' a 'int'; posible pérdida de datos
+  BulletSoftBodySolvers_OpenCL_Mini.vcxproj -> C:\Users\jairo\Downloads\bullet-2.82-r2704\bullet-2.82-r2704\src\BulletMultiThreaded\GpuSoftBodySolvers\OpenCL\MiniCL\Debug\BulletSoftBodySolvers_OpenCL_Mini_Debug.lib

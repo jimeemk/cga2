@@ -291,6 +291,3 @@ void Object::guardarEntity()//7
     cout << "escala:" << scale << "; \n";
 
 }
-
-
-    

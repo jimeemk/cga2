@@ -1,0 +1,22 @@
+﻿  Building Custom Rule C:/Users/jairo/Downloads/bullet-2.82-r2704/src/MiniCL/CMakeLists.txt
+  MiniCL.cpp
+C:\Users\jairo\Downloads\bullet-2.82-r2704\src\vectormath\sse\vec_aos.h(580,51): warning C4838: la conversión de 'unsigned int' en 'const int' requiere una conversión de restricción
+C:\Users\jairo\Downloads\bullet-2.82-r2704\src\vectormath\sse\vec_aos.h(580,63): warning C4838: la conversión de 'unsigned int' en 'const int' requiere una conversión de restricción
+C:\Users\jairo\Downloads\bullet-2.82-r2704\src\vectormath\sse\vec_aos.h(580,75): warning C4838: la conversión de 'unsigned int' en 'const int' requiere una conversión de restricción
+C:\Users\jairo\Downloads\bullet-2.82-r2704\src\vectormath\sse\vec_aos.h(580,87): warning C4838: la conversión de 'unsigned int' en 'const int' requiere una conversión de restricción
+C:\Users\jairo\Downloads\bullet-2.82-r2704\src\MiniCL\MiniCL.cpp(445,42): warning C4267: 'inicializando': conversión de 'size_t' a 'int'; posible pérdida de datos
+C:\Users\jairo\Downloads\bullet-2.82-r2704\src\MiniCL\MiniCL.cpp(514,40): warning C4267: 'argumento': conversión de 'size_t' a 'int'; posible pérdida de datos
+C:\Users\jairo\Downloads\bullet-2.82-r2704\src\MiniCL\MiniCL.cpp(521,44): warning C4267: '=': conversión de 'size_t' a 'int'; posible pérdida de datos
+C:\Users\jairo\Downloads\bullet-2.82-r2704\src\MiniCL\MiniCL.cpp(538,35): warning C4267: 'inicializando': conversión de 'size_t' a 'int'; posible pérdida de datos
+  MiniCLTaskScheduler.cpp
+C:\Users\jairo\Downloads\bullet-2.82-r2704\src\vectormath\sse\vec_aos.h(580,51): warning C4838: la conversión de 'unsigned int' en 'const int' requiere una conversión de restricción
+C:\Users\jairo\Downloads\bullet-2.82-r2704\src\vectormath\sse\vec_aos.h(580,63): warning C4838: la conversión de 'unsigned int' en 'const int' requiere una conversión de restricción
+C:\Users\jairo\Downloads\bullet-2.82-r2704\src\vectormath\sse\vec_aos.h(580,75): warning C4838: la conversión de 'unsigned int' en 'const int' requiere una conversión de restricción
+C:\Users\jairo\Downloads\bullet-2.82-r2704\src\vectormath\sse\vec_aos.h(580,87): warning C4838: la conversión de 'unsigned int' en 'const int' requiere una conversión de restricción
+  MiniCLTask.cpp
+C:\Users\jairo\Downloads\bullet-2.82-r2704\src\vectormath\sse\vec_aos.h(580,51): warning C4838: la conversión de 'unsigned int' en 'const int' requiere una conversión de restricción
+C:\Users\jairo\Downloads\bullet-2.82-r2704\src\vectormath\sse\vec_aos.h(580,63): warning C4838: la conversión de 'unsigned int' en 'const int' requiere una conversión de restricción
+C:\Users\jairo\Downloads\bullet-2.82-r2704\src\vectormath\sse\vec_aos.h(580,75): warning C4838: la conversión de 'unsigned int' en 'const int' requiere una conversión de restricción
+C:\Users\jairo\Downloads\bullet-2.82-r2704\src\vectormath\sse\vec_aos.h(580,87): warning C4838: la conversión de 'unsigned int' en 'const int' requiere una conversión de restricción
+  Generando código...
+  MiniCL.vcxproj -> C:\Users\jairo\Downloads\bullet-2.82-r2704\lib\Release\MiniCL.lib

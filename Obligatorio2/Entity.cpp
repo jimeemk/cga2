@@ -178,7 +178,6 @@ void Entity::drawBounds()
 	glDrawArrays(GL_TRIANGLES, 0, 36);
 }
 
-
 bool Entity::intersectionBoxBounds(vec3 box_min, vec3 box_max)
 {
 	return overlap(box_min.x, box_max.x, min.x, max.x) && overlap(box_min.y, box_max.y, min.y, max.y) && overlap(box_min.z, box_max.z, min.z, max.z);

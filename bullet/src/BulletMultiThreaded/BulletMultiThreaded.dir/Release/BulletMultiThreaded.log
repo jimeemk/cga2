@@ -1,0 +1,89 @@
+﻿  Building Custom Rule C:/Users/jairo/Downloads/bullet-2.82-r2704/src/BulletMultiThreaded/CMakeLists.txt
+  SpuFakeDma.cpp
+C:\Users\jairo\Downloads\bullet-2.82-r2704\src\vectormath\sse\vec_aos.h(580,51): warning C4838: la conversión de 'unsigned int' en 'const int' requiere una conversión de restricción
+C:\Users\jairo\Downloads\bullet-2.82-r2704\src\vectormath\sse\vec_aos.h(580,63): warning C4838: la conversión de 'unsigned int' en 'const int' requiere una conversión de restricción
+C:\Users\jairo\Downloads\bullet-2.82-r2704\src\vectormath\sse\vec_aos.h(580,75): warning C4838: la conversión de 'unsigned int' en 'const int' requiere una conversión de restricción
+C:\Users\jairo\Downloads\bullet-2.82-r2704\src\vectormath\sse\vec_aos.h(580,87): warning C4838: la conversión de 'unsigned int' en 'const int' requiere una conversión de restricción
+  SpuLibspe2Support.cpp
+  btThreadSupportInterface.cpp
+C:\Users\jairo\Downloads\bullet-2.82-r2704\src\vectormath\sse\vec_aos.h(580,51): warning C4838: la conversión de 'unsigned int' en 'const int' requiere una conversión de restricción
+C:\Users\jairo\Downloads\bullet-2.82-r2704\src\vectormath\sse\vec_aos.h(580,63): warning C4838: la conversión de 'unsigned int' en 'const int' requiere una conversión de restricción
+C:\Users\jairo\Downloads\bullet-2.82-r2704\src\vectormath\sse\vec_aos.h(580,75): warning C4838: la conversión de 'unsigned int' en 'const int' requiere una conversión de restricción
+C:\Users\jairo\Downloads\bullet-2.82-r2704\src\vectormath\sse\vec_aos.h(580,87): warning C4838: la conversión de 'unsigned int' en 'const int' requiere una conversión de restricción
+  Win32ThreadSupport.cpp
+C:\Users\jairo\Downloads\bullet-2.82-r2704\src\vectormath\sse\vec_aos.h(580,51): warning C4838: la conversión de 'unsigned int' en 'const int' requiere una conversión de restricción
+C:\Users\jairo\Downloads\bullet-2.82-r2704\src\vectormath\sse\vec_aos.h(580,63): warning C4838: la conversión de 'unsigned int' en 'const int' requiere una conversión de restricción
+C:\Users\jairo\Downloads\bullet-2.82-r2704\src\vectormath\sse\vec_aos.h(580,75): warning C4838: la conversión de 'unsigned int' en 'const int' requiere una conversión de restricción
+C:\Users\jairo\Downloads\bullet-2.82-r2704\src\vectormath\sse\vec_aos.h(580,87): warning C4838: la conversión de 'unsigned int' en 'const int' requiere una conversión de restricción
+C:\Users\jairo\Downloads\bullet-2.82-r2704\src\BulletMultiThreaded\Win32ThreadSupport.cpp(262,37): warning C4334: '<<': el resultado del desplazamiento de 32 bits se convirtió implícitamente en 64 bits (¿quería un desplazamiento de 64 bits?)
+  PosixThreadSupport.cpp
+C:\Users\jairo\Downloads\bullet-2.82-r2704\src\vectormath\sse\vec_aos.h(580,51): warning C4838: la conversión de 'unsigned int' en 'const int' requiere una conversión de restricción
+C:\Users\jairo\Downloads\bullet-2.82-r2704\src\vectormath\sse\vec_aos.h(580,63): warning C4838: la conversión de 'unsigned int' en 'const int' requiere una conversión de restricción
+C:\Users\jairo\Downloads\bullet-2.82-r2704\src\vectormath\sse\vec_aos.h(580,75): warning C4838: la conversión de 'unsigned int' en 'const int' requiere una conversión de restricción
+C:\Users\jairo\Downloads\bullet-2.82-r2704\src\vectormath\sse\vec_aos.h(580,87): warning C4838: la conversión de 'unsigned int' en 'const int' requiere una conversión de restricción
+  SequentialThreadSupport.cpp
+C:\Users\jairo\Downloads\bullet-2.82-r2704\src\vectormath\sse\vec_aos.h(580,51): warning C4838: la conversión de 'unsigned int' en 'const int' requiere una conversión de restricción
+C:\Users\jairo\Downloads\bullet-2.82-r2704\src\vectormath\sse\vec_aos.h(580,63): warning C4838: la conversión de 'unsigned int' en 'const int' requiere una conversión de restricción
+C:\Users\jairo\Downloads\bullet-2.82-r2704\src\vectormath\sse\vec_aos.h(580,75): warning C4838: la conversión de 'unsigned int' en 'const int' requiere una conversión de restricción
+C:\Users\jairo\Downloads\bullet-2.82-r2704\src\vectormath\sse\vec_aos.h(580,87): warning C4838: la conversión de 'unsigned int' en 'const int' requiere una conversión de restricción
+  SpuSampleTaskProcess.cpp
+C:\Users\jairo\Downloads\bullet-2.82-r2704\src\vectormath\sse\vec_aos.h(580,51): warning C4838: la conversión de 'unsigned int' en 'const int' requiere una conversión de restricción
+C:\Users\jairo\Downloads\bullet-2.82-r2704\src\vectormath\sse\vec_aos.h(580,63): warning C4838: la conversión de 'unsigned int' en 'const int' requiere una conversión de restricción
+C:\Users\jairo\Downloads\bullet-2.82-r2704\src\vectormath\sse\vec_aos.h(580,75): warning C4838: la conversión de 'unsigned int' en 'const int' requiere una conversión de restricción
+C:\Users\jairo\Downloads\bullet-2.82-r2704\src\vectormath\sse\vec_aos.h(580,87): warning C4838: la conversión de 'unsigned int' en 'const int' requiere una conversión de restricción
+  SpuCollisionObjectWrapper.cpp
+C:\Users\jairo\Downloads\bullet-2.82-r2704\src\vectormath\sse\vec_aos.h(580,51): warning C4838: la conversión de 'unsigned int' en 'const int' requiere una conversión de restricción
+C:\Users\jairo\Downloads\bullet-2.82-r2704\src\vectormath\sse\vec_aos.h(580,63): warning C4838: la conversión de 'unsigned int' en 'const int' requiere una conversión de restricción
+C:\Users\jairo\Downloads\bullet-2.82-r2704\src\vectormath\sse\vec_aos.h(580,75): warning C4838: la conversión de 'unsigned int' en 'const int' requiere una conversión de restricción
+C:\Users\jairo\Downloads\bullet-2.82-r2704\src\vectormath\sse\vec_aos.h(580,87): warning C4838: la conversión de 'unsigned int' en 'const int' requiere una conversión de restricción
+  SpuCollisionTaskProcess.cpp
+C:\Users\jairo\Downloads\bullet-2.82-r2704\src\vectormath\sse\vec_aos.h(580,51): warning C4838: la conversión de 'unsigned int' en 'const int' requiere una conversión de restricción
+C:\Users\jairo\Downloads\bullet-2.82-r2704\src\vectormath\sse\vec_aos.h(580,63): warning C4838: la conversión de 'unsigned int' en 'const int' requiere una conversión de restricción
+C:\Users\jairo\Downloads\bullet-2.82-r2704\src\vectormath\sse\vec_aos.h(580,75): warning C4838: la conversión de 'unsigned int' en 'const int' requiere una conversión de restricción
+C:\Users\jairo\Downloads\bullet-2.82-r2704\src\vectormath\sse\vec_aos.h(580,87): warning C4838: la conversión de 'unsigned int' en 'const int' requiere una conversión de restricción
+  SpuGatheringCollisionDispatcher.cpp
+C:\Users\jairo\Downloads\bullet-2.82-r2704\src\vectormath\sse\vec_aos.h(580,51): warning C4838: la conversión de 'unsigned int' en 'const int' requiere una conversión de restricción
+C:\Users\jairo\Downloads\bullet-2.82-r2704\src\vectormath\sse\vec_aos.h(580,63): warning C4838: la conversión de 'unsigned int' en 'const int' requiere una conversión de restricción
+C:\Users\jairo\Downloads\bullet-2.82-r2704\src\vectormath\sse\vec_aos.h(580,75): warning C4838: la conversión de 'unsigned int' en 'const int' requiere una conversión de restricción
+C:\Users\jairo\Downloads\bullet-2.82-r2704\src\vectormath\sse\vec_aos.h(580,87): warning C4838: la conversión de 'unsigned int' en 'const int' requiere una conversión de restricción
+  SpuContactManifoldCollisionAlgorithm.cpp
+  btParallelConstraintSolver.cpp
+C:\Users\jairo\Downloads\bullet-2.82-r2704\src\vectormath\sse\vec_aos.h(580,51): warning C4838: la conversión de 'unsigned int' en 'const int' requiere una conversión de restricción
+C:\Users\jairo\Downloads\bullet-2.82-r2704\src\vectormath\sse\vec_aos.h(580,63): warning C4838: la conversión de 'unsigned int' en 'const int' requiere una conversión de restricción
+C:\Users\jairo\Downloads\bullet-2.82-r2704\src\vectormath\sse\vec_aos.h(580,75): warning C4838: la conversión de 'unsigned int' en 'const int' requiere una conversión de restricción
+C:\Users\jairo\Downloads\bullet-2.82-r2704\src\vectormath\sse\vec_aos.h(580,87): warning C4838: la conversión de 'unsigned int' en 'const int' requiere una conversión de restricción
+C:\Users\jairo\Downloads\bullet-2.82-r2704\src\BulletMultiThreaded\btParallelConstraintSolver.cpp(1304,19): warning C4244: 'inicializando': conversión de '__int64' a 'int'; posible pérdida de datos
+C:\Users\jairo\Downloads\bullet-2.82-r2704\src\BulletMultiThreaded\btParallelConstraintSolver.cpp(1471,13): warning C4244: 'inicializando': conversión de '__int64' a 'int'; posible pérdida de datos
+  boxBoxDistance.cpp
+C:\Users\jairo\Downloads\bullet-2.82-r2704\src\vectormath\sse\vec_aos.h(580,51): warning C4838: la conversión de 'unsigned int' en 'const int' requiere una conversión de restricción
+C:\Users\jairo\Downloads\bullet-2.82-r2704\src\vectormath\sse\vec_aos.h(580,63): warning C4838: la conversión de 'unsigned int' en 'const int' requiere una conversión de restricción
+C:\Users\jairo\Downloads\bullet-2.82-r2704\src\vectormath\sse\vec_aos.h(580,75): warning C4838: la conversión de 'unsigned int' en 'const int' requiere una conversión de restricción
+C:\Users\jairo\Downloads\bullet-2.82-r2704\src\vectormath\sse\vec_aos.h(580,87): warning C4838: la conversión de 'unsigned int' en 'const int' requiere una conversión de restricción
+  SpuContactResult.cpp
+C:\Users\jairo\Downloads\bullet-2.82-r2704\src\vectormath\sse\vec_aos.h(580,51): warning C4838: la conversión de 'unsigned int' en 'const int' requiere una conversión de restricción
+C:\Users\jairo\Downloads\bullet-2.82-r2704\src\vectormath\sse\vec_aos.h(580,63): warning C4838: la conversión de 'unsigned int' en 'const int' requiere una conversión de restricción
+C:\Users\jairo\Downloads\bullet-2.82-r2704\src\vectormath\sse\vec_aos.h(580,75): warning C4838: la conversión de 'unsigned int' en 'const int' requiere una conversión de restricción
+C:\Users\jairo\Downloads\bullet-2.82-r2704\src\vectormath\sse\vec_aos.h(580,87): warning C4838: la conversión de 'unsigned int' en 'const int' requiere una conversión de restricción
+  SpuMinkowskiPenetrationDepthSolver.cpp
+C:\Users\jairo\Downloads\bullet-2.82-r2704\src\vectormath\sse\vec_aos.h(580,51): warning C4838: la conversión de 'unsigned int' en 'const int' requiere una conversión de restricción
+C:\Users\jairo\Downloads\bullet-2.82-r2704\src\vectormath\sse\vec_aos.h(580,63): warning C4838: la conversión de 'unsigned int' en 'const int' requiere una conversión de restricción
+C:\Users\jairo\Downloads\bullet-2.82-r2704\src\vectormath\sse\vec_aos.h(580,75): warning C4838: la conversión de 'unsigned int' en 'const int' requiere una conversión de restricción
+C:\Users\jairo\Downloads\bullet-2.82-r2704\src\vectormath\sse\vec_aos.h(580,87): warning C4838: la conversión de 'unsigned int' en 'const int' requiere una conversión de restricción
+  SpuGatheringCollisionTask.cpp
+C:\Users\jairo\Downloads\bullet-2.82-r2704\src\vectormath\sse\vec_aos.h(580,51): warning C4838: la conversión de 'unsigned int' en 'const int' requiere una conversión de restricción
+C:\Users\jairo\Downloads\bullet-2.82-r2704\src\vectormath\sse\vec_aos.h(580,63): warning C4838: la conversión de 'unsigned int' en 'const int' requiere una conversión de restricción
+C:\Users\jairo\Downloads\bullet-2.82-r2704\src\vectormath\sse\vec_aos.h(580,75): warning C4838: la conversión de 'unsigned int' en 'const int' requiere una conversión de restricción
+C:\Users\jairo\Downloads\bullet-2.82-r2704\src\vectormath\sse\vec_aos.h(580,87): warning C4838: la conversión de 'unsigned int' en 'const int' requiere una conversión de restricción
+C:\Users\jairo\Downloads\bullet-2.82-r2704\src\BulletMultiThreaded\SpuNarrowPhaseCollisionTask\SpuGatheringCollisionTask.cpp(130,29): warning C4359: 'CollisionTask_LocalStoreMemory': el especificador de alinieación es menor que la alineación real (128), y se omitirá.
+C:\Users\jairo\Downloads\bullet-2.82-r2704\src\BulletMultiThreaded\SpuNarrowPhaseCollisionTask\SpuGatheringCollisionTask.cpp(231,45): warning C4267: 'argumento': conversión de 'size_t' a 'uint32_t'; posible pérdida de datos
+C:\Users\jairo\Downloads\bullet-2.82-r2704\src\BulletMultiThreaded\SpuNarrowPhaseCollisionTask\SpuGatheringCollisionTask.cpp(255,81): warning C4267: 'argumento': conversión de 'size_t' a 'uint32_t'; posible pérdida de datos
+C:\Users\jairo\Downloads\bullet-2.82-r2704\src\BulletMultiThreaded\SpuNarrowPhaseCollisionTask\SpuGatheringCollisionTask.cpp(265,81): warning C4267: 'argumento': conversión de 'size_t' a 'uint32_t'; posible pérdida de datos
+C:\Users\jairo\Downloads\bullet-2.82-r2704\src\BulletMultiThreaded\SpuNarrowPhaseCollisionTask\SpuGatheringCollisionTask.cpp(274,81): warning C4267: 'argumento': conversión de 'size_t' a 'uint32_t'; posible pérdida de datos
+  SpuCollisionShapes.cpp
+C:\Users\jairo\Downloads\bullet-2.82-r2704\src\vectormath\sse\vec_aos.h(580,51): warning C4838: la conversión de 'unsigned int' en 'const int' requiere una conversión de restricción
+C:\Users\jairo\Downloads\bullet-2.82-r2704\src\vectormath\sse\vec_aos.h(580,63): warning C4838: la conversión de 'unsigned int' en 'const int' requiere una conversión de restricción
+C:\Users\jairo\Downloads\bullet-2.82-r2704\src\vectormath\sse\vec_aos.h(580,75): warning C4838: la conversión de 'unsigned int' en 'const int' requiere una conversión de restricción
+C:\Users\jairo\Downloads\bullet-2.82-r2704\src\vectormath\sse\vec_aos.h(580,87): warning C4838: la conversión de 'unsigned int' en 'const int' requiere una conversión de restricción
+  btGpu3DGridBroadphase.cpp
+  Generando código...
+  BulletMultiThreaded.vcxproj -> C:\Users\jairo\Downloads\bullet-2.82-r2704\lib\Release\BulletMultiThreaded.lib

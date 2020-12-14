@@ -25,7 +25,7 @@ void main (void)
 	{
 		gl_Position = gl_in[i].gl_Position;
 		v_FragPos = g_FragPos[i];
-		v_Normal = normalize(new_normal + g_Normal[i]);
+		v_Normal = normalize(new_normal);
 		EmitVertex();
 	}
 
