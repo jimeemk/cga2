@@ -64,7 +64,7 @@ vec4 CalcPointLight(PointLight light, vec3 normal, vec3 fragPos, vec3 viewDir) {
 
     float attenuation = (1 / (light.linear * length(light.position - FragPos)));
     
-    vec4 result = (vec4(diffuse,1.0)) * attenuation;
+    vec4 result = (vec4(diffuse,1.0)) * attenuation*0.7;
     return result;
 }
 
@@ -83,7 +83,7 @@ vec4 CalcDirLight(DirLight light, vec3 normal, vec3 viewDir)
 
     // combine results
     vec3 ambient =  ambientStrength * light.color;
-    vec3 diffuse = vec3(diffuser,diffuseg,diffuseb);
+    vec3 diffuse = vec3(diffuser,diffuseg,diffuseb)*0.7;
     vec3 specular = specularStrength * spec * vec3(1);;
     return (vec4(diffuse, 1));
 }

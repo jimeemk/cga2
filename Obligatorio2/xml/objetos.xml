@@ -1,6 +1,78 @@
 <?xml version="1.0" ?>
 <file>
     <objetos>
+        <objeto path="modelos/animales de granja/OBJ/Pig.obj" scale="1.8" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="271.2" y="32.9999" z="-199.8" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/animales de granja/OBJ/Cow.obj" scale="2.2" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="264.6" y="33.1999" z="-187.6" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="1" />
+        </objeto>
+        <objeto path="modelos/elementos de granja/OpenBarn.obj" scale="5" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="258.799" y="34.1999" z="-191.2" />
+            <up x="0" y="1" z="0" />
+            <direction x="0.2" y="0" z="-2.6" />
+        </objeto>
+        <objeto path="modelos/elementos de granja/Fence2.obj" scale="4.2" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="271.2" y="32.7999" z="-193" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/elementos de granja/Fence2.obj" scale="4.2" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="271.2" y="32.7999" z="-184.8" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/elementos de granja/Well.obj" scale="2.2" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="265" y="33.5999" z="-180.4" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/elementos de granja/Windmill.obj" scale="5.4" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="262" y="35.1999" z="-172" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/elementos de granja/BigBarn.obj" scale="5" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="270.2" y="34.7999" z="-171.8" />
+            <up x="0" y="1" z="0" />
+            <direction x="-8.8" y="-2.98023e-09" z="-0.6" />
+        </objeto>
+        <objeto path="modelos/Bench/Bench_LowRes.obj" scale="1.4" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="175.2" y="32.9999" z="-189.4" />
+            <up x="0" y="1" z="0" />
+            <direction x="0.8" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/fuente/fountain.obj" scale="4" hasTexture="1" shader="0">
+            <orientation x="1" y="0" z="0" />
+            <position x="170.6" y="33.9999" z="-183.2" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Pine_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="188.6" y="33.9999" z="-204.2" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Pine_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="190.2" y="33.9999" z="-195.4" />
+            <up x="0" y="1" z="0" />
+            <direction x="0.8" y="0" z="0.0001" />
+        </objeto>
         <objeto path="modelos/Church.fbx" scale="8.8" hasTexture="1" shader="0">
             <orientation x="0" y="1" z="0" />
             <position x="170.4" y="37" z="-171.4" />
@@ -2856,6 +2928,810 @@
             <position x="212.6" y="35.3999" z="-217.2" />
             <up x="0" y="0" z="1" />
             <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Oak_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="188.4" y="33.9999" z="-197.8" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Pine_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="190.2" y="33.9999" z="-200.2" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Oak_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="190.2" y="33.9999" z="-202.6" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Oak_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="196.2" y="33.9999" z="-203.2" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Cedar_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="196.2" y="33.9999" z="-200.2" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Pine_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="196" y="33.9999" z="-188.6" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Oak_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="198.2" y="33.9999" z="-187" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Oak_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="198" y="33.9999" z="-189.2" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Pine_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="203" y="33.9999" z="-182.4" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Cedar_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="205.2" y="33.9999" z="-182.4" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Pine_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="204.6" y="33.9999" z="-179.8" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Cedar_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="222" y="33.9999" z="-155.401" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Cedar_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="230.6" y="33.9999" z="-156.801" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Oak_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="242.199" y="33.9999" z="-156.801" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Cedar_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="253.399" y="33.9999" z="-152.401" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Cedar_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="264.6" y="33.9999" z="-152.401" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Pine_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="264.6" y="33.9999" z="-164.001" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Oak_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="264.6" y="33.9999" z="-174.2" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Oak_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="275.8" y="33.9999" z="-174.2" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Pine_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="280.001" y="33.9999" z="-184.4" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Cedar_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="280.001" y="33.9999" z="-191.2" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Oak_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="280.001" y="33.9999" z="-207.8" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Oak_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="258.999" y="33.9999" z="-210.4" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Pine_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="246.199" y="33.9999" z="-210.4" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Oak_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="246.199" y="33.9999" z="-224" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Oak_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="246.199" y="33.9999" z="-234.399" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Pine_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="269.6" y="33.9999" z="-238.799" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Oak_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="269.6" y="33.9999" z="-250.199" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Oak_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="257.799" y="33.9999" z="-251.599" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Oak_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="244.799" y="33.9999" z="-251.599" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Cedar_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="243.799" y="33.9999" z="-261.399" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Pine_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="230.6" y="33.9999" z="-261.599" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Pine_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="218.8" y="33.9999" z="-265.8" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Cedar_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="225.4" y="33.9999" z="-265.8" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Pine_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="225.4" y="33.9999" z="-274.2" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Cedar_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="225.4" y="33.9999" z="-250.399" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Pine_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="225.4" y="33.9999" z="-238.799" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Pine_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="225.4" y="33.9999" z="-231.2" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Pine_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="216.6" y="33.9999" z="-234.599" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Oak_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="207.8" y="33.9999" z="-234.599" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Cedar_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="207.8" y="33.9999" z="-245.999" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Pine_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="213.8" y="33.9999" z="-242.799" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Pine_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="216.4" y="33.9999" z="-254.599" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Pine_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="209.6" y="33.9999" z="-269.6" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Oak_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="195.4" y="33.9999" z="-269.6" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Cedar_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="189.4" y="33.9999" z="-269.6" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Cedar_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="189.4" y="33.9999" z="-280.801" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Oak_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="190" y="33.9999" z="-240.799" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Cedar_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="194.8" y="33.9999" z="-241.399" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Pine_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="179.4" y="33.9999" z="-241.399" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Pine_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="173" y="33.9999" z="-246.999" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Pine_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="173" y="33.9999" z="-259.999" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Oak_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="173" y="33.9999" z="-267.8" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Oak_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="173" y="33.9999" z="-251.399" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Oak_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="166.001" y="33.9999" z="-231.4" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Pine_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="155.001" y="33.9999" z="-231.4" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Pine_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="146.801" y="33.9999" z="-236.999" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Pine_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="136.401" y="33.9999" z="-240.999" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Pine_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="136.401" y="33.9999" z="-230.2" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Pine_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="128.801" y="33.9999" z="-230.2" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Pine_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="120.201" y="33.9999" z="-230.2" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Oak_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="111.201" y="33.9999" z="-208.2" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Oak_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="112.001" y="33.9999" z="-201.4" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Oak_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="113.401" y="33.9999" z="-191.6" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Pine_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="113.401" y="33.9999" z="-183.2" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Oak_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="108.801" y="33.9999" z="-173.4" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Pine_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="118.001" y="33.9999" z="-173.4" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Pine_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="118.001" y="33.9999" z="-169" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Pine_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="124.001" y="33.9999" z="-170.4" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Oak_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="131.201" y="33.9999" z="-170.4" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Pine_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="136.201" y="33.9999" z="-170.4" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Cedar_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="140.801" y="33.9999" z="-170.4" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Oak_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="144.601" y="33.9999" z="-170.4" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Cedar_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="144.601" y="33.9999" z="-167.801" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Oak_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="143.001" y="33.9999" z="-167.801" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Cedar_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="139.001" y="33.9999" z="-167.801" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Oak_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="139.601" y="33.9999" z="-164.601" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Pine_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="143.201" y="33.9999" z="-164.401" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Oak_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="142.801" y="33.9999" z="-161.201" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Oak_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="144.601" y="33.9999" z="-158.201" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Cedar_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="148.201" y="33.9999" z="-156.201" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Cedar_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="154.801" y="33.9999" z="-156.201" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Pine_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="162.601" y="33.9999" z="-154.001" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Oak_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="162.601" y="33.9999" z="-147.001" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Cedar_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="162.601" y="33.9999" z="-139.801" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Pine_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="171.6" y="33.9999" z="-142.601" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Cedar_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="180.2" y="33.9999" z="-142.601" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Pine_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="185.6" y="33.9999" z="-149.201" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Pine_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="175.8" y="33.9999" z="-149.201" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Pine_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="175.8" y="33.9999" z="-156.401" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Pine_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="172.6" y="33.9999" z="-165.601" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Cedar_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="170.6" y="33.9999" z="-165.601" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Pine_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="165.801" y="33.9999" z="-165.601" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Pine_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="165.801" y="33.9999" z="-168.201" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Oak_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="168.4" y="33.9999" z="-166.601" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Pine_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="166.601" y="33.9999" z="-179.8" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Oak_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="166.601" y="33.9999" z="-182" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Cedar_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="166.601" y="33.9999" z="-186.4" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Pine_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="170.6" y="33.9999" z="-186.4" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Oak_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="174.4" y="33.9999" z="-187.8" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Oak_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="171.2" y="33.9999" z="-180" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Oak_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="174.6" y="33.9999" z="-179.2" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Pine_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="174.6" y="33.9999" z="-184.2" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Oak_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="165.601" y="33.9999" z="-202.8" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Oak_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="165.401" y="33.9999" z="-196.8" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Oak_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="181.6" y="33.9999" z="-188.2" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/arboles/Prop_Tree_Oak_1.obj" scale="3" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="181.4" y="33.9999" z="-179.8" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/Bench/Bench_LowRes.obj" scale="1.4" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="172.6" y="32.9999" z="-189.4" />
+            <up x="0" y="1" z="0" />
+            <direction x="0.8" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/Bench/Bench_LowRes.obj" scale="1.4" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="168.8" y="32.9999" z="-189.4" />
+            <up x="0" y="1" z="0" />
+            <direction x="0.8" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/Bench/Bench_LowRes.obj" scale="1.4" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="167.001" y="32.9999" z="-184.4" />
+            <up x="0" y="1" z="0" />
+            <direction x="3.27826e-08" y="0" z="-1.8" />
+        </objeto>
+        <objeto path="modelos/Bench/Bench_LowRes.obj" scale="1.4" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="174.8" y="32.9999" z="-181.2" />
+            <up x="0" y="1" z="0" />
+            <direction x="2.71201e-07" y="-3.27826e-08" z="3.2" />
+        </objeto>
+        <objeto path="modelos/Bench/Bench_LowRes.obj" scale="1.4" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="168.8" y="32.9999" z="-179.6" />
+            <up x="0" y="1" z="0" />
+            <direction x="-4.4" y="-3.27826e-08" z="0.2" />
+        </objeto>
+        <objeto path="modelos/Bench/Bench_LowRes.obj" scale="1.4" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="172.6" y="32.9999" z="-179.6" />
+            <up x="0" y="1" z="0" />
+            <direction x="-4.4" y="-3.27826e-08" z="0.2" />
+        </objeto>
+        <objeto path="modelos/elementos de granja/Fence2.obj" scale="4.2" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="267" y="32.7999" z="-184.8" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/elementos de granja/Fence2.obj" scale="4.2" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="262.8" y="32.7999" z="-184.8" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/elementos de granja/Fence2.obj" scale="4.2" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="260.799" y="32.7999" z="-186.8" />
+            <up x="0" y="1" z="0" />
+            <direction x="2.68221e-08" y="0" z="2" />
+        </objeto>
+        <objeto path="modelos/elementos de granja/Fence2.obj" scale="4.2" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="273.2" y="32.7999" z="-186.8" />
+            <up x="0" y="1" z="0" />
+            <direction x="2.68221e-08" y="0" z="2" />
+        </objeto>
+        <objeto path="modelos/elementos de granja/Fence2.obj" scale="4.2" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="273.2" y="32.7999" z="-191" />
+            <up x="0" y="1" z="0" />
+            <direction x="2.68221e-08" y="0" z="2" />
+        </objeto>
+        <objeto path="modelos/elementos de granja/Fence2.obj" scale="4.2" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="262.8" y="32.7999" z="-193" />
+            <up x="0" y="1" z="0" />
+            <direction x="5.2" y="-2.98023e-09" z="3.27826e-08" />
+        </objeto>
+        <objeto path="modelos/elementos de granja/Fence2.obj" scale="4.2" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="267" y="32.7999" z="-193" />
+            <up x="0" y="1" z="0" />
+            <direction x="5.2" y="-2.98023e-09" z="3.27826e-08" />
+        </objeto>
+        <objeto path="modelos/elementos de granja/Fence2.obj" scale="4.2" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="279.201" y="32.7999" z="-195.2" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/elementos de granja/Fence2.obj" scale="4.2" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="275" y="32.7999" z="-195.2" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/elementos de granja/Fence2.obj" scale="4.2" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="270.8" y="32.7999" z="-195.2" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="0.0001" />
+        </objeto>
+        <objeto path="modelos/elementos de granja/Fence2.obj" scale="4.2" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="268.8" y="32.7999" z="-197.2" />
+            <up x="0" y="1" z="0" />
+            <direction x="2.68221e-08" y="0" z="2" />
+        </objeto>
+        <objeto path="modelos/elementos de granja/Fence2.obj" scale="4.2" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="268.8" y="32.7999" z="-201.4" />
+            <up x="0" y="1" z="0" />
+            <direction x="2.68221e-08" y="0" z="2" />
+        </objeto>
+        <objeto path="modelos/elementos de granja/Fence2.obj" scale="4.2" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="281.201" y="32.7999" z="-197.2" />
+            <up x="0" y="1" z="0" />
+            <direction x="2.68221e-08" y="0" z="2" />
+        </objeto>
+        <objeto path="modelos/elementos de granja/Fence2.obj" scale="4.2" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="281.201" y="32.7999" z="-201.4" />
+            <up x="0" y="1" z="0" />
+            <direction x="2.68221e-08" y="0" z="2" />
+        </objeto>
+        <objeto path="modelos/elementos de granja/Fence2.obj" scale="4.2" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="275" y="32.7999" z="-203.4" />
+            <up x="0" y="1" z="0" />
+            <direction x="8" y="0" z="-1.46031e-07" />
+        </objeto>
+        <objeto path="modelos/elementos de granja/Fence2.obj" scale="4.2" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="270.8" y="32.7999" z="-203.4" />
+            <up x="0" y="1" z="0" />
+            <direction x="8" y="0" z="-1.46031e-07" />
+        </objeto>
+        <objeto path="modelos/elementos de granja/OpenBarn.obj" scale="4.6" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="279.001" y="33.7999" z="-204.8" />
+            <up x="0" y="1" z="0" />
+            <direction x="2.4" y="-2.98023e-09" z="-2.68221e-08" />
+        </objeto>
+        <objeto path="modelos/animales de granja/OBJ/Cow.obj" scale="2.2" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="268.2" y="33.1999" z="-187.6" />
+            <up x="0" y="1" z="0" />
+            <direction x="-2.8" y="0" z="5" />
+        </objeto>
+        <objeto path="modelos/animales de granja/OBJ/Cow.obj" scale="2.2" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="271.2" y="33.1999" z="-189.4" />
+            <up x="0" y="1" z="0" />
+            <direction x="19.8" y="0" z="12" />
+        </objeto>
+        <objeto path="modelos/animales de granja/OBJ/Pig.obj" scale="1.8" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="274.6" y="32.9999" z="-199.8" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="1.4" />
+        </objeto>
+        <objeto path="modelos/animales de granja/OBJ/Pig.obj" scale="1.8" hasTexture="0" shader="1">
+            <orientation x="1" y="0" z="0" />
+            <position x="271.8" y="32.9999" z="-196.8" />
+            <up x="0" y="1" z="0" />
+            <direction x="1" y="0" z="1.4" />
         </objeto>
     </objetos>
 </file>

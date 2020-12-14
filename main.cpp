@@ -22,6 +22,7 @@
 #include "Obligatorio2/Water.h"
 #include "Obligatorio2/Terrain.h"
 #include "Obligatorio2/Xml.h"
+#include <time.h>
 using namespace std;
 
 // global variables - normally would avoid globals, using in this demo
@@ -108,28 +109,11 @@ void init(void)
 	settings->addShader(hmShader);
 	settings->addShader(suelo);
 	
-	//settings->addShader(anim);
-	
-
-	//AnimatedObject* ao1 = new AnimatedObject("models/negro/Rumba Dancing.dae", glm::vec3(0, 0, -1), 10, glm::vec3(100, 5, -100), glm::vec3(0, 1, 0), glm::vec3(0, 0, 1), anim);
-	AnimatedObject* zombie1 = new AnimatedObject("models/zombie2/Thriller Part 1.dae", glm::vec3(0, 0, -1), 3, glm::vec3(158.7, 34, -168), glm::vec3(0, 1, 0), glm::vec3(0, 0, 1), anim);
+	AnimatedObject* policia = new AnimatedObject("models/policia/Dancing Twerk.dae", glm::vec3(0, 0, -1), 2, glm::vec3(172.5, 34, -189.3), glm::vec3(0, 1, 0), glm::vec3(0, 0, -1), anim);
+	AnimatedObject* zombie1 = new AnimatedObject("models/zombie2/Thriller Part 1.dae", glm::vec3(0, 0, -1), 2.5, glm::vec3(158.7, 33.8, -168), glm::vec3(0, 1, 0), glm::vec3(0, 0, 1), anim);
 	//AnimatedObject* zombie2 = new AnimatedObject("models/zombie/Thriller Part 3.dae", glm::vec3(0, 0, -1), 3, glm::vec3(162.5, 34, -165), glm::vec3(0, 1, 0), glm::vec3(0, 0, 1), anim);
-
-	//Object* o1 = new Object("modelos/12221_Cat_v1_l3.obj",glm::vec3(0, -1, 0), 0.8, glm::vec3(8, -0.6, -8.6),glm::vec3(0, 0, 1), glm::vec3(-1,0,-1), lightShader);
-	//Object* o2 = new Object("modelos/Japanese_Temple.obj", glm::vec3(0,0,-1),70, glm::vec3(100,20,-150), glm::vec3(0, 1, 0), glm::vec3(0, 0, 1), lightShader);
-	//Manzana 1: plaza
-	//Plane* p1 = new Plane("modelos/asfalto.jpg", 100, 100, glm::vec3(20, 1, 20), glm::vec3(10, -1, -10), glm::vec3(0, 0, 1), glm::vec3(0, 1, 0), lightShader);//Calle
-	//Plane* p2 = new Plane("modelos/cordon.jpg", 20, 20, glm::vec3(19, 1, 19), glm::vec3(9.5, -0.9, -9.5), glm::vec3(0, 0, 1), glm::vec3(0, 1, 0), lightShader);//Cordon
-	//Plane* p3 = new Plane("modelos/cordon.jpg", 20, 1, glm::vec3(1, 0.09, 19), glm::vec3(9.5, -0.99, 9.5), glm::vec3(0, 1, 0), glm::vec3(1, 0, 0), lightShader);//Cordon
-	//Plane* p4 = new Plane("modelos/cordon.jpg", 20, 1, glm::vec3(19, 0.09, 1), glm::vec3(9.5, -0.99, -9.5), glm::vec3(0, 1, 0), glm::vec3(0, 0, -1), lightShader);//Cordon
-	//Plane* p5 = new Plane("modelos/cordon.jpg", 20, 1, glm::vec3(1, 0.09, 19), glm::vec3(-9.5, -0.99, -9.5), glm::vec3(0, 1, 0), glm::vec3(-1, 0, 0), lightShader);//Cordon
-	//Plane* p6 = new Plane("modelos/cordon.jpg", 20, 1, glm::vec3(19, 0.09, 1), glm::vec3(-9.5, -0.99, 9.5), glm::vec3(0, 1, 0), glm::vec3(0, 0, 1), lightShader);//Cordon
-	//Plane* p7 = new Plane("modelos/vereda.jpg", 40, 40, glm::vec3(18.9, 1, 18.9), glm::vec3(9.45, -0.89, -9.45), glm::vec3(0, 0, 1), glm::vec3(0, 1, 0), lightShader);//Vereda
-	//Plane* p8 = new Plane("modelos/grass.jpg", 10, 10, glm::vec3(200, 1.f, 200), glm::vec3(0.f,0.2,0.f), glm::vec3(0, 0, -1), glm::vec3(0, 1, 0), lightShader);//Terreno
 	Water* water = new Water(vec3(-60.f, 0.5f, 60.f), vec3(0.f, 1.f, 0.f), vec3(1.f, 0.f, 0.f), waterShader, 35, 520, 520, "modelos/water1.jpg");
 	std::vector<Texture> text;
-	//Texture t = { Settings::TextureFromFile("modelos/isla2.jpg"), "texture_height", "modelos/isla2.jpg" };
-	//text.push_back(t);
 	Texture t2 = { Settings::TextureFromFile("modelos/grass2.jpg"), "texture_diffuse", "modelos/grass2.jpg" };
 	text.push_back(t2);
 	Texture t3 = { Settings::TextureFromFile("modelos/arena.jpg"), "texture_diffuse", "modelos/arena.jpg" };
@@ -141,6 +125,8 @@ void init(void)
 	Terrain* terrain5 = new Terrain(vec3(0.f), vec3(0.f, 1.f, 0.f), vec3(1.f, 0.f, 0.f), hmShader, 50, 400, 400, 150, text, "modelos/m3.jpg");
 	Terrain* terrain6 = new Terrain(vec3(0.f), vec3(0.f, 1.f, 0.f), vec3(1.f, 0.f, 0.f), hmShader, 50, 400, 400, 140, text, "modelos/m4.jpg");
 	Terrain* terrain7 = new Terrain(vec3(0.f), vec3(0.f, 1.f, 0.f), vec3(1.f, 0.f, 0.f), hmShader, 50, 400, 400, 100, text, "modelos/m5.jpg");
+	//Autos
+
 
 	std::vector<Texture> text2;
 	//Texture ta = { Settings::TextureFromFile("modelos/montania.jpg"), "texture_height", "modelos/montania.jpg" };
@@ -158,18 +144,20 @@ void init(void)
 	Terrain* terrainc = new Terrain(vec3(0.f), vec3(0.f, 1.f, 0.f), vec3(1.f, 0.f, 0.f), hmShader, 50, 200, 200, 75, text3, "modelos/isla3.jpg");
 
 
-	newObj = new Object("modelos/Church.fbx", glm::vec3(0, 1, 0), 3, glm::vec3(200, 50, -200), glm::vec3(0, 0, 1), glm::vec3(0, 1, 0), lightShader, true);
-	//settings->addEntity(o1);
-	//settings->addEntity(o2);
-	//settings->addEntity(p1);
-	//settings->addEntity(p2);
-	//settings->addEntity(p3);
-	//settings->addEntity(p4);
-	//settings->addEntity(p5);
-	//settings->addEntity(p6);
-	//settings->addEntity(p7);
-	//settings->addEntity(p8);
+	newObj = new Object("modelos/vehiculos/car-kit-3d-model/Models/OBJ format/van.obj", glm::vec3(0, 0, 1), 3, glm::vec3(193, 33.29999, -191.6), glm::vec3(0, 1, 0), glm::vec3(1, 0, 0), material, false);
+	Object* newObj2 = new Object("modelos/vehiculos/car-kit-3d-model/Models/OBJ format/suv.obj", glm::vec3(0, 0, 1), 3, glm::vec3(178, 33.29999, -161.6), glm::vec3(0, 1, 0), glm::vec3(-1, 0, 0), material, false);
+	Object* newObj3 = new Object("modelos/vehiculos/car-kit-3d-model/Models/OBJ format/sedan.obj", glm::vec3(0, 0, 1), 3, glm::vec3(178, 33.29999, -206.6), glm::vec3(0, 1, 0), glm::vec3(-1, 0, 0), material, false);
+	Object* newObj4 = new Object("modelos/vehiculos/car-kit-3d-model/Models/OBJ format/taxi.obj", glm::vec3(0, 0, 1), 3, glm::vec3(223, 33.29999, -161.6), glm::vec3(0, 1, 0), glm::vec3(-1, 0, 0), material, false);
+
+	settings->addCar(newObj);
+	settings->addCar(newObj2);
+	settings->addCar(newObj3);
+	settings->addCar(newObj4);
+	settings->addEntity(newObj2);
+	settings->addEntity(newObj3);
+	settings->addEntity(newObj4);
 	settings->addEntity(zombie1);
+	settings->addEntity(policia);
 
 	settings->addEntity(water);
 	settings->addEntity(terrain);
@@ -309,7 +297,7 @@ int main(int argc, char *argv[]) {
 		SDL_Log("Failed to initialize SDL: %s", SDL_GetError());
 		return 1;
 	}
-	
+
 	// SET ATTRIBUTE ONLY after initialize
 	SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
 	SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS, 1); // on antialiasing sdl
@@ -341,7 +329,7 @@ int main(int argc, char *argv[]) {
 
 	//para multiples teclas presionadas
 	bool keys[6] = {false};
-
+	
 	while (running)
 	{
 		//Calculo del tiempo que pasa entre frame y frame
@@ -349,6 +337,10 @@ int main(int argc, char *argv[]) {
 		current_time = SDL_GetTicks();
 		float delta_time = (current_time - last_time) / 1000.f; //en segundos
 		Settings* set = Settings::getInstance();
+		for (int k = 0; k < set->getCars().size(); k++)
+		{
+			dynamic_cast<Object*>(set->getCars().at(k))->runCar(delta_time*speed);
+		}
 		while (SDL_PollEvent(&sdlEvent))
 		{
 			switch (sdlEvent.type) 
@@ -480,7 +472,7 @@ int main(int argc, char *argv[]) {
 				case SDLK_7:
 					newObj->guardarEntity();
 					saveXMLEntities("xml/objetos.xml");
-					newObj = new Object("modelos/ciudad/Church/Churc.fbx", glm::vec3(0, 1, 0), dynamic_cast<Object*>(newObj)->getScale(), newObj->getPosition(), glm::vec3(0, 0, 1), dynamic_cast<Object*>(newObj)->getDirection(), lightShader, true);
+					newObj = new Object("modelos/vehiculos/watercraft-pack-3d-model/Models/watercraftPack_024.obj", glm::vec3(1, 0, 0), dynamic_cast<Object*>(newObj)->getScale(), newObj->getPosition(), glm::vec3(0, 1, 0), dynamic_cast<Object*>(newObj)->getDirection(), material, false);
 					set->addEntity(newObj);
 					break;
 				case SDLK_0:

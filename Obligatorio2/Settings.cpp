@@ -26,6 +26,11 @@ std::vector<Entity*> Settings::getEntities()
     return entities;
 }
 
+std::vector<Entity*> Settings::getCars()
+{
+	return cars;
+}
+
 std::vector<Shader*> Settings::getShaders()
 {
     return shaders;
@@ -59,6 +64,11 @@ void Settings::addEntity(Entity* e)
 		if (max_ent.y > max_bound.y) max_bound.y = max_ent.y;
 		if (max_ent.z > max_bound.z) max_bound.z = max_ent.z;
 	}
+}
+
+void Settings::addCar(Entity* e)
+{
+	cars.push_back(e);
 }
 
 // printShaderError

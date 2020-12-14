@@ -1,4 +1,5 @@
 #include "Object.h"
+#include <time.h>
 
 Object::Object(string p, glm::vec3 ori, float esc, glm::vec3 pos, glm::vec3 u, glm::vec3 dir, Shader* sh, bool ht) : Entity(pos,u,dir,sh)
 {
@@ -6,9 +7,12 @@ Object::Object(string p, glm::vec3 ori, float esc, glm::vec3 pos, glm::vec3 u, g
     orientation = ori;
     scale = esc;
     hasTexture = ht;
+    ultimaEsquina = glm::vec2(pos.x,pos.z);
+    avance = 0.f;
     modelMatrix = mat4(1.f);
     model = new Model(p);
     initObject();
+
 }
 
 Object::~Object()
@@ -171,14 +175,14 @@ void Object::rotation()
 void Object::aumentarX() //r
 {
     modelMatrix = mat4(1.f);
-    position.x += 0.2;
+    position.x += 0.05;
     initObject();
 }
 
 void Object::disminuirX() //f
 {
     modelMatrix = mat4(1.f);
-    position.x -= 0.2;
+    position.x -= 0.05;
     initObject();
 }
 
@@ -192,21 +196,21 @@ void Object::aumentarY() //t
 void Object::disminuirY()//g
 {
     modelMatrix = mat4(1.f);
-    position.y -= 0.2;
+    position.y -= 0.1;
     initObject();
 }
 
 void Object::aumentarZ()//y
 {
     modelMatrix = mat4(1.f);
-    position.z += 0.2;
+    position.z += 0.05;
     initObject();
 }
 
 void Object::disminuirZ() //h
 {
     modelMatrix = mat4(1.f);
-    position.z -= 0.2;
+    position.z -= 0.05;
     initObject();
 }
 
@@ -297,6 +301,208 @@ void Object::guardarEntity()//7
     cout << "dir:" << direction.x << "; " << direction.y << "; " << direction.z << "; \n";
     cout << "escala:" << scale << "; \n";
 
+}
+
+bool Object::esEsquina()
+{
+    if (position.x - floor(position.x) < 0.01 && (position.z+0.6)*-1 - floor((position.z+0.6)*-1) < 0.01)
+    {
+        if (int((position.x) - 118) % 15 == 0 && int((position.z + 0.6) + 161) % 15 == 0)
+        {
+            return true;
+            cout << "Es esquina \n";
+        }
+    }
+    return false;
+}
+
+void Object::runCar(float meters)
+{
+    float avanzado = 0;
+        if (normalize(direction) == vec3(1, 0, 0))
+        {
+            if (avance+0.05>15 || avance==0) //si estoy en una esquina, tomo una decision
+            {
+                if (avance != 0)
+                {
+                    position.x = ultimaEsquina.x + 15; //Llegue a la esquina en +x
+                    position.z = ultimaEsquina.y;
+                    ultimaEsquina.x = position.x;
+                    ultimaEsquina.y = position.z;
+                }
+                int num = 0;
+                
+                srand(time(NULL));
+                num = rand() % 2 + 1;
+
+                if (position.x < 238 && ((num == 1 && avance!=0) || avance==0))//Si puedo, y toca seguir, sigo
+                {
+                    aumentarX();
+                    if (avance != 0)
+                    {
+                        avance = 0;
+                    }
+                    avance += 0.05;
+                    avanzado += 0.05;
+                }
+                else
+                {
+                    if (num == 1)
+                    {
+                        direction = vec3(0, 0, 1);
+                    }
+                    else
+                    {
+                        direction = vec3(0, 0, -1);
+                    }
+                }
+            }
+            else
+            {
+                aumentarX();
+                avance += 0.05;
+                avanzado += 0.05;
+            }
+        }
+        if (normalize(direction) == vec3(-1, 0, 0))
+        {
+            if (avance + 0.05 > 15 || avance == 0) //si estoy en una esquina, tomo una decision
+            {
+                if (avance != 0)
+                {
+                    position.x = ultimaEsquina.x - 15; //Llegue a la esquina en -x
+                    position.z = ultimaEsquina.y;
+                    ultimaEsquina.x = position.x;
+                    ultimaEsquina.y = position.z;
+                    avance = 0;
+                }
+                int num = 0;
+
+                srand(time(NULL));
+                num = rand() % 2 + 1;
+
+                if ((position.x > 148 || (position.x > 118 && position.z < -176) ) && ((num == 1 && avance != 0) || avance == 0))//Si puedo, y toca seguir, sigo
+                {
+                    disminuirX();
+                    if (avance != 0)
+                    {
+                        avance = 0;
+                    }
+                    avance += 0.05;
+                    avanzado += 0.05;
+                }
+                else
+                {
+                    if (num == 1)
+                    {
+                        direction = vec3(0, 0, 1);
+                    }
+                    else
+                    {
+                        direction = vec3(0, 0, -1);
+                    }
+                }
+            }
+            else
+            {
+                disminuirX();
+                avance += 0.05;
+                avanzado += 0.05;
+            }
+        }
+        if (normalize(direction) == vec3(0, 0, 1))
+        {
+            if (avance + 0.05 > 15 || avance == 0) //si estoy en una esquina, tomo una decision
+            {
+                if (avance != 0)
+                {
+                    position.x = ultimaEsquina.x; //Llegue a la esquina en +z
+                    position.z = ultimaEsquina.y + 15;
+                    ultimaEsquina.x = position.x;
+                    ultimaEsquina.y = position.z;
+                    avance = 0;
+                }
+                int num = 0;
+
+                srand(time(NULL));
+                num = rand() % 2 + 1;
+
+                if ((position.z < -177 || (position.x > 148 && position.z < -162)) && ((num == 1 && avance != 0) || avance == 0))//Si puedo, y toca seguir, sigo
+                {
+                    aumentarZ();
+                    if (avance != 0)
+                    {
+                        avance = 0;
+                    }
+                    avance += 0.05;
+                    avanzado += 0.05;
+                }
+                else
+                {
+                    if (num == 1)
+                    {
+                        direction = vec3(1, 0, 0);
+                    }
+                    else
+                    {
+                        direction = vec3(-1, 0, 0);
+                    }
+                }
+            }
+            else
+            {
+                aumentarZ();
+                avance += 0.05;
+                avanzado += 0.05;
+            }
+        }
+        if (normalize(direction) == vec3(0, 0, -1))
+        {
+            if (avance + 0.05 > 15 || avance == 0) //si estoy en una esquina, tomo una decision
+            {
+                if (avance != 0)
+                {
+                    position.x = ultimaEsquina.x; //Llegue a la esquina en +x
+                    position.z = ultimaEsquina.y - 15;
+                    ultimaEsquina.x = position.x;
+                    ultimaEsquina.y = position.z;
+                    avance = 0;
+                }
+                int num = 0;
+
+                srand(time(NULL));
+                num = rand() % 2 + 1;
+
+                if (position.z > -220 && ((num == 1 && avance != 0) || avance == 0))//Si puedo, y toca seguir, sigo
+                {
+                    disminuirZ();
+                    if (avance != 0)
+                    {
+                        avance = 0;
+                    }
+                    avance += 0.05;
+                    avanzado += 0.05;
+                }
+                else
+                {
+                    if (num == 1)
+                    {
+                        direction = vec3(1, 0, 0);
+                    }
+                    else
+                    {
+                        direction = vec3(-1, 0, 0);
+                    }
+                }
+            }
+            else
+            {
+                disminuirZ();
+                avance += 0.05;
+                avanzado += 0.05;
+            }
+        }
+    
 }
 
 

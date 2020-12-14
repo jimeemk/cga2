@@ -38,10 +38,14 @@ public:
 	void escMasZ();//5
 	void escMenosZ();//6
 	void guardarEntity();//7
+	bool esEsquina();
+	void runCar(float meters);
 private:
 	string path;
 	Model* model;
 	glm::vec3 orientation;
+	glm::vec2 ultimaEsquina;
+	float avance;
 	bool hasTexture;
 	float scale;
 	void initObject();
