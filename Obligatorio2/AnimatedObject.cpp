@@ -103,11 +103,6 @@ void AnimatedObject::initObject()
     modelMatrix = glm::scale(modelMatrix, glm::vec3(scale / maxFac, scale / maxFac, scale / maxFac));
     modelMatrix = glm::translate(modelMatrix, glm::vec3(-centro.x, -centro.y, -centro.z));//Por si el objeto no viene en el origen
     calcBounds();
-    glm::vec3 maxAux;
-    glm::vec3 minAux;
-    getBounds(minAux, maxAux);//Esto no va aca, es para probar
-    cout << "min negri2: " << minAux.x << " ... " << minAux.y << " ... " << minAux.z << "\n";
-    cout << "max negri2: " << maxAux.x << " ... " << maxAux.y << " ... " << maxAux.z << "\n";
 }
 float AnimatedObject::getMaxScale(float x, float y, float z)
 {

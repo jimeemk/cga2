@@ -10,6 +10,7 @@
 #include "SDL_opengl.h"
 #include "Entity.h"
 #include "FreeImage.h"
+#include "btBulletDynamicsCommon.h"
 
 using namespace std;
 using namespace glm;
@@ -32,6 +33,8 @@ private:
 	//bounds 
 	vec3 min_bound;
 	vec3 max_bound;
+	unsigned int cubemapTextureSkybox;
+	mat4 worldToUnitMatrix;
 public:
 	~Settings();
 	static Settings* getInstance();
@@ -55,6 +58,9 @@ public:
 	static unsigned int TextureFromFile(const char* path);
 	vec3 clampToScene(vec3);
 	static void SetLightsToShader(Shader* shader);
-	bool colliding(vec3, vec3);
+	void setCubeMapTextureSkybox(unsigned int);
+	unsigned int getCubeMapTextureSkybox();
+	void updateWorldToUnitMatrix();
+	mat4 getWorldToUnitMatrix();
 	void changeEntity(Entity* o, Entity* n);
 };

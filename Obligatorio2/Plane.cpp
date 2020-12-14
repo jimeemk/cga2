@@ -121,4 +121,3 @@ void Plane::initPlane()
 	getBounds(minAux, maxAux);//Esto no va aca, es para probar
 
 }
-

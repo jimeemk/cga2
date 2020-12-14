@@ -50,20 +50,49 @@ void Settings::addEntity(Entity* e)
 	vec3 min_ent, max_ent;
 	e->getBounds(min_ent, max_ent);
 
+	bool updateBounds = false;
+
 	if (entities.size() == 1)
 	{
 		min_bound = min_ent;
 		max_bound = max_ent;
+		updateBounds = true;
 	}
 	else
 	{
-		if (min_ent.x < min_bound.x) min_bound.x = min_ent.x;
-		if (min_ent.y < min_bound.y) min_bound.y = min_ent.y;
-		if (min_ent.z < min_bound.z) min_bound.z = min_ent.z;
-		if (max_ent.x > max_bound.x) max_bound.x = max_ent.x;
-		if (max_ent.y > max_bound.y) max_bound.y = max_ent.y;
-		if (max_ent.z > max_bound.z) max_bound.z = max_ent.z;
+		if (min_ent.x < min_bound.x)
+		{
+			min_bound.x = min_ent.x;
+			updateBounds = true;
+		}
+		if (min_ent.y < min_bound.y)
+		{
+			min_bound.y = min_ent.y;
+			updateBounds = true;
+		}
+		if (min_ent.z < min_bound.z)
+		{
+			min_bound.z = min_ent.z;
+			updateBounds = true;
+		}
+		if (max_ent.x > max_bound.x)
+		{
+			max_bound.x = max_ent.x;
+			updateBounds = true;
+		}
+		if (max_ent.y > max_bound.y)
+		{
+			max_bound.y = max_ent.y;
+			updateBounds = true;
+		}
+		if (max_ent.z > max_bound.z)
+		{
+			max_bound.z = max_ent.z;
+			updateBounds = true;
+		}
 	}
+
+	updateWorldToUnitMatrix();
 }
 
 void Settings::addCar(Entity* e)
@@ -201,6 +230,11 @@ void Settings::setTerrainTexture()
 	vector<FIBITMAP*> imagenes;
 	vector<std::string> paths;
 	vector<int> tops;
+	vector<RGBQUAD> colores;
+	RGBQUAD verde, gris;
+	verde.rgbRed = 20;
+	verde.rgbGreen = 105;
+	verde.rgbBlue = 46;
 	paths.push_back("modelos/parteAdentro8.jpg");
 	paths.push_back("modelos/parteAfuera.jpg");
 	paths.push_back("modelos/m1.jpg");
@@ -215,6 +249,13 @@ void Settings::setTerrainTexture()
 	tops.push_back(150);
 	tops.push_back(140);
 	tops.push_back(100);
+	colores.push_back(verde);
+	colores.push_back({ int(0.42 * 255), int(0.45 * 255), int(0.5 * 255), 255 });
+	colores.push_back({ int(0.42 * 255), int(0.45 * 255), int(0.5 * 255), 255 });
+	colores.push_back({ int(0.42 * 255), int(0.45 * 255), int(0.5 * 255), 255 });
+	colores.push_back({ int(0.42 * 255), int(0.45 * 255), int(0.5 * 255), 255 });
+	colores.push_back({ int(0.42 * 255), int(0.45 * 255), int(0.5 * 255), 255 });
+	colores.push_back({ int(0.42 * 255), int(0.45 * 255), int(0.5 * 255), 255 });
 
 	for (int i = 0; i < paths.size(); i++)
 	{
@@ -228,11 +269,13 @@ void Settings::setTerrainTexture()
 	unsigned w = FreeImage_GetWidth(imagenes.at(0)); //Todas miden lo mismo
 	unsigned h = FreeImage_GetHeight(imagenes.at(0));
 	terrainTexture= FreeImage_Allocate(w, h, 24);
+	FIBITMAP* terrainTextureColors = FreeImage_Allocate(w, h, 24);
 	for (int j = 0; j < w; j++)
 	{
 		for (int k = 0; k < h; k++)
 		{
 			RGBQUAD maxColor;
+			RGBQUAD maxColor2;
 			bool primeraVez = true;
 			for (int l = 0; l < imagenes.size(); l++)
 			{
@@ -244,21 +287,28 @@ void Settings::setTerrainTexture()
 					maxColor.rgbRed = (int)((float)(col.rgbRed * tops.at(l)) / (float)150.0);
 					maxColor.rgbGreen = 0;//Ojo con esto, lleno solo el rojo
 					maxColor.rgbBlue = 0;
+
+					maxColor2 = colores[l];
 				}
 				else
 				{
 					FreeImage_GetPixelColor(imagenes.at(l), (int)(j), (int)(k), &col);
 					if ((float)(col.rgbRed * tops.at(l)) / (float)150.0 > maxColor.rgbRed)
 					{
-						maxColor.rgbRed = (int)((float)(col.rgbRed * tops.at(l)) / (float)150.0);
+						maxColor.rgbRed = (int)((float)(col.rgbRed * tops.at(l)) / (float)60.0);
+						maxColor2 = colores[l];
 					}
 				}
 					
 			}
 			FreeImage_SetPixelColor(terrainTexture, j, k, &maxColor);
+			FreeImage_SetPixelColor(terrainTextureColors, j, k, &maxColor2);
 		}
 	}
 	if (FreeImage_Save(FIF_JPEG, terrainTexture, "terrenoFinal.jpg", 0)) {
+		cout << "Image saved" << endl;
+	}
+	if (FreeImage_Save(FIF_JPEG, terrainTextureColors, "terrenoFinalColores.jpg", 0)) {
 		cout << "Image saved" << endl;
 	}
 	for (int i = 0; i < imagenes.size(); i++)
@@ -380,10 +430,33 @@ void Settings::SetLightsToShader(Shader* shader) {
 	//shader->setFloat("pointLights[3].quadratic", 0.0f);
 }
 
-bool Settings::colliding(vec3 bound_min, vec3 bound_max)
+void Settings::setCubeMapTextureSkybox(unsigned int id)
 {
-	for (int i = 0; i < entities.size(); i++) if (entities[i]->intersectionBoxBounds(bound_min, bound_max)) return true;
-	return false;
+	cubemapTextureSkybox = id;
+}
+
+unsigned int Settings::getCubeMapTextureSkybox()
+{
+	return cubemapTextureSkybox;
+}
+
+mat4 Settings::getWorldToUnitMatrix()
+{
+	return worldToUnitMatrix;
+}
+
+void Settings::updateWorldToUnitMatrix()
+{
+	float factor_x = 2 * (max_bound.x - min_bound.x);
+	float factor_y = 2 * (max_bound.y - min_bound.y);
+	float factor_z = 2 * (max_bound.z - min_bound.z);
+	
+	vec3 scene_center = 0.5f * (max_bound + min_bound);
+
+	mat4 scale_matrix = scale(mat4(1.f), vec3(factor_x, factor_y, factor_z));
+	mat4 translate_matrix = translate(mat4(1.f), -scene_center);
+
+	worldToUnitMatrix = scale_matrix * translate_matrix;
 }
 
 void Settings::changeEntity(Entity* o, Entity* n)

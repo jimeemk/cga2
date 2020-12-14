@@ -112,8 +112,14 @@ void init(void)
 	AnimatedObject* policia = new AnimatedObject("models/policia/Dancing Twerk.dae", glm::vec3(0, 0, -1), 2, glm::vec3(172.5, 34, -189.3), glm::vec3(0, 1, 0), glm::vec3(0, 0, -1), anim);
 	AnimatedObject* zombie1 = new AnimatedObject("models/zombie2/Thriller Part 1.dae", glm::vec3(0, 0, -1), 2.5, glm::vec3(158.7, 33.8, -168), glm::vec3(0, 1, 0), glm::vec3(0, 0, 1), anim);
 	//AnimatedObject* zombie2 = new AnimatedObject("models/zombie/Thriller Part 3.dae", glm::vec3(0, 0, -1), 3, glm::vec3(162.5, 34, -165), glm::vec3(0, 1, 0), glm::vec3(0, 0, 1), anim);
-	Water* water = new Water(vec3(-60.f, 0.5f, 60.f), vec3(0.f, 1.f, 0.f), vec3(1.f, 0.f, 0.f), waterShader, 35, 1520, 1520, "modelos/water1.jpg");
 	std::vector<Texture> text;
+	std::vector<Texture> texture_water;
+	Texture tagua = { Settings::TextureFromFile("modelos/grass2.jpg"), "texture_diffuse", "modelos/grass2.jpg" };
+	texture_water.push_back(tagua);
+	Water* water = new Water(vec3(-60.f, 5.f, 60.f), vec3(0.f, 1.f, 0.f), vec3(1.f, 0.f, 0.f), waterShader, 31, 1520, 1520, texture_water);
+
+	//Texture t = { Settings::TextureFromFile("modelos/isla2.jpg"), "texture_height", "modelos/isla2.jpg" };
+	//text.push_back(t);
 	Texture t2 = { Settings::TextureFromFile("modelos/grass2.jpg"), "texture_diffuse", "modelos/grass2.jpg" };
 	text.push_back(t2);
 	Texture t3 = { Settings::TextureFromFile("modelos/arena.jpg"), "texture_diffuse", "modelos/arena.jpg" };
@@ -177,14 +183,15 @@ void init(void)
 	//glEnable(GL_CULL_FACE); // enable back face culling - try this and see what happens!
 
 	//init camera
-	camera = new Camera(vec3(210.f, 60.f, -200.f), half_pi<float>(), 0.f, 65.f, 4.0f / 3.0f, 0.01f, 500.f, 10.f, false);
-	camera2 = new Camera(vec3(210.f, 200.f, -200.f), half_pi<float>(), 0.f, 65.f, 4.0f / 3.0f, 0.01f, 500.f, 10.f, true);
+	camera = new Camera(vec3(210.f, 60.f, -200.f), half_pi<float>(), 0.f, 65.f, 4.0f / 3.0f, 0.01f, 500.f, 2.f, false);
+	camera2 = new Camera(vec3(210.f, 200.f, -200.f), half_pi<float>(), 0.f, 65.f, 4.0f / 3.0f, 0.01f, 500.f, 2.f, true);
 	Light* light1 = new Light(vec3(185,80, -206));
 //	Light* light1 = new Light(vec3(0, 0, 0));
 	Light* light2 = new Light(vec3(50, 50, -100));
 	Light* light3 = new Light(vec3(100, 25, -150));
 	Light* light4 = new Light(vec3(-500, 20, -30));
 	skybox = new Skybox();
+	settings->setCubeMapTextureSkybox(skybox->getCubeMapTexture());
 
 	settings->changeNowCamera(camera);
 	settings->addLight(light1);
@@ -197,7 +204,7 @@ void init(void)
 	current_time = SDL_GetTicks();
 
 	//init speed
-	speed = 10.f;
+	speed = 20.f;
 
 	//init mouse variables
 	sensitivity = 0.10f;
@@ -272,10 +279,6 @@ void draw(SDL_Window* window)
 	if (wireframe) glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 	
 	SDL_GL_SwapWindow(window); // swap buffers
-
-	//vec3 camPos=set->getNowCamera()->getPosition();
-	//cout << "Camara en" << camPos.x << ";" << camPos.z << "\n";
-	//cout << "Altura en este lugar:" << set->getHeightTerrain(camPos.x, camPos.z) << "\n";
 }
 
 

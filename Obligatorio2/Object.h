@@ -3,6 +3,7 @@
 #include "Model.h"
 #include <string>
 #include <glm/gtx/vector_angle.hpp>
+
 using namespace std;
 
 class Object: public Entity {
@@ -51,6 +52,4 @@ private:
 	void initObject();
 	float getMaxScale(float x, float y, float z);
 	void rotation();
-
-	
 };

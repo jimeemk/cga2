@@ -1,0 +1,42 @@
+﻿  Building Custom Rule C:/Users/jairo/Downloads/bullet-2.82-r2704/src/BulletDynamics/CMakeLists.txt
+  btKinematicCharacterController.cpp
+  btConeTwistConstraint.cpp
+C:\Users\jairo\Downloads\bullet-2.82-r2704\src\BulletDynamics\ConstraintSolver\btConeTwistConstraint.cpp(866,21): warning C4244: '=': conversión de 'double' a 'btScalar'; posible pérdida de datos
+C:\Users\jairo\Downloads\bullet-2.82-r2704\src\BulletDynamics\ConstraintSolver\btConeTwistConstraint.cpp(911,20): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\jairo\Downloads\bullet-2.82-r2704\src\BulletDynamics\ConstraintSolver\btConeTwistConstraint.cpp(971,13): warning C4244: '=': conversión de 'double' a 'btScalar'; posible pérdida de datos
+C:\Users\jairo\Downloads\bullet-2.82-r2704\src\BulletDynamics\ConstraintSolver\btConeTwistConstraint.cpp(973,8): warning C4244: '=': conversión de 'double' a 'btScalar'; posible pérdida de datos
+  btContactConstraint.cpp
+C:\Users\jairo\Downloads\bullet-2.82-r2704\src\BulletDynamics\ConstraintSolver\btContactConstraint.h(25,28): warning C4359: 'btContactConstraint': el especificador de alinieación es menor que la alineación real (128), y se omitirá.
+  btFixedConstraint.cpp
+  btGearConstraint.cpp
+  btGeneric6DofConstraint.cpp
+  btGeneric6DofSpringConstraint.cpp
+  btHinge2Constraint.cpp
+  btHingeConstraint.cpp
+  btPoint2PointConstraint.cpp
+  btSequentialImpulseConstraintSolver.cpp
+  btSliderConstraint.cpp
+  btSolve2LinearConstraint.cpp
+  btTypedConstraint.cpp
+  btUniversalConstraint.cpp
+  btDiscreteDynamicsWorld.cpp
+C:\Users\jairo\Downloads\bullet-2.82-r2704\src\BulletDynamics/ConstraintSolver/btContactConstraint.h(25,28): warning C4359: 'btContactConstraint': el especificador de alinieación es menor que la alineación real (128), y se omitirá.
+  btRigidBody.cpp
+  btSimpleDynamicsWorld.cpp
+  Bullet-C-API.cpp
+  btRaycastVehicle.cpp
+C:\Users\jairo\Downloads\bullet-2.82-r2704\src\BulletDynamics/ConstraintSolver/btContactConstraint.h(25,28): warning C4359: 'btContactConstraint': el especificador de alinieación es menor que la alineación real (128), y se omitirá.
+  Generando código...
+  Compilando...
+  btWheelInfo.cpp
+  btMultiBody.cpp
+  btMultiBodyConstraintSolver.cpp
+  btMultiBodyDynamicsWorld.cpp
+  btMultiBodyJointLimitConstraint.cpp
+  btMultiBodyConstraint.cpp
+  btMultiBodyPoint2Point.cpp
+  btMultiBodyJointMotor.cpp
+  btDantzigLCP.cpp
+  btMLCPSolver.cpp
+  Generando código...
+  BulletDynamics.vcxproj -> C:\Users\jairo\Downloads\bullet-2.82-r2704\lib\Release\BulletDynamics.lib

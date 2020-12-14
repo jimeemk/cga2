@@ -5,6 +5,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 #include "FreeImage.h"
+#include "btBulletDynamicsCommon.h"
 
 #include "Shader.h"
 #include "Settings.h"
@@ -51,7 +52,7 @@ protected:
 	glm::vec3 position;
 	glm::vec3 direction;
 	glm::vec3 up;
-	Shader* shaderProgram;;
+	Shader* shaderProgram;
 	glm::mat4 modelMatrix;
 	glm::vec3 pointsInitialAABB[8];
 	unsigned int TextureFromFile(const char* path);

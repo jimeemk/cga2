@@ -1,0 +1,10 @@
+^C:\USERS\JAIRO\DOWNLOADS\BULLET-2.82-R2704\BULLET-2.82-R2704\SRC\BULLETDYNAMICS\CMAKELISTS.TXT
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/jairo/Downloads/bullet-2.82-r2704/bullet-2.82-r2704 -BC:/Users/jairo/Downloads/bullet-2.82-r2704/bullet-2.82-r2704 --check-stamp-file C:/Users/jairo/Downloads/bullet-2.82-r2704/bullet-2.82-r2704/src/BulletDynamics/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

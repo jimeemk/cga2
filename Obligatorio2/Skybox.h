@@ -97,6 +97,11 @@ public:
         glDepthFunc(GL_LESS);
     }
 
+    unsigned int getCubeMapTexture()
+    {
+        return cubemapTexture;
+    }
+
 private:
     unsigned int cubemapTexture;
     unsigned int VAO;

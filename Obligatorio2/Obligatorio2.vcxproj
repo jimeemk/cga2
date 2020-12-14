@@ -85,8 +85,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>..\libraries\Freeimage;..\libraries\SDL2-2.0.12\include;..\libraries\assimp\include;$(IncludePath)</IncludePath>
-    <LibraryPath>..\libraries\SDL2-2.0.12\lib\x64;..\libraries\Freeimage;..\libraries\assimp\code\Debug;$(LibraryPath)</LibraryPath>
+    <IncludePath>..\bullet\src;..\libraries\Freeimage;..\libraries\SDL2-2.0.12\include;..\libraries\assimp\include;$(IncludePath)</IncludePath>
+    <LibraryPath>..\bullet\lib\Release;..\libraries\SDL2-2.0.12\lib\x64;..\libraries\Freeimage;..\libraries\assimp\code\Debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -140,14 +140,15 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>..\libraries\glad;..\libraries\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\bullet\src;..\libraries\glad;..\libraries\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>FreeImage.lib;opengl32.lib;glu32.lib;SDL2.lib;SDL2main.lib;assimp-vc140-mt.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>FreeImage.lib;opengl32.lib;glu32.lib;SDL2.lib;SDL2main.lib;assimp-vc140-mt.lib;BulletDynamics.lib;BulletCollision.lib;LinearMath.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -185,6 +186,7 @@
     <ClInclude Include="Settings.h" />
     <ClInclude Include="Plane.h" />
     <ClInclude Include="Shader.h" />
+    <ClInclude Include="Skybox.h" />
     <ClInclude Include="Terrain.h" />
     <ClInclude Include="tinystr.h" />
     <ClInclude Include="tinyxml.h" />
@@ -207,6 +209,8 @@
     <None Include="material.vert" />
     <None Include="simple.frag" />
     <None Include="simple.vert" />
+    <None Include="skybox.frag" />
+    <None Include="skybox.vert" />
     <None Include="suelo.frag" />
     <None Include="suelo.vert" />
     <None Include="water.frag" />

@@ -3,6 +3,8 @@
 #include "AnimatedModel.h"
 #include <string>
 #include <glm/gtx/vector_angle.hpp>
+#include "btBulletDynamicsCommon.h"
+
 using namespace std;
 
 class AnimatedObject : public Entity {
