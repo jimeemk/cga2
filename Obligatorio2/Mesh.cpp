@@ -21,7 +21,16 @@ Mesh::Mesh(vector<Vertex> vertices, vector<unsigned int> indices, vector<Texture
 	// now that we have all the required data, set the vertex buffers and its attribute pointers.
 	setupMesh();
 }
+Mesh::Mesh(vector<Vertex> vertices, vector<unsigned int> indices, vector<Texture> textures, glm::vec3 dc)
+{
+	this->vertices = vertices;
+	this->indices = indices;
+	this->textures = textures;
+	diffuseColor = dc;
 
+	// now that we have all the required data, set the vertex buffers and its attribute pointers.
+	setupMesh();
+}
 Mesh::~Mesh()
 {
 	//cout << "									 Mesh::~Mesh() " << endl;
@@ -72,7 +81,9 @@ void Mesh::Draw(GLuint shaders_program)
 		// and finally bind the texture
 		glBindTexture(GL_TEXTURE_2D, textures[i].id);
 	}
-
+	glUniform1f(glGetUniformLocation(shaders_program, "diffuser"), diffuseColor.x);
+	glUniform1f(glGetUniformLocation(shaders_program, "diffuseg"), diffuseColor.y);
+	glUniform1f(glGetUniformLocation(shaders_program, "diffuseb"), diffuseColor.z);
 	// draw mesh
 	glBindVertexArray(VAO);
 	glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, 0);

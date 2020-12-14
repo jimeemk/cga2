@@ -26,6 +26,7 @@ private:
 	std::vector<Shader*> shaders;
 	Camera* now_camera;
 	std::vector<Entity*> entities;
+	std::vector<Entity*> cars;
 	std::vector<Light*> lights;
 	FIBITMAP* terrainTexture;
 	static int init_time;
@@ -38,9 +39,11 @@ public:
 	~Settings();
 	static Settings* getInstance();
 	std::vector<Entity*> getEntities();
+	std::vector<Entity*> getCars();
 	std::vector<Shader*> getShaders();
 	Shader* addShader(Shader* s);
 	void addEntity(Entity* e);
+	void addCar(Entity* e);
 	void changeNowCamera(Camera* c);
 	void setTerrainTexture();
 	float getHeightTerrain(float x, float z);
@@ -59,4 +62,5 @@ public:
 	unsigned int getCubeMapTextureSkybox();
 	void updateWorldToUnitMatrix();
 	mat4 getWorldToUnitMatrix();
+	void changeEntity(Entity* o, Entity* n);
 };

@@ -26,6 +26,11 @@ std::vector<Entity*> Settings::getEntities()
     return entities;
 }
 
+std::vector<Entity*> Settings::getCars()
+{
+	return cars;
+}
+
 std::vector<Shader*> Settings::getShaders()
 {
     return shaders;
@@ -88,6 +93,11 @@ void Settings::addEntity(Entity* e)
 	}
 
 	updateWorldToUnitMatrix();
+}
+
+void Settings::addCar(Entity* e)
+{
+	cars.push_back(e);
 }
 
 // printShaderError
@@ -225,7 +235,7 @@ void Settings::setTerrainTexture()
 	verde.rgbRed = 20;
 	verde.rgbGreen = 105;
 	verde.rgbBlue = 46;
-	paths.push_back("modelos/parteAdentro2.jpg");
+	paths.push_back("modelos/parteAdentro8.jpg");
 	paths.push_back("modelos/parteAfuera.jpg");
 	paths.push_back("modelos/m1.jpg");
 	paths.push_back("modelos/m2.jpg");
@@ -274,7 +284,7 @@ void Settings::setTerrainTexture()
 				{
 					primeraVez = false;
 					FreeImage_GetPixelColor(imagenes.at(l), (int)(j), (int)(k), &col);
-					maxColor.rgbRed = (int)((float)(col.rgbRed * tops.at(l)) / (float)60.0);
+					maxColor.rgbRed = (int)((float)(col.rgbRed * tops.at(l)) / (float)150.0);
 					maxColor.rgbGreen = 0;//Ojo con esto, lleno solo el rojo
 					maxColor.rgbBlue = 0;
 
@@ -283,7 +293,7 @@ void Settings::setTerrainTexture()
 				else
 				{
 					FreeImage_GetPixelColor(imagenes.at(l), (int)(j), (int)(k), &col);
-					if ((float)(col.rgbRed * tops.at(l)) / (float)60.0 > maxColor.rgbRed)
+					if ((float)(col.rgbRed * tops.at(l)) / (float)150.0 > maxColor.rgbRed)
 					{
 						maxColor.rgbRed = (int)((float)(col.rgbRed * tops.at(l)) / (float)60.0);
 						maxColor2 = colores[l];
@@ -314,9 +324,9 @@ float Settings::getHeightTerrain(float x, float z)
 	unsigned w = FreeImage_GetWidth(terrainTexture); 
 	unsigned h = FreeImage_GetHeight(terrainTexture);
 	bool col = FreeImage_GetPixelColor(terrainTexture, (int)((x/400.0)*w), (int)((z/-400.0)*h), &color);
-	//Considero que el top de todo es 60, por lo que para poner los colores, tengo que saber que despues lo voy a multiplicar por 60
+	//Considero que el top de todo es 150, por lo que para poner los colores, tengo que saber que despues lo voy a multiplicar por 60
 	if (col)
-		return (color.rgbRed / 255.0) * 60;
+		return (color.rgbRed / 255.0) * 150;
 	else
 		return -1;
 }
@@ -447,4 +457,15 @@ void Settings::updateWorldToUnitMatrix()
 	mat4 translate_matrix = translate(mat4(1.f), -scene_center);
 
 	worldToUnitMatrix = scale_matrix * translate_matrix;
+}
+
+void Settings::changeEntity(Entity* o, Entity* n)
+{
+	for (int i = 0; i < entities.size(); i++)
+	{
+		if (o->getPosition() == entities.at(i)->getPosition())
+		{
+			o = n;
+		}
+	}
 }

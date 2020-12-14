@@ -205,6 +205,8 @@
     <None Include="heightMap.vert" />
     <None Include="light_cube.frag" />
     <None Include="light_cube.vert" />
+    <None Include="material.frag" />
+    <None Include="material.vert" />
     <None Include="simple.frag" />
     <None Include="simple.vert" />
     <None Include="skybox.frag" />

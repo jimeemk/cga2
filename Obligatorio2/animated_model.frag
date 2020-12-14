@@ -32,6 +32,7 @@ uniform PointLight point_light;
 uniform vec3 view_pos;
 
 
+
 vec3 CalcPointLight(PointLight light, vec3 normal, vec3 view_dir, vec3 frag_pos)
 {
 	vec3 light_dir = normalize(light.position - frag_pos);
@@ -49,9 +50,9 @@ vec3 CalcPointLight(PointLight light, vec3 normal, vec3 view_dir, vec3 frag_pos)
     vec3 specular = light.specular * spec * vec3(texture(material.texture_specular1, text_coords));
 
 	
-	ambient *= attenuation;
-    diffuse *= attenuation;
-    specular *= attenuation;
+	ambient *= attenuation*3;
+    diffuse *= attenuation*3;
+    specular *= attenuation*3;
     	
 	return (ambient + diffuse + specular);
 }

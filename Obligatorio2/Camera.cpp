@@ -23,7 +23,7 @@ Camera::Camera()
 {
 }
 
-Camera::Camera(vec3 p, float h, float v, float fy, float a, float n, float f, float s)
+Camera::Camera(vec3 p, float h, float v, float fy, float a, float n, float f, float s, bool pm)
 {
 	size = s;
 	position = p;
@@ -33,6 +33,7 @@ Camera::Camera(vec3 p, float h, float v, float fy, float a, float n, float f, fl
 	aspect = a;
 	tnear = n;
 	tfar = f;
+	perspectiveMode = pm;
 	horizontalAngle = clampHorizontal(h);
 	verticalAngle = clampVertical(v);
 
@@ -65,6 +66,10 @@ void Camera::changeMode()
 vec3 Camera::getPosition()
 {
 	return position;
+}
+void Camera::setPosition(vec3 pos)
+{
+	position=pos;
 }
 
 void Camera::updatePosition(float delta, movement_direction d)
@@ -112,17 +117,17 @@ void Camera::updatePosition(float delta, movement_direction d)
 	}
 
 	//Si estoy caminando la altura es la del terreno
-	if (mode == WALK) position.y = Settings::getInstance()->getHeightTerrain(position.x, position.z) + size * 0.5f;
+	if (mode == WALK && !perspectiveMode) position.y = Settings::getInstance()->getHeightTerrain(position.x, position.z) + size * 0.5f;
 
 	//Si estoy caminando y la altura del terreno es -1 (fuera de los limetes) o choco con alguna AABB
-	if (mode == WALK && position.y == -1 + size * 0.5f) position = last_position;
-	else {
+	//if ( (mode == WALK && position.y == -1 + size * 0.5f) || Settings::getInstance()->colliding(min_camera, max_camera)) position = last_position;
+	//else {
 		vec3 target = position + spherical_to_cartesian(horizontalAngle, verticalAngle);
 		view_matrix = lookAt(position, target, u);
 
 		//actualizar frustum
 		updateFrustum();
-	}
+	//}
 }
 
 void Camera::moveCamera(float h_cant, float v_cant)

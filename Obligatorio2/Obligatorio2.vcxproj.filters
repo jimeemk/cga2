@@ -190,6 +190,12 @@
     <None Include="atmosphere.vert">
       <Filter>Shaders</Filter>
     </None>
+    <None Include="material.vert">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="material.frag">
+      <Filter>Shaders</Filter>
+    </None>
     <None Include="skybox.frag">
       <Filter>Shaders</Filter>
     </None>
